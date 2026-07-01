@@ -1,0 +1,44 @@
+{
+  "name": "Zeeshan Hameed - Senior AI Engineer",
+  "short_name": "Zeeshan Hameed",
+  "description": "Senior AI engineer and founder of Auxon AI. Production-grade AI products for health and fitness founders.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF8F2",
+  "theme_color": "#5C7A5C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "categories": ["development", "portfolio", "technology"],
+  "lang": "en-US"
+}

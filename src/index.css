@@ -1,0 +1,390 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ZEESHAN / AUXON AI - WARM HEALTH-TECH THEME
+   Calm. Clean. Trustworthy.
+   Ported from auxonai.com. All shadcn tokens are HSL triplets;
+   the named hex vars below drive the custom sections.
+   ============================================ */
+
+@layer base {
+  :root {
+    /* ---- Named palette (hex) - used by the ported sections ---- */
+    --cream: #FBF8F2;        /* page base */
+    --cream-deep: #F2EDE2;   /* alternating sections */
+    --sage-wash: #EEF1E9;    /* faint sage panel */
+    --white: #FFFFFF;        /* elevated cards */
+
+    --sage: #5C7A5C;         /* PRIMARY - buttons, links, italics, dots */
+    --sage-deep: #46603F;    /* hover / strong */
+    --sage-soft: #D9E0D0;    /* tints, hairlines */
+    --teal: #1497A6;         /* secondary, rare */
+    --coral: #E8704A;        /* secondary, rare */
+
+    --ink: #262B20;          /* headings, primary text */
+    --warm-gray: #5F6155;    /* body */
+    --muted: #8C8C7E;        /* labels, tertiary */
+
+    --line: #E7E1D4;         /* warm hairline border */
+    --line-strong: #D9D2C2;
+    --shadow-color: 40 44 32;
+
+    --footer-bg: #1A1D17;
+    --footer-line: #343829;
+    --footer-text: #C8CBBE;
+    --footer-muted: #8A8D7E;
+
+    /* ---- shadcn/ui tokens (HSL triplets, from the warm palette) ---- */
+    --background: 40 33% 97%;         /* cream */
+    --foreground: 87 15% 15%;         /* ink */
+
+    --card: 0 0% 100%;                /* white */
+    --card-foreground: 87 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 87 15% 15%;
+
+    --primary: 120 14% 42%;           /* sage */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 33% 92%;          /* cream-deep */
+    --secondary-foreground: 87 15% 15%;
+
+    --muted-hsl: 90 20% 93%;          /* sage-wash */
+    --muted-foreground: 60 6% 46%;
+
+    --accent: 90 20% 93%;             /* sage-wash */
+    --accent-foreground: 107 21% 31%; /* sage-deep */
+
+    --destructive: 14 77% 60%;        /* coral */
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 120 14% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 39 30% 87%;             /* line */
+    --input: 42 27% 80%;              /* line-strong */
+    --ring: 120 14% 42%;              /* sage */
+
+    --radius: 0.9rem;
+
+    /* Fonts (Fraunces display + Inter body, loaded in index.html) */
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  ::selection {
+    background: rgba(92, 122, 92, 0.22);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--cream-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--sage-soft);
+    border-radius: 6px;
+    border: 2px solid var(--cream-deep);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--sage);
+  }
+}
+
+/* ============================================
+   BACKGROUND - calm cream canvas with soft sage washes
+   ============================================ */
+
+.bg-cyber {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.neon-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+
+.neon-orb-1 {
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle, rgba(92, 122, 92, 0.18), transparent 70%);
+  top: -18%;
+  right: -12%;
+}
+
+.neon-orb-2 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(20, 151, 166, 0.08), transparent 70%);
+  top: 45%;
+  left: -16%;
+}
+
+.neon-orb-3 {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(92, 122, 92, 0.12), transparent 70%);
+  bottom: -8%;
+  right: 18%;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer components {
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  .heading-brutal {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .heading-xl {
+    font-size: clamp(2.35rem, 4.6vw, 3.85rem);
+  }
+  .heading-lg {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+  }
+  .heading-md {
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  }
+
+  .accent-italic {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--sage);
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--sage);
+    font-size: 12px;
+  }
+
+  .lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, var(--sage), var(--sage-deep));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ============================================
+     CARDS
+     ============================================ */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(var(--shadow-color) / 0.04), 0 8px 24px rgba(var(--shadow-color) / 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card-hover:hover {
+    border-color: var(--sage-soft);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(var(--shadow-color) / 0.06), 0 18px 40px rgba(var(--shadow-color) / 0.1);
+  }
+
+  /* ============================================
+     BUTTONS - sage pills, subtle hover (no glow)
+     ============================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 9999px;
+    border: 1px solid var(--sage);
+    background: transparent;
+    color: var(--sage);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .btn:hover {
+    background: rgba(92, 122, 92, 0.08);
+    color: var(--sage-deep);
+    border-color: var(--sage-deep);
+    transform: translateY(-1px);
+  }
+
+  .btn span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: var(--white);
+    box-shadow: 0 6px 16px rgba(92, 122, 92, 0.2);
+  }
+
+  .btn-primary:hover {
+    background: var(--sage-deep);
+    border-color: var(--sage-deep);
+    color: var(--white);
+    box-shadow: 0 10px 24px rgba(92, 122, 92, 0.28);
+  }
+
+  /* ============================================
+     PILLS + TAGS
+     ============================================ */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(92, 122, 92, 0.1);
+    color: var(--sage-deep);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    border: 1px solid var(--line-strong);
+    background: var(--cream);
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ============================================
+     FORM INPUTS
+     ============================================ */
+  .input-cyber {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--white);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .input-cyber:focus {
+    outline: none;
+    border-color: var(--sage);
+    box-shadow: 0 0 0 4px rgba(92, 122, 92, 0.12);
+  }
+
+  .input-cyber::placeholder {
+    color: var(--muted);
+  }
+
+  /* ============================================
+     SECTIONS + DIVIDERS
+     ============================================ */
+  .section-alt {
+    background: var(--cream-deep);
+    position: relative;
+  }
+
+  .hairline {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--sage-soft) 18%, var(--sage-soft) 82%, transparent);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.8rem 1.4rem;
+    min-height: 46px;
+  }
+  .input-cyber {
+    font-size: 16px; /* prevents iOS zoom */
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
