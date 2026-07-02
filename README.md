@@ -75,9 +75,5 @@ then a working prototype of your core feature in 2 weeks, or you do not pay for 
 - Email: **zeeshan@auxonai.com**
 
 <div align="center">
-
----
-
-*Built with React, Vite, and Tailwind. Source for [r-zeeshan.dev](https://r-zeeshan.dev) lives in this repo.*
-
+  
 </div>
