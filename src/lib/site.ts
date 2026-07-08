@@ -1,7 +1,7 @@
 // Central site config. Keep every CTA and link pointing here so they stay consistent.
 
-// Cal.com scheduling URL. Every "Book a free discovery call" button points here.
-export const BOOKING_LINK = 'https://cal.com/r-zeeshan';
+// Calendly scheduling URL. Every "Book a free discovery call" button points here.
+export const BOOKING_LINK = 'https://calendly.com/rzeeshan';
 
 // CuePilates site (the one clickable proof product).
 export const CUEPILATES_URL = 'https://www.cuepilates.fit';
