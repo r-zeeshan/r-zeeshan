@@ -81,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'dr-aigent',
     name: 'Dr. Aigent',
     tag: 'Clinical AI',
-    // TODO(zeeshan): add a real cover image at /public/work/dr-aigent.png; text-only for now.
+    cover: '/work/dr-aigent.png',
     oneLiner: "Multi-model clinical AI that turns doctors' notes into structured SOAP reports.",
     cardBlurb:
       "A multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic fallback across models so it stays reliable and affordable in production.",
