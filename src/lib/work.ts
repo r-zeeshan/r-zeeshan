@@ -38,7 +38,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'jema',
     name: 'Jema',
     tag: 'Clinical AI',
-    cover: '/work/jema.png',
+    cover: '/work/jema.webp',
     oneLiner: 'A clinical AI platform for Korean medicine, in daily use by doctors.',
     cardBlurb:
       'An end-to-end clinical AI platform for Korean medicine: AI clinical reports, patient records, scheduling, and herbal-formulation tracking. Live and used by doctors day to day.',
@@ -81,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'dr-aigent',
     name: 'Dr. Aigent',
     tag: 'Clinical AI',
-    cover: '/work/dr-aigent.png',
+    cover: '/work/dr-aigent.webp',
     oneLiner: "Multi-model clinical AI that turns doctors' notes into structured SOAP reports.",
     cardBlurb:
       "A multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic fallback across models so it stays reliable and affordable in production.",
@@ -114,7 +114,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'cuepilates',
     name: 'CuePilates',
     tag: 'Fitness SaaS',
-    cover: '/work/cuepilates.png',
+    cover: '/work/cuepilates.webp',
     oneLiner: 'An AI Pilates class-planning SaaS, taken from idea to launch in under a month.',
     cardBlurb:
       'An AI-powered Pilates class-planning SaaS with accounts and subscriptions, taken from idea to a live, paying product in under a month.',
@@ -156,7 +156,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'diettalk',
     name: 'DietTalk',
     tag: 'Health app',
-    cover: '/work/diettalk.png',
+    cover: '/work/diettalk.webp',
     oneLiner: 'A doctor-supervised diet and weighment app, live on the App Store and Google Play.',
     cardBlurb:
       'A doctor-supervised diet and weighment product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. Live on both app stores.',

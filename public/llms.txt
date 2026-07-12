@@ -1,0 +1,24 @@
+# Zeeshan Hameed
+
+> Zeeshan Hameed is a senior AI engineer who builds production health and fitness AI: clinical platforms, multi-model LLM systems, and cross-platform apps that ship and hold up. He is the founder of Auxon AI and the engineer behind Jema, CuePilates, and DietTalk.
+
+Zeeshan Hameed is a senior AI engineer with a B.S. in Artificial Intelligence, Top Rated Plus on Upwork, based in Pakistan. He builds production-grade AI for health and fitness founders, end to end: web, backend, mobile, and the AI itself. His thesis: the demo is easy; production is the hard 80%, the auth, payments, security, and scale that break under real use.
+
+## Case studies
+- Jema: a clinical AI platform for Korean medicine, in daily use by doctors. Multi-model AI reports with automatic fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling. https://r-zeeshan.dev/work/jema
+- Dr. Aigent: a multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic model fallback. https://r-zeeshan.dev/work/dr-aigent
+- CuePilates: an AI Pilates class-planning SaaS, taken from idea to launch in under a month, live at https://app.cuepilates.fit https://r-zeeshan.dev/work/cuepilates
+- DietTalk: a doctor-supervised diet and weight app, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, live on the App Store and Google Play. https://r-zeeshan.dev/work/diettalk
+
+## About
+- Full profile and story: https://r-zeeshan.dev/about
+- Founder of Auxon AI, his studio: https://auxonai.com
+
+## Work with Zeeshan
+- The Production Sprint: a working prototype in two weeks, then a phased build to production. https://auxonai.com
+- Book a discovery call: https://calendly.com/rzeeshan
+
+## Links
+- GitHub: https://github.com/r-zeeshan
+- LinkedIn: https://linkedin.com/in/r-zeeshan
+- Upwork: https://www.upwork.com/freelancers/aizeeshan
