@@ -20,7 +20,8 @@ export default function CaseStudy() {
         description={cs.metaDescription}
         path={path}
         ogType="article"
-        ogImageAlt={`${cs.name}, ${cs.tag}`}
+        ogImage={cs.ogImage}
+        ogImageAlt={`${cs.name}, ${cs.tag} case study by Zeeshan Hameed`}
         jsonLd={[
           caseStudyGraph({ path, name: cs.name, description: cs.metaDescription, image: cs.cover }),
           breadcrumbGraph([

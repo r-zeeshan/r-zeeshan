@@ -17,6 +17,8 @@ export interface CaseStudy {
   tag: string;
   /** Cover image in /public/work. Optional: text-only card when absent. */
   cover?: string;
+  /** Branded 1200x630 OG/Twitter share image in /public/og. */
+  ogImage?: string;
   /** One-line summary for cards and hero. */
   oneLiner: string;
   /** Slightly longer blurb for the index card. */
@@ -39,6 +41,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'Jema',
     tag: 'Clinical AI',
     cover: '/work/jema.webp',
+    ogImage: '/og/work-jema.png',
     oneLiner: 'A clinical AI platform for Korean medicine, in daily use by doctors.',
     cardBlurb:
       'An end-to-end clinical AI platform for Korean medicine: AI clinical reports, patient records, scheduling, and herbal-formulation tracking. Live and used by doctors day to day.',
@@ -82,6 +85,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'Dr. Aigent',
     tag: 'Clinical AI',
     cover: '/work/dr-aigent.webp',
+    ogImage: '/og/work-dr-aigent.png',
     oneLiner: "Multi-model clinical AI that turns doctors' notes into structured SOAP reports.",
     cardBlurb:
       "A multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic fallback across models so it stays reliable and affordable in production.",
@@ -115,6 +119,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'CuePilates',
     tag: 'Fitness SaaS',
     cover: '/work/cuepilates.webp',
+    ogImage: '/og/work-cuepilates.png',
     oneLiner: 'An AI Pilates class-planning SaaS, taken from idea to launch in under a month.',
     cardBlurb:
       'An AI-powered Pilates class-planning SaaS with accounts and subscriptions, taken from idea to a live, paying product in under a month.',
@@ -157,6 +162,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'DietTalk',
     tag: 'Health app',
     cover: '/work/diettalk.webp',
+    ogImage: '/og/work-diettalk.png',
     oneLiner: 'A doctor-supervised diet and weighment app, live on the App Store and Google Play.',
     cardBlurb:
       'A doctor-supervised diet and weighment product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. Live on both app stores.',
