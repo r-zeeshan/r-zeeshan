@@ -3,7 +3,13 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
+  // Static site generation (vite-react-ssg): one real HTML file per route.
+  ssgOptions: {
+    entry: "src/main.tsx",
+    dirStyle: "nested", // /work/jema -> /work/jema/index.html
+    formatting: "minify",
+  },
   server: {
     host: "::",
     port: 8080,
@@ -22,8 +28,11 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        // Manual chunk splitting for better caching
-        manualChunks: {
+        // Manual chunk splitting for better caching (client build only; during the
+        // SSR/SSG build react et al. are external and cannot be manually chunked).
+        manualChunks: isSsrBuild
+          ? undefined
+          : {
           // React and core libraries
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           // Animation libraries
