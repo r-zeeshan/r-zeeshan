@@ -15,7 +15,7 @@ const SAGE = '#5C7A5C';
 const CREAM = '#FBF8F2';
 const CREAM_DEEP = '#F2EDE2';
 const INK = '#262B20';
-const MUTED = '#8C8C7E';
+const MUTED = '#6E7064';
 
 // The "Z" mark as an SVG at a given size, with an optional rounded background.
 const markSvg = (size, radius = size * 0.22) => `
@@ -64,11 +64,11 @@ async function main() {
     <g transform="scale(1.3125)">
       <path d="M18 18 L46 18 L18 46 L46 46" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </g>
-    <text x="108" y="58" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="1" fill="${SAGE}">SENIOR AI ENGINEER</text>
+    <text x="108" y="58" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="600" fill="${SAGE}">Full-Stack AI Engineer</text>
   </g>
   <text x="96" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="600" fill="${INK}">Zeeshan Hameed</text>
-  <text x="96" y="428" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="${INK}" opacity="0.82">I turn ideas and stuck MVPs into production AI that holds up.</text>
-  <text x="96" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">Jema &#183; CuePilates &#183; DietTalk &#160;&#8226;&#160; Top Rated Plus on Upwork</text>
+  <text x="96" y="428" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="${INK}" opacity="0.82">I build AI products from idea to production.</text>
+  <text x="96" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">The AI layer, backend, web and mobile. r-zeeshan.dev</text>
 </svg>`;
   await sharp(Buffer.from(ogSvg)).png().toFile(join(pub, 'og-image.png'));
 

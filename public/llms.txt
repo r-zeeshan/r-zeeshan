@@ -1,24 +1,24 @@
 # Zeeshan Hameed
 
-> Zeeshan Hameed is a senior AI engineer who builds production health and fitness AI: clinical platforms, multi-model LLM systems, and cross-platform apps that ship and hold up. He is the founder of Auxon AI and the engineer behind Jema, CuePilates, and DietTalk.
+> Zeeshan Hameed is a full-stack AI engineer. He builds AI products from idea to production and stays to run them after launch: the AI layer, backend, web and mobile.
 
-Zeeshan Hameed is a senior AI engineer with a B.S. in Artificial Intelligence, Top Rated Plus on Upwork, based in Pakistan. He builds production-grade AI for health and fitness founders, end to end: web, backend, mobile, and the AI itself. His thesis: the demo is easy; production is the hard 80%, the auth, payments, security, and scale that break under real use.
+He holds a B.S. in Artificial Intelligence, is Top Rated Plus on Upwork with a 100% Job Success score, and is the founder of Auxon AI. He is based in Pakistan and works remotely. The work falls into three kinds: adding AI to a product that already exists (LLM features, chat, document AI, agents), building a SaaS or MVP end to end (auth, payments, deployment), and taking over an app that keeps breaking and making it stable.
 
 ## Case studies
-- Jema: a clinical AI platform for Korean medicine, in daily use by doctors. Multi-model AI reports with automatic fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling. https://r-zeeshan.dev/work/jema
+- Jema: a clinical AI platform for Korean medicine, used by doctors in Korea. Multi-model AI reports with automatic fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling with access controls. https://r-zeeshan.dev/work/jema
+- CuePilates: an AI Pilates class-planning SaaS, taken from idea to launch in under a month, live at https://app.cuepilates.fit. https://r-zeeshan.dev/work/cuepilates
+- TrueCert: a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing. https://r-zeeshan.dev/work/truecert
+- DietTalk: a doctor-supervised diet and weight management product, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, live on the App Store and Google Play. https://r-zeeshan.dev/work/diettalk
 - Dr. Aigent: a multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic model fallback. https://r-zeeshan.dev/work/dr-aigent
-- CuePilates: an AI Pilates class-planning SaaS, taken from idea to launch in under a month, live at https://app.cuepilates.fit https://r-zeeshan.dev/work/cuepilates
-- DietTalk: a doctor-supervised diet and weight app, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, live on the App Store and Google Play. https://r-zeeshan.dev/work/diettalk
+- Production rescue: a live web app taken over from another developer after its production database was wiped, then stabilized and kept running for its users. https://r-zeeshan.dev/work/production-rescue
 
 ## About
-- Full profile and story: https://r-zeeshan.dev/about
-- Founder of Auxon AI, his studio: https://auxonai.com
+- Full profile: https://r-zeeshan.dev/about
+- Resume (PDF): https://r-zeeshan.dev/zeeshan-hameed-resume.pdf
 
-## Work with Zeeshan
-- The Production Sprint: a working prototype in two weeks, then a phased build to production. https://auxonai.com
-- Book a discovery call: https://calendly.com/rzeeshan
-
-## Links
+## Contact and links
+- Email: zeeshan@auxonai.com
 - GitHub: https://github.com/r-zeeshan
 - LinkedIn: https://linkedin.com/in/r-zeeshan
 - Upwork: https://www.upwork.com/freelancers/aizeeshan
+- Auxon AI, his studio: https://auxonai.com

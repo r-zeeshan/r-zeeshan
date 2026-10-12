@@ -5,7 +5,10 @@ export const SITE_URL = 'https://r-zeeshan.dev';
 export const SITE_NAME = 'Zeeshan Hameed';
 export const DEFAULT_OG_IMAGE = '/og-image.png';
 export const DEFAULT_OG_ALT =
-  'Zeeshan Hameed, senior AI engineer, production AI for health and fitness.';
+  'Zeeshan Hameed, full-stack AI engineer. I build AI products from idea to production.';
+
+export const SITE_DESCRIPTION =
+  'Full-stack AI engineer. I build AI products from idea to production and stay to run them after launch: the AI layer, backend, web and mobile.';
 
 /** Absolute URL for a site-relative path. */
 export function absUrl(path = '/'): string {
@@ -23,23 +26,22 @@ export function personGraph() {
         '@id': `${SITE_URL}/#person`,
         name: 'Zeeshan Hameed',
         url: SITE_URL,
-        jobTitle: 'Senior AI Engineer',
-        description:
-          'Senior AI engineer building production-grade AI products for health and fitness founders, from idea to launch.',
+        jobTitle: 'Full-Stack AI Engineer',
+        description: SITE_DESCRIPTION,
         image: absUrl(DEFAULT_OG_IMAGE),
         worksFor: { '@id': `${AUXON_URL}/#organization` },
         knowsAbout: [
           'Artificial Intelligence',
-          'Clinical AI',
           'Large Language Models',
           'Retrieval-Augmented Generation',
           'Multi-Model LLM Routing',
           'Full-Stack Development',
-          'Next.js',
+          'Python',
           'FastAPI',
+          'React',
+          'Next.js',
           'Flutter',
-          'Health Technology',
-          'Fitness Software',
+          'PostgreSQL',
         ],
         alumniOf: 'B.S. in Artificial Intelligence',
         sameAs: [LINKS.github, LINKS.linkedin, LINKS.upwork, AUXON_URL],
@@ -50,8 +52,7 @@ export function personGraph() {
         name: 'Auxon AI',
         url: AUXON_URL,
         founder: { '@id': `${SITE_URL}/#person` },
-        description:
-          'Auxon AI builds production-grade AI products for health and fitness founders, from idea to launch.',
+        description: 'Auxon AI is the studio founded by Zeeshan Hameed.',
       },
       {
         '@type': 'WebSite',

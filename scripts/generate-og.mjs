@@ -12,14 +12,16 @@ const outDir = join(root, 'public', 'og');
 const SAGE = '#5C7A5C';
 const CREAM = '#FBF8F2';
 const INK = '#262B20';
-const MUTED = '#8C8C7E';
+const MUTED = '#6E7064';
 
-// Case studies (name, tag, line) — keep in sync with src/lib/work.ts.
+// Case studies (slug, name, tag, line). Keep in sync with src/lib/work.ts.
 const items = [
-  { slug: 'jema', name: 'Jema', tag: 'Clinical AI', line: 'A clinical AI platform for Korean medicine, in daily use by doctors.' },
-  { slug: 'dr-aigent', name: 'Dr. Aigent', tag: 'Clinical AI', line: 'Multi-model clinical AI that turns doctors’ notes into structured SOAP reports.' },
-  { slug: 'cuepilates', name: 'CuePilates', tag: 'Fitness SaaS', line: 'An AI Pilates class-planning SaaS, taken from idea to launch in under a month.' },
-  { slug: 'diettalk', name: 'DietTalk', tag: 'Health app', line: 'A doctor-supervised diet app, live on the App Store and Google Play.' },
+  { slug: 'jema', name: 'Jema', tag: 'Clinical AI', line: 'A clinical AI platform for Korean medicine, used by doctors in Korea.' },
+  { slug: 'cuepilates', name: 'CuePilates', tag: 'AI SaaS', line: 'An AI Pilates class-planning SaaS, taken from idea to launch in under a month.' },
+  { slug: 'truecert', name: 'TrueCert', tag: 'Workflow automation', line: 'A certification platform that replaced spreadsheets and site visits for a recycling company.' },
+  { slug: 'diettalk', name: 'DietTalk', tag: 'Mobile and web', line: 'A doctor-supervised diet and weight management app, live on the App Store and Google Play.' },
+  { slug: 'dr-aigent', name: 'Dr. Aigent', tag: 'Document AI', line: 'Multi-model clinical AI that turns doctors’ notes into structured SOAP reports.' },
+  { slug: 'production-rescue', name: 'Production rescue', tag: 'Stabilization', line: 'A live web app taken over after its production database was wiped, then stabilized.' },
 ];
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -43,7 +45,7 @@ function wrap(text, maxChars, maxLines) {
 }
 
 function svg({ name, tag, line }) {
-  const nameSize = name.length > 10 ? 88 : 104;
+  const nameSize = name.length > 14 ? 76 : name.length > 10 ? 88 : 104;
   const descLines = wrap(line, 50, 2);
   const descTspans = descLines
     .map((l, i) => `<tspan x="96" dy="${i === 0 ? 0 : 48}">${esc(l)}</tspan>`)
@@ -61,14 +63,14 @@ function svg({ name, tag, line }) {
   <rect x="0" y="0" width="1200" height="10" fill="${SAGE}"/>
   <g transform="translate(96, 132)">
     <rect width="72" height="72" rx="16" fill="${SAGE}"/>
-    <g transform="translate(16,16) scale(1.28)">
+    <g transform="scale(1.125)">
       <path d="M18 18 L46 18 L18 46 L46 46" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     </g>
-    <text x="96" y="46" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="2" fill="${SAGE}">CASE STUDY &#183; ${esc(tag.toUpperCase())}</text>
+    <text x="96" y="46" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="${SAGE}">Case study, ${esc(tag)}</text>
   </g>
   <text x="96" y="356" font-family="Georgia, 'Times New Roman', serif" font-size="${nameSize}" font-weight="600" fill="${INK}">${esc(name)}</text>
   <text y="430" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="${INK}" opacity="0.82">${descTspans}</text>
-  <text x="96" y="560" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">Zeeshan Hameed &#160;&#8226;&#160; r-zeeshan.dev</text>
+  <text x="96" y="560" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">Zeeshan Hameed, Full-Stack AI Engineer. r-zeeshan.dev</text>
 </svg>`;
 }
 

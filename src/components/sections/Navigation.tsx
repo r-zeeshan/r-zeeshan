@@ -4,7 +4,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Logo from '@/components/ui/Logo';
-import CTAButton from '@/components/ui/CTAButton';
+import { CONTACT_HREF, CTA_LABEL } from '@/lib/site';
 
 const navItems = [
   { label: 'Work', to: '/work' },
@@ -18,7 +18,8 @@ export default function Navigation() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -37,38 +38,37 @@ export default function Navigation() {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'font-medium transition-colors',
-      isActive ? 'text-[var(--sage-deep)]' : 'text-[var(--warm-gray)] hover:text-[var(--ink)]',
+      'font-medium transition-colors py-1',
+      isActive ? 'text-[var(--ink)] underline underline-offset-[0.4em] decoration-[var(--sage)]' : 'text-[var(--warm-gray)] hover:text-[var(--ink)]',
     );
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,padding] duration-300',
         scrolled || open
-          ? 'bg-[var(--cream)]/90 backdrop-blur-md border-b border-[var(--line)]'
+          ? 'bg-[var(--cream)]/92 backdrop-blur-md border-b border-[var(--line)]'
           : 'border-b border-transparent',
         scrolled ? 'py-2' : 'py-4',
       )}
     >
-      <div className="max-w-6xl mx-auto px-5 flex items-center justify-between gap-4">
-        <Link to="/" aria-label="Home" className="relative z-10 shrink-0">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+        <Link to="/" aria-label="Zeeshan Hameed, home" className="shrink-0 rounded-md">
           <Logo size="md" showTagline />
         </Link>
 
         {/* Desktop */}
-        <div className="hidden sm:flex items-center gap-7">
-          <nav className="flex items-center gap-7 text-sm" aria-label="Primary">
+        <div className="hidden sm:flex items-center gap-8">
+          <nav className="flex items-center gap-8 text-[0.9375rem]" aria-label="Primary">
             {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={linkClass}>
                 {item.label}
               </NavLink>
             ))}
           </nav>
-          <CTAButton label="Book a call" className="text-sm" />
+          <a href={CONTACT_HREF} className="btn !min-h-0 !py-2 !px-4 !text-sm">
+            {CTA_LABEL}
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -84,7 +84,7 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu: opens on a tap, so the motion answers the action. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -92,20 +92,17 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
             className="sm:hidden overflow-hidden"
           >
-            <nav
-              className="px-5 pt-2 pb-5 flex flex-col border-t border-[var(--line)] mt-2"
-              aria-label="Mobile"
-            >
+            <nav className="px-5 pt-2 pb-5 flex flex-col border-t border-[var(--line)] mt-2" aria-label="Mobile">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   className={({ isActive }) =>
                     cn(
-                      'py-3 text-lg border-b border-[var(--line)] font-medium transition-colors',
+                      'py-3.5 text-lg border-b border-[var(--line)] font-medium transition-colors',
                       isActive ? 'text-[var(--sage-deep)]' : 'text-[var(--ink)] hover:text-[var(--sage-deep)]',
                     )
                   }
@@ -113,13 +110,13 @@ export default function Navigation() {
                   {item.label}
                 </NavLink>
               ))}
-              <div className="pt-5">
-                <CTAButton label="Book a call" className="w-full justify-center" />
-              </div>
+              <a href={CONTACT_HREF} className="btn mt-5 w-full">
+                {CTA_LABEL}
+              </a>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

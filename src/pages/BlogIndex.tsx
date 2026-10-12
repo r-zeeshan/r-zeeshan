@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, PenLine } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Seo from '@/components/Seo';
 import { posts } from '@/lib/blog';
 import { absUrl, DEFAULT_OG_ALT } from '@/lib/seo';
@@ -9,7 +9,7 @@ const blogGraph = {
   '@type': 'Blog',
   '@id': `${absUrl('/blog')}#blog`,
   name: 'Notes by Zeeshan Hameed',
-  description: 'Writing on production AI engineering for health and fitness by Zeeshan Hameed.',
+  description: 'Engineering notes on building AI products that ship and keep working, by Zeeshan Hameed.',
   url: absUrl('/blog'),
 };
 
@@ -19,72 +19,54 @@ export default function BlogIndex() {
   return (
     <>
       <Seo
-        title="Notes | Zeeshan Hameed on production AI engineering"
-        description="Writing on production AI engineering for health and fitness: multi-model LLM systems, shipping real products, and the hard parts most demos skip."
+        title="Notes | Zeeshan Hameed, Full-Stack AI Engineer"
+        description="Engineering notes on building AI products that ship and keep working: multi-model LLM systems, shipping real products, and the hard parts most demos skip."
         path="/blog"
         ogImageAlt={DEFAULT_OG_ALT}
         jsonLd={blogGraph}
       />
 
-      <section className="px-5 pt-32 md:pt-40 pb-24 min-h-[70vh]">
-        <div className="max-w-3xl mx-auto">
-          <span className="eyebrow">Notes</span>
-          <h1 className="heading-brutal heading-xl mt-3">
-            Writing on <span className="accent-italic">production AI</span>.
-          </h1>
-          <p className="lead mt-5">
-            Engineering notes on building health and fitness AI that ships and holds up. The hard
-            parts, the tradeoffs, the things demos skip.
-          </p>
+      <section className="px-5 sm:px-8 pt-32 md:pt-40 pb-24 min-h-[70vh]">
+        <div className="max-w-6xl mx-auto">
+          <header className="max-w-3xl">
+            <h1 className="t-h1">Notes</h1>
+            <p className="lead mt-5">
+              Engineering notes on building AI products that ship and keep working. The hard parts,
+              the tradeoffs, the things demos skip.
+            </p>
+          </header>
 
           {hasPosts ? (
-            <div className="mt-12 space-y-6">
+            <ul className="mt-14 border-b border-[var(--line)] max-w-3xl">
               {posts.map((p) => (
-                <Link
-                  key={p.slug}
-                  to={`/blog/${p.slug}`}
-                  className="group block card card-hover p-6"
-                >
-                  <div className="text-xs text-[var(--muted)] flex items-center gap-2">
-                    <time dateTime={p.date}>
+                <li key={p.slug} className="rule-top">
+                  <Link to={`/blog/${p.slug}`} className="group block py-7 rounded-md">
+                    <time dateTime={p.date} className="meta">
                       {new Date(p.date).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                       })}
                     </time>
-                    <span aria-hidden="true">&middot;</span>
-                    <span>{p.readingMinutes} min read</span>
-                  </div>
-                  <h2 className="font-display text-xl font-semibold text-[var(--ink)] mt-2">
-                    {p.title}
-                  </h2>
-                  <p className="text-sm text-[var(--warm-gray)] mt-2 leading-relaxed">
-                    {p.description}
-                  </p>
-                  <span className="group inline-flex items-center gap-1.5 text-sm text-[var(--sage-deep)] font-medium mt-4">
-                    Read
-                    <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
+                    <h2 className="t-h3 mt-1 group-hover:underline decoration-1 underline-offset-[0.2em] decoration-[var(--sage)]">
+                      {p.title}
+                    </h2>
+                    <p className="prose-body mt-2">{p.description}</p>
+                    <span className="meta mt-3 block">{p.readingMinutes} min read</span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
-            <div className="mt-14 card p-10 flex flex-col items-center text-center">
-              <span className="w-12 h-12 rounded-full bg-[var(--sage-wash)] text-[var(--sage-deep)] flex items-center justify-center">
-                <PenLine size={20} strokeWidth={1.75} />
-              </span>
-              <p className="font-display text-xl text-[var(--ink)] mt-4">Writing soon.</p>
-              <p className="text-[var(--warm-gray)] mt-2 max-w-sm">
-                First posts are in the works. In the meantime, the case studies are where the real
+            <div className="mt-14 rule-top pt-8 max-w-xl">
+              <p className="t-h3">Writing soon.</p>
+              <p className="prose-body mt-2">
+                The first posts are in the works. In the meantime, the case studies are where the
                 engineering lives.
               </p>
-              <Link
-                to="/work"
-                className="group inline-flex items-center gap-2 text-[var(--sage-deep)] font-medium mt-6"
-              >
+              <Link to="/work" className="link inline-flex items-center gap-1.5 mt-5">
                 See the work
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
           )}

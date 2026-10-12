@@ -1,16 +1,15 @@
-import { motion } from 'framer-motion';
+import { TITLE } from '@/lib/site';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
   showTagline?: boolean;
-  animate?: boolean;
   tone?: 'dark' | 'light';
 }
 
 const sizes = {
-  sm: { icon: 30, text: 'text-base', tagline: 'text-[9px]', gap: 'gap-2.5' },
-  md: { icon: 36, text: 'text-lg', tagline: 'text-[10px]', gap: 'gap-3' },
-  lg: { icon: 52, text: 'text-2xl', tagline: 'text-xs', gap: 'gap-3.5' },
+  sm: { icon: 30, text: 'text-base', tagline: 'text-[0.75rem]', gap: 'gap-2.5' },
+  md: { icon: 36, text: 'text-lg', tagline: 'text-[0.8125rem]', gap: 'gap-3' },
+  lg: { icon: 52, text: 'text-2xl', tagline: 'text-sm', gap: 'gap-3.5' },
 };
 
 // Inline SVG mark: a sage rounded square with a "Z" drawn in cream.
@@ -30,24 +29,19 @@ function Mark({ size }: { size: number }) {
   );
 }
 
-export default function Logo({ size = 'md', showTagline = true, animate = true, tone = 'dark' }: LogoProps) {
+export default function Logo({ size = 'md', showTagline = true, tone = 'dark' }: LogoProps) {
   const s = sizes[size];
-  const Wrapper = animate ? motion.div : 'div';
-  const wrapperProps = animate ? { whileHover: { scale: 1.01 } } : {};
   const nameColor = tone === 'light' ? 'text-[var(--footer-text)]' : 'text-[var(--ink)]';
+  const taglineColor = tone === 'light' ? 'text-[var(--footer-muted)]' : 'text-[var(--warm-gray)]';
 
   return (
-    <Wrapper className={`flex items-center ${s.gap} cursor-pointer select-none`} {...wrapperProps}>
+    <span className={`flex items-center ${s.gap} select-none`}>
       <Mark size={s.icon} />
-      <div className="flex flex-col leading-none">
-        <span className={`font-display ${s.text} font-semibold tracking-tight ${nameColor}`}>Zeeshan Hameed</span>
-        {showTagline && (
-          <span className={`font-body ${s.tagline} text-[var(--sage)] tracking-[0.18em] uppercase mt-1`}>
-            Senior AI Engineer
-          </span>
-        )}
-      </div>
-    </Wrapper>
+      <span className="flex flex-col leading-none">
+        <span className={`font-display ${s.text} font-medium tracking-tight ${nameColor}`}>Zeeshan Hameed</span>
+        {showTagline && <span className={`font-body ${s.tagline} ${taglineColor} mt-1`}>{TITLE}</span>}
+      </span>
+    </span>
   );
 }
 

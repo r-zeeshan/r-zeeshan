@@ -1,7 +1,6 @@
 import Seo from '@/components/Seo';
-import SectionHeader from '@/components/ui/SectionHeader';
-import CaseStudyCard from '@/components/CaseStudyCard';
-import WorkWithMe from '@/components/sections/WorkWithMe';
+import { WorkBody } from '@/components/WorkEntries';
+import GetInTouch from '@/components/sections/GetInTouch';
 import { caseStudies } from '@/lib/work';
 import { absUrl, breadcrumbGraph, DEFAULT_OG_ALT } from '@/lib/seo';
 
@@ -11,7 +10,7 @@ const collectionGraph = {
   '@id': `${absUrl('/work')}#collection`,
   name: 'Work by Zeeshan Hameed',
   description:
-    'Production health and fitness AI products built by Zeeshan Hameed, with a case study on the engineering behind each one.',
+    'AI products built and shipped by Zeeshan Hameed, with a case study on the engineering behind each one.',
   url: absUrl('/work'),
 };
 
@@ -19,8 +18,8 @@ export default function WorkIndex() {
   return (
     <>
       <Seo
-        title="Work & case studies | Zeeshan Hameed, health & fitness AI engineer"
-        description="Case studies on production health and fitness AI I've shipped: a clinical AI platform for Korean medicine, a multi-model SOAP-note system, an AI Pilates SaaS, and a doctor-supervised diet app."
+        title="Work and case studies | Zeeshan Hameed, Full-Stack AI Engineer"
+        description="Case studies on AI products I've built and shipped: a clinical AI platform, an AI SaaS taken from idea to launch, a certification platform, a mobile app with a doctor portal, a multi-model report engine, and a production rescue."
         path="/work"
         ogImageAlt={DEFAULT_OG_ALT}
         jsonLd={[
@@ -32,24 +31,23 @@ export default function WorkIndex() {
         ]}
       />
 
-      <section className="px-5 pt-32 md:pt-40 pb-16 scroll-mt-20">
+      <section className="px-5 sm:px-8 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            eyebrow="Case studies"
-            title="The products, and the"
-            accent="engineering behind them"
-            subtitle="Each build below is live and in real use. The case studies go into the hard production parts: reliability, security, payments, multi-model AI, and shipping fast without cutting corners."
-          />
+          <header className="max-w-3xl">
+            <h1 className="t-h1">Products I&apos;ve built and shipped</h1>
+            <p className="lead mt-5">
+              Each one has a case study: the problem, what I built, the parts that were hard, and
+              where it is now.
+            </p>
+          </header>
 
-          <div className="grid sm:grid-cols-2 gap-6 mt-12">
-            {caseStudies.map((cs, i) => (
-              <CaseStudyCard key={cs.slug} cs={cs} index={i} />
-            ))}
+          <div className="mt-14 md:mt-20">
+            <WorkBody studies={caseStudies} />
           </div>
         </div>
       </section>
 
-      <WorkWithMe />
+      <GetInTouch />
     </>
   );
 }

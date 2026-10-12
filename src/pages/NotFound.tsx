@@ -1,26 +1,35 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import Seo from "@/components/Seo";
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[var(--cream)] px-5">
-      <div className="text-center">
-        <h1 className="font-display text-6xl font-medium mb-3 text-[var(--ink)]">404</h1>
-        <p className="lead mb-6">This page wandered off. Let&apos;s get you back.</p>
-        <a href="/" className="btn btn-primary">
-          <span>Return home</span>
-        </a>
+    <section className="px-5 sm:px-8 pt-40 pb-32 min-h-[70vh]">
+      <Seo
+        title="Page not found | Zeeshan Hameed"
+        description="This page does not exist."
+        path="/404"
+        noindex
+      />
+      <div className="max-w-6xl mx-auto">
+        <h1 className="t-h1">Page not found</h1>
+        <p className="lead mt-4">That address does not lead anywhere on this site.</p>
+        <p className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+          <Link to="/" className="link">
+            Home
+          </Link>
+          <Link to="/work" className="link">
+            Work
+          </Link>
+        </p>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster } from '@/components/ui/toaster';
@@ -25,22 +26,19 @@ export default function RootLayout() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div className="min-h-screen relative">
-          {/* Calm cream canvas with soft sage washes */}
-          <div className="bg-cyber" aria-hidden="true">
-            <div className="neon-orb neon-orb-1" />
-            <div className="neon-orb neon-orb-2" />
-            <div className="neon-orb neon-orb-3" />
+        <MotionConfig reducedMotion="user">
+          <div className="min-h-screen relative">
+            <a href="#main" className="skip-link">
+              Skip to content
+            </a>
+            <ScrollToTop />
+            <Navigation />
+            <main id="main" tabIndex={-1} className="outline-none">
+              <Outlet />
+            </main>
+            <Footer />
           </div>
-          <div className="noise-overlay" aria-hidden="true" />
-
-          <ScrollToTop />
-          <Navigation />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
-        </div>
+        </MotionConfig>
       </TooltipProvider>
     </QueryClientProvider>
   );

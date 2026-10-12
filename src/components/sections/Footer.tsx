@@ -1,52 +1,42 @@
 import { Link } from 'react-router-dom';
 import Logo from '@/components/ui/Logo';
-import CTAButton from '@/components/ui/CTAButton';
-import { LINKS, AUXON_URL } from '@/lib/site';
+import { AUXON_URL, CONTACT_HREF, LINKS, POSITIONING, RESUME_HREF, RESUME_LABEL } from '@/lib/site';
+
+const linkClass = 'hover:text-[var(--footer-text)] underline-offset-4 hover:underline transition-colors';
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--footer-bg)] text-[var(--footer-text)] px-5 pt-16 pb-10">
+    <footer className="bg-[var(--footer-bg)] text-[var(--footer-text)] px-5 sm:px-8 pt-14 pb-10">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div className="max-w-md">
-            <Link to="/" aria-label="Home" className="inline-block mb-5">
-              <Logo size="md" showTagline tone="light" />
+            <Link to="/" aria-label="Zeeshan Hameed, home" className="inline-block mb-5 rounded-md">
+              <Logo size="md" showTagline={false} tone="light" />
             </Link>
             <p className="text-[var(--footer-muted)] leading-relaxed">
-              Production-grade AI products for health and fitness founders. Built by Zeeshan Hameed, the
-              engineer behind Jema, CuePilates, and DietTalk, through his studio Auxon&nbsp;AI.
+              Zeeshan Hameed, full-stack AI engineer. {POSITIONING}
             </p>
           </div>
-          <CTAButton variant="light" size="lg" />
+
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-14 gap-y-2.5 text-[0.9375rem] text-[var(--footer-muted)]">
+            <Link to="/work" className={linkClass}>Work</Link>
+            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>LinkedIn</a>
+            <Link to="/about" className={linkClass}>About</Link>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className={linkClass}>GitHub</a>
+            <Link to="/blog" className={linkClass}>Notes</Link>
+            <a href={LINKS.upwork} target="_blank" rel="noopener noreferrer" className={linkClass}>Upwork</a>
+            <a href={RESUME_HREF} target="_blank" rel="noopener noreferrer" className={linkClass}>{RESUME_LABEL}</a>
+            <a href={CONTACT_HREF} className={linkClass}>{LINKS.email}</a>
+          </nav>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[var(--footer-line)] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--footer-muted)]">
-          <span>© {year} Zeeshan Hameed · Auxon&nbsp;AI</span>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link to="/work" className="hover:text-[var(--footer-text)] transition-colors">
-              Work
-            </Link>
-            <Link to="/about" className="hover:text-[var(--footer-text)] transition-colors">
-              About
-            </Link>
-            <Link to="/blog" className="hover:text-[var(--footer-text)] transition-colors">
-              Notes
-            </Link>
-            <a href={AUXON_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--footer-text)] transition-colors">
-              auxonai.com
-            </a>
-            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--footer-text)] transition-colors">
-              LinkedIn
-            </a>
-            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--footer-text)] transition-colors">
-              GitHub
-            </a>
-            <a href={LINKS.upwork} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--footer-text)] transition-colors">
-              Upwork
-            </a>
-          </div>
+        <div className="mt-12 pt-6 border-t border-[var(--footer-line)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm text-[var(--footer-muted)]">
+          <span>&copy; {year} Zeeshan Hameed</span>
+          <a href={AUXON_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+            Auxon AI, my studio
+          </a>
         </div>
       </div>
     </footer>

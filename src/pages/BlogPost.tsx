@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Seo from '@/components/Seo';
-import WorkWithMe from '@/components/sections/WorkWithMe';
+import GetInTouch from '@/components/sections/GetInTouch';
 import NotFound from '@/pages/NotFound';
 import { getPost } from '@/lib/blog';
 import { absUrl, DEFAULT_OG_ALT } from '@/lib/seo';
@@ -36,17 +36,18 @@ export default function BlogPost() {
         jsonLd={articleGraph}
       />
 
-      <article className="px-5 pt-32 md:pt-40 pb-16">
-        <div className="max-w-2xl mx-auto">
+      <article className="px-5 sm:px-8 pt-32 md:pt-40 pb-16">
+        <div className="max-w-6xl mx-auto">
           <Link
             to="/blog"
-            className="group inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--sage-deep)] transition-colors"
+            className="inline-flex items-center gap-2 meta hover:text-[var(--ink)] transition-colors rounded-md"
           >
-            <ArrowLeft size={15} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
+            <ArrowLeft size={15} aria-hidden="true" />
             All notes
           </Link>
 
-          <div className="text-xs text-[var(--muted)] flex items-center gap-2 mt-6">
+          <h1 className="t-h1 mt-8 max-w-3xl">{post.title}</h1>
+          <p className="meta mt-4">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -54,21 +55,20 @@ export default function BlogPost() {
                 day: 'numeric',
               })}
             </time>
-            <span aria-hidden="true">&middot;</span>
-            <span>{post.readingMinutes} min read</span>
-          </div>
+            , {post.readingMinutes} min read
+          </p>
 
-          <h1 className="heading-brutal heading-lg mt-3">{post.title}</h1>
-
-          <div className="mt-8 space-y-5 text-[1.05rem] text-[var(--warm-gray)] leading-relaxed">
+          <div className="mt-10">
             {post.body.map((p, i) => (
-              <p key={i}>{p}</p>
+              <p key={i} className="prose-body">
+                {p}
+              </p>
             ))}
           </div>
         </div>
       </article>
 
-      <WorkWithMe />
+      <GetInTouch />
     </>
   );
 }

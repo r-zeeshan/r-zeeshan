@@ -1,26 +1,29 @@
 import Seo from '@/components/Seo';
 import Hero from '@/components/sections/Hero';
-import WorkTeaser from '@/components/sections/WorkTeaser';
+import KindsOfWork from '@/components/sections/KindsOfWork';
+import SelectedWork from '@/components/sections/SelectedWork';
 import AboutTeaser from '@/components/sections/AboutTeaser';
 import Testimonials from '@/components/sections/Testimonials';
-import WorkWithMe from '@/components/sections/WorkWithMe';
-import { personGraph, DEFAULT_OG_ALT } from '@/lib/seo';
+import GetInTouch from '@/components/sections/GetInTouch';
+import { personGraph, DEFAULT_OG_ALT, SITE_DESCRIPTION } from '@/lib/seo';
+import { TITLE } from '@/lib/site';
 
 export default function Home() {
   return (
     <>
       <Seo
-        title="Zeeshan Hameed | Senior AI Engineer for Health & Fitness Products"
-        description="I'm Zeeshan Hameed, a senior AI engineer who builds production health and fitness AI: clinical platforms, multi-model LLM systems, and cross-platform apps that ship and hold up. See my work."
+        title={`Zeeshan Hameed | ${TITLE}`}
+        description={`${SITE_DESCRIPTION} See the products I've shipped.`}
         path="/"
         ogImageAlt={DEFAULT_OG_ALT}
         jsonLd={personGraph()}
       />
       <Hero />
-      <WorkTeaser />
+      <KindsOfWork />
+      <SelectedWork />
       <AboutTeaser />
       <Testimonials />
-      <WorkWithMe />
+      <GetInTouch />
     </>
   );
 }
