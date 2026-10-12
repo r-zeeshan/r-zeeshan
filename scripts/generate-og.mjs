@@ -21,7 +21,7 @@ const items = [
   { slug: 'truecert', name: 'TrueCert', tag: 'Workflow automation', line: 'A certification platform that replaced spreadsheets and site visits for a recycling company.' },
   { slug: 'diettalk', name: 'DietTalk', tag: 'Mobile and web', line: 'A doctor-supervised diet and weight management app, live on the App Store and Google Play.' },
   { slug: 'dr-aigent', name: 'Dr. Aigent', tag: 'Document AI', line: 'Multi-model clinical AI that turns doctors’ notes into structured SOAP reports.' },
-  { slug: 'production-rescue', name: 'Production rescue', tag: 'Stabilization', line: 'A live web app taken over after its production database was wiped, then stabilized.' },
+  { slug: 'production-rescue', name: 'Production rescue', tag: 'Stabilization', line: 'Two live apps taken over for one client and made stable, one right after its production database was wiped.' },
 ];
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -46,7 +46,7 @@ function wrap(text, maxChars, maxLines) {
 
 function svg({ name, tag, line }) {
   const nameSize = name.length > 14 ? 76 : name.length > 10 ? 88 : 104;
-  const descLines = wrap(line, 50, 2);
+  const descLines = wrap(line, 50, 3);
   const descTspans = descLines
     .map((l, i) => `<tspan x="96" dy="${i === 0 ? 0 : 48}">${esc(l)}</tspan>`)
     .join('');
@@ -70,7 +70,7 @@ function svg({ name, tag, line }) {
   </g>
   <text x="96" y="356" font-family="Georgia, 'Times New Roman', serif" font-size="${nameSize}" font-weight="600" fill="${INK}">${esc(name)}</text>
   <text y="430" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="${INK}" opacity="0.82">${descTspans}</text>
-  <text x="96" y="560" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">Zeeshan Hameed, Full-Stack AI Engineer. r-zeeshan.dev</text>
+  <text x="96" y="${descLines.length > 2 ? 596 : 560}" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">Zeeshan Hameed, Full-Stack AI Engineer. r-zeeshan.dev</text>
 </svg>`;
 }
 
