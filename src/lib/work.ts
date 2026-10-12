@@ -1,10 +1,12 @@
 // Case study content model. One entry per project, authored in this file (no CMS).
 // Guardrails: never name the Korean client company or the rescue client; no client
 // numbers; architecture is framed as Zeeshan's engineering approach; EMR integration
-// is in progress. Unknowns are TODO(zeeshan) comments and are omitted from the page.
+// is in progress. Anything that is not known is left out of the page rather than padded.
 
 export interface HardPart {
   title: string;
+  /** Optional sub-heading. Consecutive parts with the same group render under one label. */
+  group?: string;
   body: string[];
 }
 
@@ -41,8 +43,8 @@ export interface CaseStudy {
   problem: string[];
   /** What I built. */
   built: string[];
-  /** The hard parts, each with a short title. */
-  hardParts: HardPart[];
+  /** The hard parts, each with a short title. Omit when there is nothing specific to say. */
+  hardParts?: HardPart[];
   /** Where it is now. */
   now: string[];
 }
@@ -121,10 +123,7 @@ export const caseStudies: CaseStudy[] = [
     role: 'Full-stack engineer, idea to launch',
     timeline: 'Under a month, idea to launch',
     live: { label: 'app.cuepilates.fit', href: 'https://app.cuepilates.fit' },
-    // TODO(zeeshan): the old copy said OpenAI, but the client's review, the cover art and the
-    // old README all say Claude / the Anthropic API. The vendor is left generic ("LLM API")
-    // until you confirm which one powers the planning engine, then put the name back.
-    stack: ['Next.js', 'Supabase', 'Stripe', 'LLM API'],
+    stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
     testimonial: 'Founder, CuePilates',
     metaTitle: 'CuePilates AI SaaS case study, idea to launch | Zeeshan Hameed',
     metaDescription:
@@ -134,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     built: [
       'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans and hands-free spoken cues, inside a full product with accounts and paid subscriptions. It is live at app.cuepilates.fit.',
-      'I built it on Next.js and Supabase, with Stripe for subscriptions and an LLM powering the planning engine.',
+      'I built it on Next.js and Supabase, with Stripe for subscriptions, Vercel for hosting, and Claude through the Anthropic API powering the planning engine.',
     ],
     hardParts: [
       {
@@ -163,43 +162,19 @@ export const caseStudies: CaseStudy[] = [
     cardBlurb:
       'A certification platform for a recycling company that ran its process on spreadsheets and site visits: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
     role: 'Full-stack AI engineer',
-    // TODO(zeeshan): add a timeline (e.g. "March to June 2025") if you want one shown.
+    timeline: 'March to June 2025',
     stack: ['Python', 'FastAPI', 'OpenAI', 'React', 'PostgreSQL'],
     testimonial: 'Aaron Phillips',
     metaTitle: 'TrueCert certification platform case study | Zeeshan Hameed',
     metaDescription:
       'How I built TrueCert, a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
     problem: [
-      'Green Earth, a recycling company, ran its certification process on spreadsheets and site visits. They needed one system that could hold the whole process, help people answer a long questionnaire correctly, and give each person access to only the parts that were theirs.',
+      'Green Earth, a recycling company, ran its certification process on spreadsheets and site visits. TrueCert moved that process onto one platform.',
     ],
     built: [
-      'TrueCert is a certification platform. The process is a guided questionnaire of 250+ questions across 16 categories, with AI-suggested answers, real-time validation as people fill it in, and document processing for the supporting files. Access is role-based, so each person sees and does only what their role allows.',
-      'The backend is Python and FastAPI on PostgreSQL, the front end is React, and OpenAI sits behind the suggested answers.',
+      'TrueCert is a certification platform with 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
+      'The backend is Python and FastAPI on PostgreSQL, the front end is React, and OpenAI provides the AI.',
     ],
-    // TODO(zeeshan): this section only restates the feature list. Add one or two concrete
-    // engineering details you are happy to share (how suggestions are grounded, what the
-    // validation covers, which document types are processed) and it will read much stronger.
-    hardParts: [
-      {
-        title: 'A long questionnaire, validated as you go',
-        body: [
-          'Across 250+ questions in 16 categories, answers are validated in real time, so a mistake surfaces while the person is still on the question.',
-        ],
-      },
-      {
-        title: 'Suggestions people can check',
-        body: [
-          'The AI suggests answers for people to review, which cuts the typing without taking the decision away from them.',
-        ],
-      },
-      {
-        title: 'Roles and documents',
-        body: [
-          'Role-based access keeps each person to their part of the process, and document processing handles the supporting files that certification depends on.',
-        ],
-      },
-    ],
-    // TODO(zeeshan): confirm TrueCert is still in use today and say so here if it is.
     now: [
       'TrueCert replaced the spreadsheets and site visits the company used before. The client describes the work below.',
     ],
@@ -215,7 +190,6 @@ export const caseStudies: CaseStudy[] = [
       'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. Live on both app stores.',
     role: 'Mobile and full-stack engineer',
     timeline: 'June 2025 to present',
-    // TODO(zeeshan): add the App Store and Google Play URLs as `live` if you want them linked.
     stack: ['Flutter', 'iOS + Android', 'Web portal', 'PostgreSQL', 'Supabase', 'OCR + LLM extraction'],
     metaTitle: 'DietTalk mobile app and doctor portal case study | Zeeshan Hameed',
     metaDescription:
@@ -282,66 +256,87 @@ export const caseStudies: CaseStudy[] = [
     tag: 'Stabilization',
     ogImage: '/og/work-production-rescue.png',
     oneLiner:
-      'A live web app taken over from another developer after its production database was wiped, then stabilized and kept running for its users.',
+      'Two existing apps for one client in appraisal tech: a FastAPI and React pipeline made stable, and a Next.js app hardened right after its production database was wiped.',
     cardBlurb:
-      'A live web app taken over from another developer after its production database was wiped, then stabilized and kept running for its users.',
-    role: 'Engineer, took over the codebase',
-    // TODO(zeeshan): confirm the engagement window. The commit history runs May to July 2026.
-    timeline: 'From May 2026',
-    // TODO(zeeshan): your brief and resume say "FastAPI + React". The repo is Next.js,
-    // TypeScript, Prisma and PostgreSQL on Vercel, so this lists what the repo shows.
-    // If the resume line describes a different project, say so and this study needs a rewrite.
-    stack: ['Next.js', 'React', 'TypeScript', 'Prisma', 'PostgreSQL', 'Vercel', 'Vitest', 'Playwright'],
-    metaTitle: 'Production rescue case study: taking over a broken live app | Zeeshan Hameed',
+      'Two existing apps for one client in appraisal tech: a FastAPI and React pipeline made stable, and a Next.js app hardened right after its production database was wiped.',
+    role: 'Engineer, hired to stabilize two existing apps',
+    timeline: 'March to September 2026',
+    stack: ['FastAPI', 'React', 'TypeScript', 'Next.js', 'Prisma', 'PostgreSQL'],
+    metaTitle: 'Production rescue case study: stabilizing two live apps | Zeeshan Hameed',
     metaDescription:
-      'How I took over a live web app after its production database was wiped: guarding the database against destructive commands, cleaning up recovered data, and fixing the reliability bugs that kept users out.',
-    // TODO(zeeshan): the wipe (1 May 2026) and the first re-import were committed under the
-    // previous author before your first commit (5 May). This page describes your part as
-    // "taking over after the wipe" and does not claim you performed the first recovery.
-    // If you did carry out the recovery itself, add that here.
+      'How I stabilized two existing apps for one client: startup, lost session state, repeated pipeline phases and silent errors in a FastAPI and React pipeline, and a production-database guard, data cleanup and reliability fixes in a Next.js app after its database was wiped.',
     problem: [
-      'I took this project over from another developer while it was live. A few days earlier its production database had been wiped. The core records had been re-imported from exports, but the data was uneven, some of it still needed rebuilding, and nothing stood between a stray command and the production database.',
+      'One client in appraisal tech had two existing apps, and neither was stable. I was brought in to make them dependable rather than to build something new.',
+      'For the second app, the production database had been wiped a few days before I took it over. The core records had been re-imported from exports, but the data was uneven, some of it still needed rebuilding, and nothing stood between a stray command and the production database.',
     ],
     built: [
-      'First, a guard: destructive database commands now refuse to run when the connection points at a production host, so the same mistake cannot repeat from a developer machine.',
-      'Then the data. Legacy free-text values left over from the re-import were mapped onto a controlled set, with a one-time migration and an importer that normalizes on the way in. The admin accounts were seeded again so a reseed restores everyone.',
-      'After that came the ordinary work of keeping a live app useful: fixing correctness bugs as people hit them, and shipping the changes the team needed.',
+      'The first app was a FastAPI and React (Vite, TypeScript) appraisal pipeline the client had built. I was hired to fix its stability. The problems the engagement addressed are listed below.',
+      'The second was a Next.js, TypeScript, Prisma and PostgreSQL app on Vercel. I took it over right after its production database was wiped and recovered by the previous developer. My work started after that: a guard in front of the production database, cleanup of the recovered data, and fixes for reliability bugs.',
     ],
     hardParts: [
       {
+        group: 'The FastAPI and React pipeline',
+        title: 'A clean start for a two-process setup',
+        body: ['The pipeline runs as two processes, and getting it to start cleanly was part of the work.'],
+      },
+      {
+        group: 'The FastAPI and React pipeline',
+        title: 'Restarts that created blank sessions',
+        body: [
+          'When the server restarted it created a blank session instead of loading the saved state. Making a restart pick up where the work left off was part of the engagement.',
+        ],
+      },
+      {
+        group: 'The FastAPI and React pipeline',
+        title: 'Finished phases that ran again',
+        body: [
+          'Pipeline phases that had already finished re-ran instead of loading their cached results. Fixing that was part of the engagement.',
+        ],
+      },
+      {
+        group: 'The FastAPI and React pipeline',
+        title: 'Errors that went unseen',
+        body: [
+          'Errors were silent and there were no error boundaries, so the app could not recover without a full restart. Making it able to recover was part of the engagement.',
+        ],
+      },
+      {
+        group: 'The Next.js app',
         title: 'Making the dangerous path hard to take',
         body: [
           'The wipe was consistent with a destructive database command run against the production connection. I wired a guard into the commands people actually type: it refuses to run them against a production host and points them at a local database instead.',
         ],
       },
       {
+        group: 'The Next.js app',
         title: 'Cleaning up data without a second incident',
         body: [
           'The recovered data carried free-text values that no longer matched the controlled set the app expected. I fixed it in two parts: a one-time migration for what was already there, and normalization at import so new data could not reintroduce the problem.',
         ],
       },
       {
+        group: 'The Next.js app',
         title: 'Bugs that looked like bad data',
         body: [
           'Two problems that looked like wrong data were caching. A public page only refreshed on a short cache window, and an admin view served a stale response. Admin schedule changes now trigger revalidation on demand, and the admin view reads uncached.',
         ],
       },
       {
+        group: 'The Next.js app',
         title: 'Rows that vanished from an export',
         body: [
           'A spreadsheet export built one row per person, so any entry without a person attached silently disappeared from the file. It had no test coverage, which is why nobody noticed. I moved those entries to their own worksheet and wrote regression tests around it.',
         ],
       },
       {
+        group: 'The Next.js app',
         title: 'A scheduler that blocked its own drops',
         body: [
           'In the drag-and-drop planner, the card being moved still counted as occupying its target slot, so valid drops were refused. The fix was to exclude the dragged card from the occupancy check.',
         ],
       },
     ],
-    // TODO(zeeshan): confirm the current status (still engaged? still in production?) and
-    // add an outcome you are comfortable stating. The history ends on 24 July 2026.
-    now: ['The app stayed live for its users while this work shipped to production.'],
+    now: ['The engagement ended in September 2026.'],
   },
 ];
 

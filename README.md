@@ -33,7 +33,7 @@ data and providers that go down. That second part is most of what I do.
 | **TrueCert** | Certification platform that replaced spreadsheets and site visits for a recycling company. |
 | **DietTalk** | Doctor-supervised diet and weight management app on iOS and Android, with a doctor portal. |
 | **Dr. Aigent** | Multi-model engine that turns doctors' notes into structured SOAP reports. |
-| **Production rescue** | A live web app taken over after its production database was wiped, then stabilized. |
+| **Production rescue** | Two existing apps for one client: a FastAPI and React pipeline made stable, and a Next.js app hardened after its production database was wiped. |
 
 Most of this work lives in private client repositories. Case studies: [r-zeeshan.dev/work](https://r-zeeshan.dev/work).
 

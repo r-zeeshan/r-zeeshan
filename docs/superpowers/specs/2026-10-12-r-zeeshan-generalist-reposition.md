@@ -25,8 +25,8 @@ on auxonai.com and this site does not sell it.
 
 - No offer, price, guarantee, "Production Sprint", "free discovery call" or funnel sections.
 - No job-seeking signals. A small neutral "Resume (PDF)" link is fine.
-- Never invent facts, numbers, clients or quotes. Unknowns become `TODO(zeeshan):` comments in
-  source and are omitted from the rendered page (no filler on screen).
+- Never invent facts, numbers, clients or quotes. Anything unknown is left out of the rendered
+  page rather than padded (a section with nothing specific to say is cut).
 - Testimonials are real Upwork reviews; `testimonials.ts` is not edited.
 - Describe the systems built, never a client's private metrics. The Korean client company is
   not named in case studies. The rescue client and product are not named.
@@ -56,11 +56,15 @@ on auxonai.com and this site does not sell it.
   shown under the study. No numbers beyond 250+ questions, 16 categories.
 - **Jema / Dr. Aigent / DietTalk timeline** "June 2025 to present" and the "lead engineer"
   role come from the resume's single engagement entry.
-- **Production rescue**: written from the repo's git history and docs at engineering level
-  only. The repo is a Next.js / TypeScript / Prisma / PostgreSQL app, not FastAPI + React as
-  the brief and resume say, and the database wipe predates Zeeshan's first commit. The page
-  therefore claims only what the history supports, with TODOs on the rest. See the
-  TODO list in the hand-off summary.
+- **TrueCert**: March to June 2025. No hard-parts section, because the source copy only lists
+  features and padding it would invent detail.
+- **CuePilates**: Next.js, Supabase, Stripe, Claude API, Vercel.
+- **Production rescue**: one engagement with one client in appraisal tech, March to September
+  2026, two existing apps. The FastAPI and React pipeline is described as the problems the
+  engagement addressed only (no pipeline repo is available to confirm the fixes). The Next.js
+  app is described from its git history at engineering level: taken over after the wipe and
+  the previous developer's recovery, then a production-database guard, data cleanup and
+  reliability fixes. The first recovery is not claimed. The client and products are not named.
 
 ## Design
 

@@ -60,7 +60,7 @@ hint pointing to the auxonai.com offer, so Google treats Auxon as primary for th
 - Blog: typed data in `src/lib/blog.ts`, initialized to an **empty array**. Index renders a
   "writing soon" state; the `/blog/:slug` template exists for when real posts are added.
 - Content authored from user-supplied facts (below). Any genuinely unverifiable specific
-  (a hard outcome metric, a founder-problem detail) → `TODO(zeeshan)` in the draft, never invented.
+  (a hard outcome metric, a founder-problem detail) → a TODO marker in the draft, never invented.
 
 ## Page content plan
 
@@ -121,7 +121,7 @@ time, published date, end CTA). **Zero posts.** Index shows a "writing soon" sta
 4. **No patent-pending mechanism.** A clinical decision-support / adaptive-AI system has patents
    being filed — keep it out entirely. Well-known architecture patterns only.
 5. **Never claim FHIR or HL7.** EMR integration is **in progress / being architected**, never delivered.
-6. **Never invent** an unverifiable specific → `TODO(zeeshan)`.
+6. **Never invent** an unverifiable specific → a TODO marker.
 7. Voice: human, first-person, specific. No em dashes. No "leverage/robust/seamless/cutting-edge."
 8. Preserve all existing working links (Calendly, GitHub, LinkedIn, Upwork, auxonai.com).
 9. Keep the 3 existing testimonials as-is; do not invent new ones.

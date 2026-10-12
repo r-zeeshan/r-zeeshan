@@ -119,20 +119,32 @@ export default function CaseStudy() {
               ))}
             </EditorialRow>
 
-            <EditorialRow id="hard-parts" label="The hard parts">
-              <div className="space-y-9">
-                {cs.hardParts.map((h) => (
-                  <div key={h.title}>
-                    <h3 className="font-display text-[1.25rem] leading-snug font-medium text-[var(--ink)]">{h.title}</h3>
-                    {h.body.map((p, i) => (
-                      <p key={i} className="prose-body mt-2">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </EditorialRow>
+            {cs.hardParts && cs.hardParts.length > 0 && (
+              <EditorialRow id="hard-parts" label="The hard parts">
+                <div className="space-y-9">
+                  {cs.hardParts.map((h, i) => {
+                    const grouped = cs.hardParts!.some((x) => x.group);
+                    const newGroup = h.group && h.group !== cs.hardParts![i - 1]?.group;
+                    const Title = grouped ? 'h4' : 'h3';
+                    return (
+                      <div key={h.title}>
+                        {newGroup && (
+                          <h3 className={`t-h3 ${i > 0 ? 'pt-6 mt-3 rule-top' : ''} mb-7`}>{h.group}</h3>
+                        )}
+                        <Title className="font-display text-[1.25rem] leading-snug font-medium text-[var(--ink)]">
+                          {h.title}
+                        </Title>
+                        {h.body.map((p, j) => (
+                          <p key={j} className="prose-body mt-2">
+                            {p}
+                          </p>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              </EditorialRow>
+            )}
 
             <EditorialRow id="now" label="Where it is now">
               {cs.now.map((p, i) => (
