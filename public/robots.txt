@@ -50,4 +50,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://r-zeeshan.dev/sitemap.xml
+Sitemap: https://www.r-zeeshan.dev/sitemap.xml

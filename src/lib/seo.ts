@@ -1,7 +1,7 @@
 // Central SEO config. One source of truth for URLs, defaults, and shared JSON-LD.
 import { AUXON_URL, LINKS } from '@/lib/site';
 
-export const SITE_URL = 'https://r-zeeshan.dev';
+export const SITE_URL = 'https://www.r-zeeshan.dev';
 export const SITE_NAME = 'Zeeshan Hameed';
 export const DEFAULT_OG_IMAGE = '/og-image.png';
 export const DEFAULT_OG_ALT =
