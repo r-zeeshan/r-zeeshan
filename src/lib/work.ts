@@ -122,7 +122,7 @@ export const caseStudies: CaseStudy[] = [
       'An AI-powered Pilates class-planning SaaS with accounts and subscriptions, taken from idea to a live, paying product in under a month.',
     role: 'Full-stack engineer, idea to launch',
     timeline: 'Under a month, idea to launch',
-    live: { label: 'app.cuepilates.fit', href: 'https://app.cuepilates.fit' },
+    live: { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
     stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
     testimonial: 'Founder, CuePilates',
     metaTitle: 'CuePilates AI SaaS case study, idea to launch | Zeeshan Hameed',
@@ -132,7 +132,7 @@ export const caseStudies: CaseStudy[] = [
       'The founder had a strong vision for CuePilates, an AI tool that plans Pilates classes, but no coding background and no product yet. They did not need a prototype to show around. They needed a real SaaS, live, with accounts and subscriptions, and they needed it fast.',
     ],
     built: [
-      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans and hands-free spoken cues, inside a full product with accounts and paid subscriptions. It is live at app.cuepilates.fit.',
+      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans and hands-free spoken cues, inside a full product with accounts and paid subscriptions. It is live at www.cuepilates.fit.',
       'I built it on Next.js and Supabase, with Stripe for subscriptions, Vercel for hosting, and Claude through the Anthropic API powering the planning engine.',
     ],
     hardParts: [
@@ -271,7 +271,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     built: [
       'The first app was a FastAPI and React (Vite, TypeScript) appraisal pipeline the client had built. I was hired to fix its stability. The problems the engagement addressed are listed below.',
-      'The second was a Next.js, TypeScript, Prisma and PostgreSQL app on Vercel. I took it over right after its production database was wiped and recovered by the previous developer. My work started after that: a guard in front of the production database, cleanup of the recovered data, and fixes for reliability bugs.',
+      'The second was a Next.js, TypeScript, Prisma and PostgreSQL app on Vercel, built by the founder. I took it over right after its production database was accidentally wiped. Once the data was recovered, my work started: a guard in front of the production database, cleanup of the recovered data, and fixes for reliability bugs.',
     ],
     hardParts: [
       {

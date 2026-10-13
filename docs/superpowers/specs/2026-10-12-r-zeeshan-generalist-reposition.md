@@ -58,13 +58,14 @@ on auxonai.com and this site does not sell it.
   role come from the resume's single engagement entry.
 - **TrueCert**: March to June 2025. No hard-parts section, because the source copy only lists
   features and padding it would invent detail.
-- **CuePilates**: Next.js, Supabase, Stripe, Claude API, Vercel.
+- **CuePilates**: Next.js, Supabase, Stripe, Claude API, Vercel. Public link is www.cuepilates.fit (the app subdomain is the login screen).
 - **Production rescue**: one engagement with one client in appraisal tech, March to September
   2026, two existing apps. The FastAPI and React pipeline is described as the problems the
   engagement addressed only (no pipeline repo is available to confirm the fixes). The Next.js
-  app is described from its git history at engineering level: taken over after the wipe and
-  the previous developer's recovery, then a production-database guard, data cleanup and
-  reliability fixes. The first recovery is not claimed. The client and products are not named.
+  app (built by the client's founder, whose production database was accidentally wiped) is
+  described at engineering level: taken over right after the wipe, and once the data was
+  recovered, a production-database guard, data cleanup and reliability fixes. The recovery
+  itself is not claimed. The client, founder and products are not named.
 
 ## Design
 

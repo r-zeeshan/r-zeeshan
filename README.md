@@ -29,7 +29,7 @@ data and providers that go down. That second part is most of what I do.
 | Product | What it is |
 |---|---|
 | **Jema** | Clinical AI platform for Korean medicine, used by doctors in Korea. |
-| **CuePilates** | AI Pilates class-planning SaaS, idea to launch in under a month. [Live](https://app.cuepilates.fit) |
+| **CuePilates** | AI Pilates class-planning SaaS, idea to launch in under a month. [Live](https://www.cuepilates.fit) |
 | **TrueCert** | Certification platform that replaced spreadsheets and site visits for a recycling company. |
 | **DietTalk** | Doctor-supervised diet and weight management app on iOS and Android, with a doctor portal. |
 | **Dr. Aigent** | Multi-model engine that turns doctors' notes into structured SOAP reports. |

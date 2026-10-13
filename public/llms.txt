@@ -6,7 +6,7 @@ He holds a B.S. in Artificial Intelligence, is Top Rated Plus on Upwork with a 1
 
 ## Case studies
 - Jema: a clinical AI platform for Korean medicine, used by doctors in Korea. Multi-model AI reports with automatic fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling with access controls. https://www.r-zeeshan.dev/work/jema
-- CuePilates: an AI Pilates class-planning SaaS on Next.js, Supabase, Stripe and the Claude API, taken from idea to launch in under a month, live at https://app.cuepilates.fit. https://www.r-zeeshan.dev/work/cuepilates
+- CuePilates: an AI Pilates class-planning SaaS on Next.js, Supabase, Stripe and the Claude API, taken from idea to launch in under a month, live at https://www.cuepilates.fit. https://www.r-zeeshan.dev/work/cuepilates
 - TrueCert: a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing. https://www.r-zeeshan.dev/work/truecert
 - DietTalk: a doctor-supervised diet and weight management product, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, live on the App Store and Google Play. https://www.r-zeeshan.dev/work/diettalk
 - Dr. Aigent: a multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic model fallback. https://www.r-zeeshan.dev/work/dr-aigent
