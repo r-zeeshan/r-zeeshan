@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(ROOT, 'dist');
-const SITE_URL = 'https://www.r-zeeshan.dev';
+const SITE_URL = 'https://r-zeeshan.dev';
 
 // Routes we never want in the sitemap (404 / dynamic fallbacks).
 const EXCLUDE = new Set(['/404']);
