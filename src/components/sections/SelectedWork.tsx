@@ -1,47 +1,28 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { LeadEntry } from '@/components/WorkEntries';
-import { caseStudies } from '@/lib/work';
+import { Button, SectionHeader } from '@/components/blueprint';
+import { LeadWorkCard, WorkCard } from '@/components/WorkCards';
+import { caseStudies, getCaseStudy } from '@/lib/work';
+
+const GRID = ['dr-aigent', 'diettalk', 'cuepilates', 'production-rescue'];
 
 export default function SelectedWork() {
-  const leads = caseStudies.filter((c) => c.lead);
-  const rest = caseStudies.filter((c) => !c.lead);
+  const lead = getCaseStudy('jema')!;
+  const grid = GRID.map((s) => getCaseStudy(s)!);
+  const others = caseStudies.filter((c) => c.slug !== lead.slug && !GRID.includes(c.slug)).map((c) => c.name);
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="px-5 sm:px-8 py-16 md:py-24 scroll-mt-20">
-      <div className="max-w-6xl mx-auto">
-        <div className="max-w-2xl">
-          <h2 id="work-heading" className="t-h2">
-            Products I&apos;ve built and shipped
-          </h2>
-          <p className="lead mt-4">
-            Each one has a case study: the problem, what I built, and the parts that were hard.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-x-12 items-start">
-          {leads[0] && <LeadEntry cs={leads[0]} className="lg:col-span-7" />}
-          {leads[1] && <LeadEntry cs={leads[1]} className="lg:col-span-5 lg:mt-24" />}
-        </div>
-
-        <div className="mt-16 pt-6 rule-top flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4">
-          <p className="meta">
-            Also:{' '}
-            {rest.map((c, i) => (
-              <span key={c.slug}>
-                <Link to={`/work/${c.slug}`} className="link">
-                  {c.name}
-                </Link>
-                {i < rest.length - 1 ? ', ' : '.'}
-              </span>
-            ))}
-          </p>
-          <Link to="/work" className="link inline-flex items-center gap-1.5">
-            All work
-            <ArrowRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
+    <section id="work" aria-labelledby="work-heading" className="mx-auto flex w-full max-w-wrap flex-col gap-8 px-6 pb-16 md:pb-[104px]">
+      <SectionHeader number="02" id="work-heading" note="each one drawn as it actually works">
+        Products I&apos;ve built and shipped
+      </SectionHeader>
+      <LeadWorkCard cs={lead} />
+      <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(520px,100%),1fr))]">
+        {grid.map((cs) => (
+          <WorkCard key={cs.slug} cs={cs} />
+        ))}
       </div>
+      <Button to="/work" variant="link" className="self-start">
+        All work{others.length > 0 ? `, including ${others.join(', ')}` : ''} →
+      </Button>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import Seo from '@/components/Seo';
-import { WorkBody } from '@/components/WorkEntries';
+import { WorkCard } from '@/components/WorkCards';
+import { Container } from '@/components/blueprint';
 import GetInTouch from '@/components/sections/GetInTouch';
 import { caseStudies } from '@/lib/work';
 import { absUrl, breadcrumbGraph, DEFAULT_OG_ALT } from '@/lib/seo';
@@ -31,21 +32,23 @@ export default function WorkIndex() {
         ]}
       />
 
-      <section className="px-5 sm:px-8 pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto">
-          <header className="max-w-3xl">
-            <h1 className="t-h1">Products I&apos;ve built and shipped</h1>
-            <p className="lead mt-5">
-              Each one has a case study: the problem, what I built, the parts that were hard, and
-              where it is now.
-            </p>
-          </header>
+      <Container className="pb-16 pt-10 md:pb-[104px] md:pt-14">
+        <header className="max-w-3xl">
+          <h1 className="t-display">Products I&apos;ve built and shipped</h1>
+          <p className="lead mt-5">
+            Each one has a case study: the problem, what I built, the parts that were hard, and
+            where it is now.
+          </p>
+        </header>
 
-          <div className="mt-14 md:mt-20">
-            <WorkBody studies={caseStudies} />
-          </div>
-        </div>
-      </section>
+        <ul className="mt-12 grid gap-6 md:mt-16 [grid-template-columns:repeat(auto-fit,minmax(min(520px,100%),1fr))]">
+          {caseStudies.map((cs) => (
+            <li key={cs.slug} className="flex">
+              <WorkCard cs={cs} className="w-full" />
+            </li>
+          ))}
+        </ul>
+      </Container>
 
       <GetInTouch />
     </>

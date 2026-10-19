@@ -1,81 +1,67 @@
-// Generates favicons + OG image from the brand mark, programmatically.
+// Generates favicons, app icons and the default OG image from the Blueprint Z mark.
 //   node scripts/generate-icons.mjs
-// Deps: sharp, png-to-ico (installed as devDependencies).
-import sharp from 'sharp';
+// Deps: sharp, png-to-ico, opentype.js (devDependencies). Mark geometry matches
+// docs/design/blueprint/assets/zeeshan-logo-z.svg.
 import pngToIco from 'png-to-ico';
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { C, gridPaper, logoMark, diagramSvg, text, wrapText, loadSharp } from './blueprint-svg.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pub = join(root, 'public');
+const sharp = await loadSharp();
+const { getCaseStudy } = await import('../src/lib/work.ts');
 
-// Brand colors
-const SAGE = '#5C7A5C';
-const CREAM = '#FBF8F2';
-const CREAM_DEEP = '#F2EDE2';
-const INK = '#262B20';
-const MUTED = '#6E7064';
-
-// The "Z" mark as an SVG at a given size, with an optional rounded background.
-const markSvg = (size, radius = size * 0.22) => `
-<svg width="${size}" height="${size}" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="${(radius / size) * 64}" fill="${SAGE}"/>
-  <path d="M18 18 L46 18 L18 46 L46 46" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+// The mark on its paper ground, full-bleed (viewBox is the 1024 design square).
+const markSvg = (size) => `
+<svg width="${size}" height="${size}" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" fill="${C.bg}"/>
+  <rect x="232" y="232" width="560" height="560" fill="#FFFFFF" stroke="${C.ink}" stroke-width="40"/>
+  <path d="M388 360 H636 L388 664 H636" fill="none" stroke="${C.ink}" stroke-width="60" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M772 172 H852 V252" fill="none" stroke="${C.note}" stroke-width="36" stroke-linecap="square"/>
+  <path d="M252 852 H172 V772" fill="none" stroke="${C.note}" stroke-width="36" stroke-linecap="square"/>
 </svg>`;
 
-async function png(size, radius) {
-  return sharp(Buffer.from(markSvg(size, radius))).resize(size, size).png().toBuffer();
+const png = (size) => sharp(Buffer.from(markSvg(size))).resize(size, size).png().toBuffer();
+
+// Favicons
+const f16 = await png(16);
+const f32 = await png(32);
+const f48 = await png(48);
+await writeFile(join(pub, 'favicon.svg'), markSvg(64).trim() + '\n');
+await writeFile(join(pub, 'favicon-16x16.png'), f16);
+await writeFile(join(pub, 'favicon-32x32.png'), f32);
+await writeFile(join(pub, 'favicon.ico'), await pngToIco([f16, f32, f48]));
+await writeFile(join(pub, 'apple-touch-icon.png'), await png(180));
+await writeFile(join(pub, 'icon-192.png'), await png(192));
+await writeFile(join(pub, 'icon-512.png'), await png(512));
+
+// Default OG / social share image, 1200x630: the hero line and the Jema AIgent diagram.
+const jema = getCaseStudy('jema');
+const sizes = [{ fontSize: 22, padX: 20, gap: 18 }, { fontSize: 20, padX: 14, gap: 12 }, { fontSize: 18, padX: 12, gap: 8 }];
+let d;
+for (const o of sizes) {
+  d = diagramSvg(jema.diagram.nodes, 96, 436, 1008, { ...o, boxH: 52 });
+  if (d.height <= 52) break;
 }
-
-async function main() {
-  // Favicons
-  const f16 = await png(16);
-  const f32 = await png(32);
-  const f48 = await png(48);
-  await writeFile(join(pub, 'favicon-16x16.png'), f16);
-  await writeFile(join(pub, 'favicon-32x32.png'), f32);
-
-  // Multi-resolution .ico
-  const ico = await pngToIco([f16, f32, f48]);
-  await writeFile(join(pub, 'favicon.ico'), ico);
-
-  // Apple touch icon (180, solid mark on its own bg, no transparency)
-  await writeFile(join(pub, 'apple-touch-icon.png'), await png(180, 40));
-
-  // Android / PWA icons
-  await writeFile(join(pub, 'icon-192.png'), await png(192, 42));
-  await writeFile(join(pub, 'icon-512.png'), await png(512, 112));
-
-  // OG / social share image, 1200x630
-  const ogSvg = `
+const sub = wrapText('I build AI products from idea to production, the AI layer, backend, web and mobile, and stay to run them after launch.', 940, 2, 'regular', 28)
+  .map((l, i) => text(l, 96, 318 + i * 38, { size: 28, fill: C.ink2 }))
+  .join('');
+const ogSvg = `
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="wash" cx="82%" cy="8%" r="70%">
-      <stop offset="0%" stop-color="#5C7A5C" stop-opacity="0.16"/>
-      <stop offset="70%" stop-color="#5C7A5C" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="${CREAM}"/>
-  <rect width="1200" height="630" fill="url(#wash)"/>
-  <rect x="0" y="0" width="1200" height="10" fill="${SAGE}"/>
-  <g transform="translate(96, 140)">
-    <rect width="84" height="84" rx="19" fill="${SAGE}"/>
-    <g transform="scale(1.3125)">
-      <path d="M18 18 L46 18 L18 46 L46 46" stroke="${CREAM}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </g>
-    <text x="108" y="58" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="600" fill="${SAGE}">Full-Stack AI Engineer</text>
-  </g>
-  <text x="96" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="600" fill="${INK}">Zeeshan Hameed</text>
-  <text x="96" y="428" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="${INK}" opacity="0.82">I build AI products from idea to production.</text>
-  <text x="96" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="${MUTED}">The AI layer, backend, web and mobile. r-zeeshan.dev</text>
+  ${gridPaper(1200, 630)}
+  <rect x="48" y="48" width="1104" height="534" fill="${C.surface}" fill-opacity="0.78" stroke="${C.ink}" stroke-width="3"/>
+  ${logoMark(96, 88, 56)}
+  ${text('Zeeshan Hameed', 170, 116, { font: 'bold', size: 26 })}
+  ${text('full-stack AI engineer', 170, 142, { font: 'hand', size: 26, fill: C.note })}
+  ${text('The demo is the easy part.', 96, 250, { font: 'bold', size: 72, letterSpacing: -2 })}
+  ${sub}
+  ${text(jema.diagram.caption, 96, 418, { font: 'hand', size: 30, fill: C.note })}
+  ${d.svg}
+  <line x1="96" y1="520" x2="1104" y2="520" stroke="${C.ruleDash}" stroke-width="2" stroke-dasharray="6 5"/>
+  ${text('r-zeeshan.dev', 96, 556, { font: 'mono', size: 20, fill: C.muted })}
 </svg>`;
-  await sharp(Buffer.from(ogSvg)).png().toFile(join(pub, 'og-image.png'));
+await sharp(Buffer.from(ogSvg)).png().toFile(join(pub, 'og-image.png'));
 
-  console.log('Icons + OG image generated in /public');
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+console.log('Icons + OG image generated in /public');

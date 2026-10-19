@@ -4,8 +4,8 @@
   "description": "Full-stack AI engineer. I build AI products from idea to production and stay to run them after launch.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FBF8F2",
-  "theme_color": "#5C7A5C",
+  "background_color": "#F7F8F5",
+  "theme_color": "#F7F8F5",
   "orientation": "portrait-primary",
   "icons": [
     {

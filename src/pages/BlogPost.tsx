@@ -1,5 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+import { Button, Container } from '@/components/blueprint';
 import Seo from '@/components/Seo';
 import GetInTouch from '@/components/sections/GetInTouch';
 import NotFound from '@/pages/NotFound';
@@ -36,18 +36,14 @@ export default function BlogPost() {
         jsonLd={articleGraph}
       />
 
-      <article className="px-5 sm:px-8 pt-32 md:pt-40 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 meta hover:text-[var(--ink)] transition-colors rounded-md"
-          >
-            <ArrowLeft size={15} aria-hidden="true" />
-            All notes
-          </Link>
+      <article>
+        <Container className="pb-16 pt-6 md:pt-10">
+          <Button to="/blog" variant="link">
+            ← All notes
+          </Button>
 
-          <h1 className="t-h1 mt-8 max-w-3xl">{post.title}</h1>
-          <p className="meta mt-4">
+          <h1 className="t-display mt-6 max-w-3xl">{post.title}</h1>
+          <p className="mono-label mt-4">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -65,7 +61,7 @@ export default function BlogPost() {
               </p>
             ))}
           </div>
-        </div>
+        </Container>
       </article>
 
       <GetInTouch />

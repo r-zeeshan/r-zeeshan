@@ -1,8 +1,8 @@
 import Seo from '@/components/Seo';
 import Hero from '@/components/sections/Hero';
-import KindsOfWork from '@/components/sections/KindsOfWork';
+import HiredFor from '@/components/sections/HiredFor';
 import SelectedWork from '@/components/sections/SelectedWork';
-import AboutTeaser from '@/components/sections/AboutTeaser';
+import WhyProduction from '@/components/sections/WhyProduction';
 import Testimonials from '@/components/sections/Testimonials';
 import GetInTouch from '@/components/sections/GetInTouch';
 import { personGraph, DEFAULT_OG_ALT, SITE_DESCRIPTION } from '@/lib/seo';
@@ -19,9 +19,9 @@ export default function Home() {
         jsonLd={personGraph()}
       />
       <Hero />
-      <KindsOfWork />
+      <HiredFor />
       <SelectedWork />
-      <AboutTeaser />
+      <WhyProduction />
       <Testimonials />
       <GetInTouch />
     </>

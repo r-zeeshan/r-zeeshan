@@ -1,61 +1,59 @@
 import type { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
-import { CONTACT_HREF, CREDENTIALS, CTA_LABEL, RESUME_HREF, RESUME_LABEL } from '@/lib/site';
+import { Button, Note, WorkDiagram } from '@/components/blueprint';
+import { CREDENTIALS } from '@/lib/site';
+import { getCaseStudy } from '@/lib/work';
 
-// The one orchestrated entrance on the site: a CSS stagger, in order of reading.
+// The one orchestrated entrance on the site (DESIGN.md §5): a CSS stagger in reading order.
 const step = (i: number): CSSProperties => ({ ['--i' as string]: i });
 
 export default function Hero() {
+  const jema = getCaseStudy('jema')!;
   return (
-    <section id="top" className="px-5 sm:px-8 pt-32 md:pt-40 pb-16 md:pb-24">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] gap-12 lg:gap-20 items-end">
-        <div>
-          <h1 className="t-display rise max-w-[18ch]" style={step(0)}>
-            I build AI products from idea to production.
-          </h1>
-
-          <p className="lead mt-7 rise" style={step(1)}>
-            The AI layer, backend, web and mobile, with one person accountable for all of it, and
-            still there after launch.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4 rise" style={step(2)}>
-            <Link to="/work" className="btn btn-primary">
-              See my work
-            </Link>
-            <a href={CONTACT_HREF} className="btn">
-              {CTA_LABEL}
-            </a>
-            <a href={RESUME_HREF} target="_blank" rel="noopener noreferrer" className="link text-[0.9375rem]">
-              {RESUME_LABEL}
-            </a>
-          </div>
-
-          <ul
-            className="mt-12 pt-5 rule-top flex flex-wrap gap-x-6 gap-y-1.5 text-[0.875rem] text-[var(--warm-gray)] rise"
-            style={step(3)}
-            aria-label="Credentials"
-          >
-            {CREDENTIALS.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
+    <section id="top" className="mx-auto flex w-full max-w-wrap flex-wrap items-center gap-14 px-6 pb-16 pt-10 md:pb-24 md:pt-14">
+      <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-[26px]">
+        <h1 className="t-display enter" style={step(0)}>
+          The demo is the easy part.
+        </h1>
+        <p className="enter max-w-[520px] text-[19px] leading-[1.55] text-ink-2" style={step(1)}>
+          I build AI products from idea to production, the AI layer, backend, web and mobile, and
+          stay to run them after launch.
+        </p>
+        <div className="enter flex flex-wrap items-center gap-x-3 gap-y-1" style={step(2)}>
+          <Button to="/work">See the work</Button>
+          <Button to="/work/jema" variant="link">
+            Read the Jema AIgent case study
+          </Button>
         </div>
-
-        <div className="rise w-full max-w-[17rem] sm:max-w-xs lg:max-w-none lg:ml-auto lg:w-full" style={step(2)}>
-          <div className="frame aspect-[4/5]">
-            <img
-              src="/profile-photo.jpg"
-              alt="Zeeshan Hameed, full-stack AI engineer"
-              width={877}
-              height={877}
-              loading="eager"
-              {...{ fetchpriority: 'high' }}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
+        <ul
+          aria-label="Credentials"
+          className="enter mono-label flex flex-wrap gap-x-5 gap-y-1.5 border-t-[1.5px] border-dashed border-rule-dash pt-4"
+          style={step(3)}
+        >
+          {CREDENTIALS.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
       </div>
+
+      <figure
+        className="enter m-0 flex min-w-0 flex-[1.3_1_520px] flex-col gap-4 border-2 border-ink bg-[rgba(255,255,255,0.72)] p-5 sm:p-7"
+        style={step(1)}
+      >
+        <figcaption>
+          <Note size={28}>{jema.diagram.caption}</Note>
+        </figcaption>
+        <WorkDiagram diagram={jema.diagram} size="md" enter />
+        {jema.diagram.asides && (
+          <div className="flex flex-wrap items-center gap-x-[22px] gap-y-1 border-t-[1.5px] border-dashed border-rule-dash pt-3">
+            {jema.diagram.asides.map((a) => (
+              <Note key={a} size={21} className="!text-ink">
+                {a}
+              </Note>
+            ))}
+            <span className="mono-label self-center">{jema.stack.filter((s) => ['Next.js', 'FastAPI', 'Firebase', 'AWS'].includes(s)).join(' · ')}</span>
+          </div>
+        )}
+      </figure>
     </section>
   );
 }

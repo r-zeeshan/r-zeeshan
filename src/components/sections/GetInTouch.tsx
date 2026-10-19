@@ -1,21 +1,28 @@
+import { Button, Note } from '@/components/blueprint';
 import { BOOKING_LABEL, BOOKING_LINK, CONTACT_HREF, LINKS } from '@/lib/site';
 
-// The single quiet closing block. One sentence, the email, the one booking link.
+// The dark closing band: one sentence, the booking link, the email.
 export default function GetInTouch() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="px-5 sm:px-8 py-20 md:py-28 scroll-mt-20 rule-top">
-      <div className="max-w-6xl mx-auto">
-        <h2 id="contact-heading" className="t-h2 max-w-[28ch]">
+    <section id="contact" aria-labelledby="contact-heading" className="on-band scroll-mt-6 bg-band text-band-text">
+      <div className="mx-auto flex w-full max-w-wrap flex-col gap-7 px-6 py-16 md:py-[88px]">
+        <Note size={26} tone="band">
+          start here
+        </Note>
+        <h2 id="contact-heading" className="max-w-[900px] text-[clamp(32px,4vw,56px)] font-bold leading-[1.08] tracking-[-0.025em] [text-wrap:balance]">
           Building something with AI, or stuck on one that keeps breaking? Tell me where it&apos;s stuck.
         </h2>
-        <p className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 text-[1.0625rem]">
-          <a href={CONTACT_HREF} className="link">
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+          <Button href={BOOKING_LINK} external variant="inverse">
+            {BOOKING_LABEL}
+          </Button>
+          <a
+            href={CONTACT_HREF}
+            className="inline-flex min-h-[44px] items-center text-[18px] underline underline-offset-[5px]"
+          >
             {LINKS.email}
           </a>
-          <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" className="link">
-            {BOOKING_LABEL}
-          </a>
-        </p>
+        </div>
       </div>
     </section>
   );

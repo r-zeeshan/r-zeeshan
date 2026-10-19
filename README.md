@@ -7,7 +7,7 @@
 I build AI products from idea to production, and stay to run them after launch.
 The AI layer, backend, web and mobile.
 
-[![Website](https://img.shields.io/badge/Website-r--zeeshan.dev-5C7A5C?style=flat-square)](https://r-zeeshan.dev)
+[![Website](https://img.shields.io/badge/Website-r--zeeshan.dev-1B2A4A?style=flat-square)](https://r-zeeshan.dev)
 [![Upwork](https://img.shields.io/badge/Upwork-Top%20Rated%20Plus-6FDA44?style=flat-square&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/aizeeshan)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-r--zeeshan-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/r-zeeshan)
 
@@ -28,11 +28,11 @@ data and providers that go down. That second part is most of what I do.
 
 | Product | What it is |
 |---|---|
-| **Jema** | Clinical AI platform for Korean medicine, used by doctors in Korea. |
+| **Jema AIgent** | Clinical AI platform for Korean medicine, used by doctors in Korea. |
 | **CuePilates** | AI Pilates class-planning SaaS, idea to launch in under a month. [Live](https://www.cuepilates.fit) |
 | **TrueCert** | Certification platform that replaced spreadsheets and site visits for a recycling company. |
 | **DietTalk** | Doctor-supervised diet and weight management app on iOS and Android, with a doctor portal. |
-| **Dr. Aigent** | Multi-model engine that turns doctors' notes into structured SOAP reports. |
+| **Dr. AIgent** | Multi-model engine that turns recorded consultations into structured SOAP reports. |
 | **Production rescue** | Two existing apps for one client: a FastAPI and React pipeline made stable, and a Next.js app hardened after its production database was wiped. |
 
 Most of this work lives in private client repositories. Case studies: [r-zeeshan.dev/work](https://r-zeeshan.dev/work).
@@ -40,7 +40,7 @@ Most of this work lives in private client repositories. Case studies: [r-zeeshan
 ## How I build
 
 ```text
-AI            OpenAI, Claude, Gemini, LangChain, multi-model routing, RAG, document AI
+AI            OpenAI, Claude, Gemini, LangChain, multi-model fallback, RAG, document AI
 Backend       Python, FastAPI, PostgreSQL, Supabase, Firebase
 Web           React, Next.js
 Mobile        Flutter

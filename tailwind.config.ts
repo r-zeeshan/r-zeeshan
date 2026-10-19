@@ -1,126 +1,63 @@
 import type { Config } from "tailwindcss";
-import tailwindcssAnimate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 
+// Blueprint design system. Tokens come from docs/design/blueprint/DESIGN.md.
 export default {
-	darkMode: ["class"],
-	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
-	],
-	prefix: "",
+	content: ["./index.html", "./src/**/*.{ts,tsx}"],
 	theme: {
-		container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
+		// Radius is 0 everywhere (DESIGN.md §4).
+		borderRadius: {
+			none: "0",
+			sm: "0",
+			DEFAULT: "0",
+			md: "0",
+			lg: "0",
+			xl: "0",
+			"2xl": "0",
+			"3xl": "0",
+			full: "0",
 		},
 		extend: {
 			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+				paper: "var(--bg)",
+				grid: "var(--grid)",
+				ink: {
+					DEFAULT: "var(--ink)",
+					2: "var(--ink-2)",
 				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+				muted: "var(--muted)",
+				"rule-dash": "var(--rule-dash)",
+				surface: "var(--surface)",
+				note: {
+					DEFAULT: "var(--note)",
+					bg: "var(--note-bg)",
+					band: "var(--note-band)",
 				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
+				band: {
+					DEFAULT: "var(--ink)",
+					text: "var(--band-text)",
+					muted: "var(--band-muted)",
+					line: "var(--band-line)",
 				},
-				success: {
-					DEFAULT: 'hsl(var(--success))',
-					foreground: 'hsl(var(--success-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted-hsl))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
 			},
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
-				display: ['Fraunces', 'Georgia', 'serif'],
-				body: ['Inter', 'system-ui', 'sans-serif'],
+				sans: ["'Work Sans'", "'Helvetica Neue'", "Arial", "sans-serif"],
+				hand: ["Caveat", "cursive"],
+				mono: ["'IBM Plex Mono'", "ui-monospace", "monospace"],
 			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+			transitionTimingFunction: {
+				ui: "cubic-bezier(0.23, 1, 0.32, 1)",
 			},
-			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
-				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				},
-				fadeIn: {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-				slideUp: {
-					'0%': { opacity: '0', transform: 'translateY(40px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
-				},
-				float: {
-					'0%, 100%': { transform: 'translateY(0)' },
-					'50%': { transform: 'translateY(-10px)' }
-				},
-				pulseGlow: {
-					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--primary) / 0.3)' },
-					'50%': { boxShadow: '0 0 40px hsl(var(--primary) / 0.6)' }
-				}
+			maxWidth: {
+				wrap: "1296px",
 			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fadeIn 0.6s ease-out forwards',
-				'slide-up': 'slideUp 0.8s ease-out forwards',
-				'float': 'float 6s ease-in-out infinite',
-				'pulse-glow': 'pulseGlow 2s ease-in-out infinite'
-			}
-		}
+		},
 	},
-	plugins: [tailwindcssAnimate],
+	plugins: [
+		// Every hover style is gated behind a real pointer (DESIGN.md §5).
+		plugin(({ addVariant }) => {
+			addVariant("hov", "@media (hover: hover) and (pointer: fine) { &:hover }");
+			addVariant("group-hov", "@media (hover: hover) and (pointer: fine) { :merge(.group):hover & }");
+		}),
+	],
 } satisfies Config;

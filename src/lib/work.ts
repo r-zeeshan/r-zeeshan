@@ -10,22 +10,51 @@ export interface HardPart {
   body: string[];
 }
 
+/** One box in a case study's system diagram. */
+export interface DiagramNode {
+  label: string;
+  /** Mono sub-label, e.g. the models behind a router. */
+  sub?: string;
+  /** The AI part of the system (dashed). At most one per diagram. */
+  ai?: boolean;
+  /** Something that went wrong (solid, in the note colour). */
+  alert?: boolean;
+  /** How this node joins the one before it. Defaults to an arrow. */
+  join?: 'to' | 'both' | 'plus';
+  /** A short handwritten note that ends the row here; the next node starts a new row. */
+  after?: string;
+}
+
+/**
+ * How the product actually works, as an ordered list of nodes. Drawn small on cards and
+ * large on the case study. Every node must be backed by the case study text below.
+ */
+export interface WorkDiagram {
+  /** Handwritten caption for the large diagram. */
+  caption: string;
+  nodes: DiagramNode[];
+  /** Extra capabilities, shown as handwritten "+ ..." lines under the large diagram. */
+  asides?: string[];
+}
+
 export interface CaseStudy {
   slug: string;
   /** Product name. */
   name: string;
   /** Short category label, sentence case. */
   tag: string;
-  /** Cover image in /public/work. Optional: text-only entry when absent. */
-  cover?: string;
   /** Branded 1200x630 OG/Twitter share image in /public/og. */
   ogImage: string;
-  /** Leads the work index with a large cover. */
-  lead?: boolean;
+  /** The product's system diagram. */
+  diagram: WorkDiagram;
   /** One-line summary for the index and the title block. */
   oneLiner: string;
-  /** Slightly longer blurb for lead entries on the index. */
+  /** Slightly longer blurb for the wide card. */
   cardBlurb: string;
+  /** Short line for the small cards on the home page and the work index. */
+  shortLine: string;
+  /** Wide-card callouts shown beside the blurb (Jema AIgent only). */
+  cardParts?: { text: string; inProgress?: boolean }[];
   /** "At a glance": Zeeshan's role. */
   role: string;
   /** "At a glance": timeline. Omitted from the page when unknown. */
@@ -52,33 +81,49 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'jema',
-    name: 'Jema',
+    name: 'Jema AIgent',
     tag: 'Clinical AI',
-    cover: '/work/jema.webp',
     ogImage: '/og/work-jema.png',
-    lead: true,
     oneLiner: 'A clinical AI platform for Korean medicine, used by doctors in Korea.',
     cardBlurb:
       'An end-to-end clinical AI platform for Korean medicine: AI clinical reports, patient records, scheduling, and herbal-formulation tracking. Live and used by doctors in Korea.',
+    shortLine: 'A clinical AI platform for Korean medicine, used by doctors in Korea.',
+    cardParts: [
+      { text: 'Reports that survive a provider outage' },
+      { text: 'One patient record everywhere' },
+      { text: 'Single sign-on across the suite' },
+      { text: 'EMR integration, not shipped yet', inProgress: true },
+    ],
+    diagram: {
+      caption: 'Jema AIgent: how a visit becomes a report',
+      nodes: [
+        { label: 'Visit recording' },
+        { label: 'Transcript' },
+        { label: 'LLM router', sub: 'primary + backup model', ai: true, after: '↓ falls back to the next model if a provider stalls' },
+        { label: 'SOAP report draft' },
+        { label: 'Doctor reviews' },
+      ],
+      asides: ['+ patient records', '+ scheduling', '+ formulation tracking'],
+    },
     role: 'Lead AI engineer, end to end',
     timeline: 'June 2025 to present',
-    stack: ['React', 'Next.js', 'Python', 'FastAPI', 'PostgreSQL', 'Supabase', 'Multi-model LLM routing', 'AWS', 'Docker'],
-    metaTitle: 'Jema clinical AI case study | Zeeshan Hameed',
+    stack: ['React', 'Next.js', 'Python', 'FastAPI', 'Firebase', 'Multi-model LLM fallback', 'AWS', 'Docker'],
+    metaTitle: 'Jema AIgent clinical AI case study | Zeeshan Hameed',
     metaDescription:
-      'How I built Jema, a production clinical AI platform for Korean medicine: multi-model AI reports with fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling with access controls.',
+      'How I built Jema AIgent, a production clinical AI platform for Korean medicine: multi-model AI reports with fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling with access controls.',
     problem: [
       'The founders had a clear vision for a clinical AI platform for Korean medicine, the traditional and herbal side of care, but no engineering team to build it. They needed a real product doctors could use in a live clinic, not a demo that falls over the first time a report has to generate under pressure.',
       'That meant building the whole thing end to end: the web app doctors work in, the backend and data model behind it, and the AI itself. And it had to work in Korean, for real clinical workflows, from day one.',
     ],
     built: [
-      'Jema is a clinical AI platform used by doctors in Korea. It generates clinical reports with AI, keeps patient records, handles scheduling, tracks herbal formulations, and supports doctor verification and multi-clinic use, in a multilingual product built for Korean-medicine practice.',
-      'I built and own it end to end: the React and Next.js front end, a Python and FastAPI backend, the PostgreSQL data layer on Supabase, the multi-model AI, and the infrastructure it runs on. It is my flagship build, and it is live.',
+      'Jema AIgent is a clinical AI platform used by doctors in Korea. It generates clinical reports with AI, keeps patient records, handles scheduling, tracks herbal formulations, and supports doctor verification and multi-clinic use, in a multilingual product built for Korean-medicine practice.',
+      'I built and own it end to end: the React and Next.js front end, a Python and FastAPI backend, the Firebase data layer, the multi-model AI, and the infrastructure it runs on. It is my flagship build, and it is live.',
     ],
     hardParts: [
       {
         title: 'Reports that survive a provider outage',
         body: [
-          'Report generation runs across multiple models, GPT, Claude, and Gemini, behind an automatic fallback and cost-aware routing layer I built. If one provider is down, slow, or expensive, a report still generates from another. A doctor mid-consult never sees the plumbing; they just get their report.',
+          'Report generation runs across multiple models behind an automatic backup-model fallback layer I built. Each step has a primary model and a configured backup, so if the primary is down or failing, a report still generates from another. A doctor mid-consult never sees the plumbing; they just get their report.',
         ],
       },
       {
@@ -102,24 +147,33 @@ export const caseStudies: CaseStudy[] = [
       {
         title: 'EMR integration (in progress)',
         body: [
-          'I am architecting the integration layer that will let Jema sit alongside the systems clinics already run. It is in progress, not shipped.',
+          'I am architecting the integration layer that will let Jema AIgent sit alongside the systems clinics already run. It is in progress, not shipped.',
         ],
       },
     ],
     now: [
-      'Jema is live and used by doctors in Korea. It is the kind of product where reliability is not a nice-to-have: if the AI or the data layer is flaky, real clinical work stops. That is the bar I build to.',
+      'Jema AIgent is live and used by doctors in Korea. It is the kind of product where reliability is not a nice-to-have: if the AI or the data layer is flaky, real clinical work stops. That is the bar I build to.',
     ],
   },
   {
     slug: 'cuepilates',
     name: 'CuePilates',
     tag: 'AI SaaS',
-    cover: '/work/cuepilates.webp',
     ogImage: '/og/work-cuepilates.png',
-    lead: true,
     oneLiner: 'An AI Pilates class-planning SaaS, taken from idea to launch in under a month.',
     cardBlurb:
       'An AI-powered Pilates class-planning SaaS with accounts and subscriptions, taken from idea to a live, paying product in under a month.',
+    shortLine: 'Idea to paid launch in under a month.',
+    diagram: {
+      caption: 'CuePilates: how a class gets planned',
+      nodes: [
+        { label: 'Class setup' },
+        { label: 'AI class planner', sub: 'Claude API', ai: true },
+        { label: 'Plan validation' },
+        { label: 'Plan with teaching cues' },
+      ],
+      asides: ['+ drag-and-drop builder', '+ PDF export', '+ Stripe subscriptions'],
+    },
     role: 'Full-stack engineer, idea to launch',
     timeline: 'Under a month, idea to launch',
     live: { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
@@ -132,7 +186,7 @@ export const caseStudies: CaseStudy[] = [
       'The founder had a strong vision for CuePilates, an AI tool that plans Pilates classes, but no coding background and no product yet. They did not need a prototype to show around. They needed a real SaaS, live, with accounts and subscriptions, and they needed it fast.',
     ],
     built: [
-      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans and hands-free spoken cues, inside a full product with accounts and paid subscriptions. It is live at www.cuepilates.fit.',
+      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans with teaching cues, a drag-and-drop builder and PDF export, inside a full product with accounts and paid subscriptions. It is live at www.cuepilates.fit.',
       'I built it on Next.js and Supabase, with Stripe for subscriptions, Vercel for hosting, and Claude through the Anthropic API powering the planning engine.',
     ],
     hardParts: [
@@ -160,20 +214,31 @@ export const caseStudies: CaseStudy[] = [
     ogImage: '/og/work-truecert.png',
     oneLiner: 'A certification platform that replaced spreadsheets and site visits for a recycling company.',
     cardBlurb:
-      'A certification platform for a recycling company that ran its process on spreadsheets and site visits: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
+      'A certification platform for a recycling company that ran its process on spreadsheets and site visits: 250+ questions across 16 categories, AI validation of answers and documents, an assistant that answers questions about each requirement, and role-based access.',
+    shortLine: 'A certification platform that replaced spreadsheets and site visits.',
+    diagram: {
+      caption: 'TrueCert: how a certification gets filled in',
+      nodes: [
+        { label: 'Questionnaire', sub: '250+ questions · 16 categories' },
+        { label: 'AI validation', sub: 'answers + documents', ai: true },
+        { label: 'Credit calculation' },
+        { label: 'Certification progress' },
+      ],
+      asides: ['+ AI assistant for each requirement', '+ role-based access', '+ document upload'],
+    },
     role: 'Full-stack AI engineer',
     timeline: 'March to June 2025',
-    stack: ['Python', 'FastAPI', 'OpenAI', 'React', 'PostgreSQL'],
+    stack: ['Next.js', 'React', 'TypeScript', 'Firebase', 'OpenAI'],
     testimonial: 'Aaron Phillips',
     metaTitle: 'TrueCert certification platform case study | Zeeshan Hameed',
     metaDescription:
-      'How I built TrueCert, a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
+      'How I built TrueCert, a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI validation of answers and documents, an assistant that answers questions about each requirement, and role-based access.',
     problem: [
       'Green Earth, a recycling company, ran its certification process on spreadsheets and site visits. TrueCert moved that process onto one platform.',
     ],
     built: [
-      'TrueCert is a certification platform with 250+ questions across 16 categories, AI-suggested answers, real-time validation, role-based access and document processing.',
-      'The backend is Python and FastAPI on PostgreSQL, the front end is React, and OpenAI provides the AI.',
+      'TrueCert is a certification platform with 250+ questions across 16 categories, AI validation of answers and documents, an assistant that answers questions about each requirement, and role-based access.',
+      'It is built with Next.js, React and TypeScript on Firebase for authentication, data and document storage, and OpenAI provides the AI.',
     ],
     now: [
       'TrueCert replaced the spreadsheets and site visits the company used before. The client describes the work below.',
@@ -183,11 +248,20 @@ export const caseStudies: CaseStudy[] = [
     slug: 'diettalk',
     name: 'DietTalk',
     tag: 'Mobile and web',
-    cover: '/work/diettalk.webp',
     ogImage: '/og/work-diettalk.png',
     oneLiner: 'A doctor-supervised diet and weight management app, live on the App Store and Google Play.',
     cardBlurb:
       'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. Live on both app stores.',
+    shortLine: 'A doctor-supervised diet app, live on the App Store and Google Play.',
+    diagram: {
+      caption: 'DietTalk: one record, two screens',
+      nodes: [
+        { label: 'Flutter app', sub: 'iOS + Android' },
+        { label: 'Backend', sub: 'FastAPI · Supabase', join: 'both' },
+        { label: 'Doctor portal', join: 'both' },
+        { label: 'OCR + LLM extraction', sub: 'lab reports fill the portal form', ai: true, join: 'plus' },
+      ],
+    },
     role: 'Mobile and full-stack engineer',
     timeline: 'June 2025 to present',
     stack: ['Flutter', 'iOS + Android', 'Web portal', 'PostgreSQL', 'Supabase', 'OCR + LLM extraction'],
@@ -221,34 +295,43 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'dr-aigent',
-    name: 'Dr. Aigent',
+    name: 'Dr. AIgent',
     tag: 'Document AI',
-    cover: '/work/dr-aigent.webp',
     ogImage: '/og/work-dr-aigent.png',
-    oneLiner: "Multi-model clinical AI that turns doctors' notes into structured SOAP reports.",
+    oneLiner: "Multi-model clinical AI that turns recorded consultations into structured SOAP reports.",
     cardBlurb:
-      "A multi-model clinical AI that turns doctors' notes into structured SOAP reports, with automatic fallback across models so it stays reliable and affordable in production.",
+      "A multi-model clinical AI that turns recorded consultations into structured SOAP reports, with automatic fallback to a backup model so it stays reliable in production.",
+    shortLine: 'Multi-model clinical AI with automatic backup-model fallback.',
+    diagram: {
+      caption: 'Dr. AIgent: how a consult becomes a SOAP report',
+      nodes: [
+        { label: 'Consultation recording' },
+        { label: 'Transcript' },
+        { label: 'Model router', sub: 'primary + backup model', ai: true },
+        { label: 'SOAP report', after: 'if the primary model fails, the backup picks it up' },
+      ],
+    },
     role: 'Backend and AI engineer',
     timeline: 'June 2025 to present',
-    stack: ['Python', 'FastAPI', 'Multi-model LLM routing'],
-    metaTitle: 'Dr. Aigent multi-model clinical AI case study | Zeeshan Hameed',
+    stack: ['Python', 'FastAPI', 'Multi-model LLM fallback'],
+    metaTitle: 'Dr. AIgent multi-model clinical AI case study | Zeeshan Hameed',
     metaDescription:
-      "Dr. Aigent turns doctors' notes into structured SOAP reports using multiple AI models with automatic, cost-aware fallback for production reliability.",
+      "Dr. AIgent turns recorded consultations into structured SOAP reports using multiple AI models with automatic backup-model fallback for production reliability.",
     problem: [
-      "Doctors spend real time turning messy consultation notes into structured reports. The goal with Dr. Aigent was to take a doctor's notes and produce a clean, structured SOAP report, reliably enough to trust in a working day, not just in a demo.",
+      "Doctors spend real time turning a consultation into a structured report. The goal with Dr. AIgent was to take a recorded consultation and produce a clean, structured SOAP report, reliably enough to trust in a working day, not just in a demo.",
     ],
     built: [
-      "Dr. Aigent is a multi-model clinical AI that turns doctors' notes into structured SOAP reports. I built the Python and FastAPI service behind it and the model layer that does the work.",
+      "Dr. AIgent is a multi-model clinical AI that turns recorded consultations into structured SOAP reports. I built the Python and FastAPI service behind it and the model layer that does the work.",
     ],
     hardParts: [
       {
-        title: 'Routing across models, with fallback',
+        title: 'A backup model when one fails',
         body: [
-          'The reliability comes from routing across GPT, Claude, and Gemini with automatic, cost-aware fallback. If one model is unavailable or too expensive for a given request, another picks it up, so the tool keeps producing reports in production instead of failing when a single provider has a bad day.',
+          'The reliability comes from an automatic backup-model fallback. Each step has a primary model and a configured backup. If the primary is unavailable or failing, the backup picks it up, so the tool keeps producing reports in production instead of failing when a single provider has a bad day.',
         ],
       },
     ],
-    now: ['Dr. Aigent is in production, as one of three connected platforms I built for the same client.'],
+    now: ['Dr. AIgent is in production, as one of three connected platforms I built for the same client.'],
   },
   {
     slug: 'production-rescue',
@@ -259,6 +342,16 @@ export const caseStudies: CaseStudy[] = [
       'Two existing apps for one client in appraisal tech: a FastAPI and React pipeline made stable, and a Next.js app hardened right after its production database was wiped.',
     cardBlurb:
       'Two existing apps for one client in appraisal tech: a FastAPI and React pipeline made stable, and a Next.js app hardened right after its production database was wiped.',
+    shortLine: 'Two live apps for one client in appraisal tech, made stable.',
+    diagram: {
+      caption: 'Production rescue: after the wipe',
+      nodes: [
+        { label: 'Wiped prod DB', alert: true },
+        { label: 'Recovered' },
+        { label: 'Guard + cleanup' },
+        { label: 'Hardened', after: 'a guard now refuses destructive commands against production' },
+      ],
+    },
     role: 'Engineer, hired to stabilize two existing apps',
     timeline: 'March to September 2026',
     stack: ['FastAPI', 'React', 'TypeScript', 'Next.js', 'Prisma', 'PostgreSQL'],

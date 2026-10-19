@@ -34,7 +34,7 @@ export function personGraph() {
           'Artificial Intelligence',
           'Large Language Models',
           'Retrieval-Augmented Generation',
-          'Multi-Model LLM Routing',
+          'Multi-Model LLM Fallback',
           'Full-Stack Development',
           'Python',
           'FastAPI',

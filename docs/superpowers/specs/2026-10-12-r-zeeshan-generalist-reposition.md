@@ -1,3 +1,5 @@
+> **Visual direction superseded 2026-10-19** by the Blueprint design system, `docs/design/blueprint/DESIGN.md`. The palette, fonts and component notes below describe the old cream/sage editorial look. Copy and positioning decisions still stand.
+
 # r-zeeshan.dev: reposition as a generalist engineering portfolio
 
 Date: 2026-10-12
