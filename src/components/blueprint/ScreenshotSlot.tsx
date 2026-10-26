@@ -1,18 +1,21 @@
 import type { Screenshot } from '@/lib/work';
 
 /**
- * A product screenshot in a ruled frame. Until `shot.src` is set it renders a marked
- * placeholder that says which file to add. Redact any client or patient data first.
+ * A product screenshot in a ruled frame, shown at its own shape (phone shots stay tall).
+ * Until `shot.src` is set it renders a marked placeholder that says which file to add.
+ * Redact any client or patient data before adding a file.
  */
 export default function ScreenshotSlot({ shot }: { shot: Screenshot }) {
   return (
-    <figure className="m-0 flex flex-col gap-2">
+    <figure className={shot.src ? 'm-0 flex max-w-full flex-col gap-2' : 'm-0 flex flex-[1_1_420px] flex-col gap-2'}>
       {shot.src ? (
         <img
           src={shot.src}
           alt={shot.alt}
+          width={shot.width}
+          height={shot.height}
           loading="lazy"
-          className="aspect-[16/10] w-full border-2 border-ink bg-surface object-cover object-top"
+          className="block h-auto max-h-[520px] w-auto max-w-full border-2 border-ink bg-surface"
         />
       ) : (
         <div
@@ -24,7 +27,9 @@ export default function ScreenshotSlot({ shot }: { shot: Screenshot }) {
           <span className="mono-label">{shot.slot}</span>
         </div>
       )}
-      <figcaption className="text-sm text-ink-2">{shot.alt}</figcaption>
+      <figcaption className="max-w-[560px] text-sm text-ink-2">
+        {shot.caption ?? shot.alt}
+      </figcaption>
     </figure>
   );
 }

@@ -149,7 +149,7 @@ export default function CaseStudy() {
           {cs.screenshots && cs.screenshots.length > 0 && (
             <section aria-label={`${cs.name} screenshots`} className="mt-10 flex flex-col gap-4">
               <span className="mono-label-caps">In the product</span>
-              <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))]">
+              <div className="flex flex-wrap items-start gap-6">
                 {cs.screenshots.map((sh) => (
                   <ScreenshotSlot key={sh.slot} shot={sh} />
                 ))}

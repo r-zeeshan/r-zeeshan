@@ -39,10 +39,15 @@ export interface WorkDiagram {
 
 /** A product screenshot on a case study. Without `src` it renders a marked placeholder. */
 export interface Screenshot {
-  /** Path under /public, e.g. /screens/jema-1.png. PLACEHOLDER while unset. */
+  /** Path under /public, e.g. /screens/jema-1.webp. PLACEHOLDER while unset. */
   src?: string;
-  /** What the screenshot shows (alt text and caption). */
+  /** Pixel size of the file at `src`, so the page can reserve its space. */
+  width?: number;
+  height?: number;
+  /** What the screenshot shows (alt text, and the caption when `caption` is not set). */
   alt: string;
+  /** Short visible caption. */
+  caption?: string;
   /** Where the file goes, shown on the placeholder only. */
   slot: string;
 }
@@ -197,8 +202,8 @@ export const caseStudies: CaseStudy[] = [
       { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
     ],
     screenshots: [
-      { alt: 'CuePilates class planner', slot: 'public/screens/cuepilates-1.png' },
-      { alt: 'CuePilates class plan with teaching cues', slot: 'public/screens/cuepilates-2.png' },
+      { src: '/screens/cuepilates-1.webp', width: 780, height: 2020, caption: 'Class player on a phone: written cues for one exercise', alt: 'The CuePilates class player on a phone, showing the written setup, movement, breathing and correction cues for one exercise', slot: 'public/screens/cuepilates-1.webp' },
+      { src: '/screens/cuepilates-2.webp', width: 2160, height: 1350, caption: 'Class player on desktop, from the sample class', alt: 'The CuePilates class player on desktop, exercise 3 of 5 with its written cues, from the sample class', slot: 'public/screens/cuepilates-2.webp' },
     ],
     stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
     testimonial: 'Tess Bartoli',
