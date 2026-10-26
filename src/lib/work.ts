@@ -37,6 +37,16 @@ export interface WorkDiagram {
   asides?: string[];
 }
 
+/** A product screenshot on a case study. Without `src` it renders a marked placeholder. */
+export interface Screenshot {
+  /** Path under /public, e.g. /screens/jema-1.png. PLACEHOLDER while unset. */
+  src?: string;
+  /** What the screenshot shows (alt text and caption). */
+  alt: string;
+  /** Where the file goes, shown on the placeholder only. */
+  slot: string;
+}
+
 export interface CaseStudy {
   slug: string;
   /** Product name. */
@@ -59,8 +69,10 @@ export interface CaseStudy {
   role: string;
   /** "At a glance": timeline. Omitted from the page when unknown. */
   timeline?: string;
-  /** "At a glance": live link, if any. */
-  live?: { label: string; href: string };
+  /** "At a glance": live links, if any. */
+  live?: { label: string; href: string }[];
+  /** Product screenshots. Slots without a file show a placeholder. */
+  screenshots?: Screenshot[];
   /** Tech used. */
   stack: string[];
   /** Author of a real review in testimonials.ts to show under this study. */
@@ -74,8 +86,8 @@ export interface CaseStudy {
   built: string[];
   /** The hard parts, each with a short title. Omit when there is nothing specific to say. */
   hardParts?: HardPart[];
-  /** Where it is now. */
-  now: string[];
+  /** Where it is now. Omitted when the current state is not known. */
+  now?: string[];
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -107,6 +119,10 @@ export const caseStudies: CaseStudy[] = [
     },
     role: 'Lead AI engineer, end to end',
     timeline: 'June 2025 to present',
+    screenshots: [
+      { alt: 'Jema AIgent visit recording and report draft', slot: 'public/screens/jema-1.png' },
+      { alt: 'Jema AIgent patient record', slot: 'public/screens/jema-2.png' },
+    ],
     stack: ['React', 'Next.js', 'Python', 'FastAPI', 'Firebase', 'Multi-model LLM fallback', 'AWS', 'Docker'],
     metaTitle: 'Jema AIgent clinical AI case study | Zeeshan Hameed',
     metaDescription:
@@ -176,7 +192,14 @@ export const caseStudies: CaseStudy[] = [
     },
     role: 'Full-stack engineer, idea to launch',
     timeline: 'Under a month, idea to launch',
-    live: { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
+    live: [
+      { label: 'app.cuepilates.fit', href: 'https://app.cuepilates.fit' },
+      { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
+    ],
+    screenshots: [
+      { alt: 'CuePilates class planner', slot: 'public/screens/cuepilates-1.png' },
+      { alt: 'CuePilates class plan with teaching cues', slot: 'public/screens/cuepilates-2.png' },
+    ],
     stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
     testimonial: 'Founder, CuePilates',
     metaTitle: 'CuePilates AI SaaS case study, idea to launch | Zeeshan Hameed',
@@ -249,10 +272,10 @@ export const caseStudies: CaseStudy[] = [
     name: 'DietTalk',
     tag: 'Mobile and web',
     ogImage: '/og/work-diettalk.png',
-    oneLiner: 'A doctor-supervised diet and weight management app, live on the App Store and Google Play.',
+    oneLiner: 'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors.',
     cardBlurb:
-      'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. Live on both app stores.',
-    shortLine: 'A doctor-supervised diet app, live on the App Store and Google Play.',
+      'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. It shipped to both app stores.',
+    shortLine: 'A doctor-supervised diet app that shipped to the App Store and Google Play.',
     diagram: {
       caption: 'DietTalk: one record, two screens',
       nodes: [
@@ -272,7 +295,7 @@ export const caseStudies: CaseStudy[] = [
       'DietTalk needed to work for two very different users at once: patients tracking their diet and weight from their phone, and doctors supervising them and sending guidance. That is a mobile app and a clinical web tool, tied to the same patient data, and it had to ship to both app stores.',
     ],
     built: [
-      'DietTalk is a doctor-supervised diet and weight management product. Patients use a Flutter mobile app to track diet and weight; doctors use a web portal to supervise and send guidance, with AI insights on top. It is live on the App Store and Google Play.',
+      'DietTalk is a doctor-supervised diet and weight management product. Patients use a Flutter mobile app to track diet and weight; doctors use a web portal to supervise and send guidance, with AI insights on top. It shipped to the App Store and Google Play.',
       'I built the mobile app in Flutter for both iOS and Android, the doctor-facing web portal, and the backend on PostgreSQL and Supabase that connects them.',
     ],
     hardParts: [
@@ -290,7 +313,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     now: [
-      'DietTalk is live on the App Store and Google Play, in real use by patients and the doctors supervising them.',
+      'DietTalk shipped to the App Store and Google Play and was used by patients and the doctors supervising them.',
     ],
   },
   {
@@ -311,6 +334,10 @@ export const caseStudies: CaseStudy[] = [
         { label: 'SOAP report', after: 'if the primary model fails, the backup picks it up' },
       ],
     },
+    screenshots: [
+      { alt: 'Dr. AIgent consultation recording and transcript', slot: 'public/screens/dr-aigent-1.png' },
+      { alt: 'Dr. AIgent SOAP report', slot: 'public/screens/dr-aigent-2.png' },
+    ],
     role: 'Backend and AI engineer',
     timeline: 'June 2025 to present',
     stack: ['Python', 'FastAPI', 'Multi-model LLM fallback'],
@@ -332,6 +359,52 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     now: ['Dr. AIgent is in production, as one of three connected platforms I built for the same client.'],
+  },
+  {
+    slug: 'invoice-ai',
+    name: 'Invoice AI',
+    tag: 'Document AI',
+    ogImage: '/og/work-invoice-ai.png',
+    oneLiner: 'Document AI that reads invoice PDFs into structured data, with duplicate detection and a dashboard.',
+    cardBlurb:
+      'A document AI system that reads invoice PDFs with a vision model and returns structured data without per-vendor templates. Duplicates are caught when an invoice is saved, and a dashboard shows the data by vendor.',
+    shortLine: 'Invoice PDFs read into structured data, with duplicate detection and a dashboard.',
+    diagram: {
+      caption: 'Invoice AI: no per-vendor templates',
+      nodes: [
+        { label: 'Invoice PDF' },
+        { label: 'Page images' },
+        { label: 'AI extraction', sub: 'vision model', ai: true },
+        { label: 'Duplicate check' },
+        { label: 'Dashboard' },
+      ],
+    },
+    role: 'Full-stack AI engineer',
+    stack: ['Python', 'FastAPI', 'Next.js', 'Firebase', 'OpenAI'],
+    metaTitle: 'Invoice AI document extraction case study | Zeeshan Hameed',
+    metaDescription:
+      'How I built Invoice AI: a vision model reads each page of an invoice PDF into structured data without per-vendor templates, with duplicate detection on save and a vendor dashboard.',
+    problem: [
+      'Invoice PDFs come in every layout, so reading them reliably usually means building a template for each vendor. This system had to read them without per-vendor templates, and keep the same invoice from being saved twice.',
+    ],
+    built: [
+      'Invoice AI takes an invoice PDF, converts each page to an image, and has a vision model read it. The model returns the vendor, dates, line items, quantities, prices, subtotal, tax and total as structured data.',
+      'I built it as a Python and FastAPI backend with a Next.js dashboard on Firebase. Saved invoices go through a duplicate check, and the dashboard shows the data with vendor charts and standardised vendor names.',
+    ],
+    hardParts: [
+      {
+        title: 'No templates to maintain',
+        body: [
+          'Every page goes to one vision model with a structured output format, so a new vendor layout needs no new code or template.',
+        ],
+      },
+      {
+        title: 'The same invoice twice',
+        body: [
+          'When an invoice is saved it is checked against the ones already stored, matching on invoice number first and then on filename, so duplicates are caught instead of silently doubling up.',
+        ],
+      },
+    ],
   },
   {
     slug: 'production-rescue',

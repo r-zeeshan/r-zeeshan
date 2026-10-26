@@ -6,10 +6,11 @@ He holds a B.S. in Artificial Intelligence, is Top Rated Plus on Upwork with a 1
 
 ## Case studies
 - Jema AIgent: a clinical AI platform for Korean medicine, used by doctors in Korea. Multi-model AI reports with automatic fallback, a unified patient index, SSO across the product suite, and encrypted patient-data handling with access controls. https://r-zeeshan.dev/work/jema
-- CuePilates: an AI Pilates class-planning SaaS on Next.js, Supabase, Stripe and the Claude API, taken from idea to launch in under a month, live at https://www.cuepilates.fit. https://r-zeeshan.dev/work/cuepilates
+- CuePilates: an AI Pilates class-planning SaaS on Next.js, Supabase, Stripe and the Claude API, taken from idea to launch in under a month, live at https://app.cuepilates.fit and https://www.cuepilates.fit. https://r-zeeshan.dev/work/cuepilates
 - TrueCert: a certification platform that replaced spreadsheets and site visits for a recycling company: 250+ questions across 16 categories, AI validation of answers and documents, an assistant that answers questions about each requirement, and role-based access. https://r-zeeshan.dev/work/truecert
-- DietTalk: a doctor-supervised diet and weight management product, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, live on the App Store and Google Play. https://r-zeeshan.dev/work/diettalk
+- DietTalk: a doctor-supervised diet and weight management product, a Flutter mobile app plus a doctor web portal with OCR lab-result extraction, shipped to the App Store and Google Play. https://r-zeeshan.dev/work/diettalk
 - Dr. AIgent: a multi-model clinical AI that turns recorded consultations into structured SOAP reports, with automatic model fallback. https://r-zeeshan.dev/work/dr-aigent
+- Invoice AI: a document AI system that reads invoice PDFs with a vision model into structured data without per-vendor templates, with duplicate detection on save and a vendor dashboard. https://r-zeeshan.dev/work/invoice-ai
 - Production rescue: two existing apps for one client in appraisal tech, March to September 2026: a FastAPI and React pipeline made stable (startup, lost session state, repeated phases, silent errors), and a Next.js app hardened right after its production database was wiped (production-database guard, data cleanup, reliability fixes). https://r-zeeshan.dev/work/production-rescue
 
 ## About

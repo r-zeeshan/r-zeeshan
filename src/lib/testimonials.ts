@@ -1,13 +1,15 @@
-// Real client reviews (Upwork). Do not invent or edit the wording. Names attributed
-// by role where the client name was not provided. `text` is the full review; `excerpt`
-// is the shortened form for the home page, and every cut in it is shown with an ellipsis.
+// Real client reviews (Upwork). Do not invent or edit the wording, and always show `text`
+// in full. Names attributed by role where the client name was not provided.
 
 export interface Quote {
   text: string;
   author: string;
   role: string;
-  /** Shortened wording for tight spaces. Each omitted passage is marked with "…". */
-  excerpt?: string;
+  /**
+   * FLAG: set while the client's permission to be named or to show the review is unconfirmed.
+   * The quote stays anonymous (role only). Remove the flag once the client confirms.
+   */
+  permissionPending?: boolean;
 }
 
 export const quotes: Quote[] = [
@@ -20,14 +22,11 @@ export const quotes: Quote[] = [
     text: 'Zeeshan took my vision for CuePilates, a fully AI-powered Pilates class planning platform, and built it into a real, live product with paying subscribers. He handled Supabase, Vercel, Stripe, the Anthropic API, auth, and security hardening. I came in with zero coding background, and he translated my ideas into real features, milestone after milestone. If you need a developer you can actually trust, Zeeshan is your guy.',
     author: 'Founder, CuePilates',
     role: 'Idea to launch',
-    excerpt:
-      'Zeeshan took my vision for CuePilates, a fully AI-powered Pilates class planning platform, and built it into a real, live product with paying subscribers. … If you need a developer you can actually trust, Zeeshan is your guy.',
+    permissionPending: true, // keep anonymous until the founder confirms permission
   },
   {
     text: 'We highly recommend Zeeshan for AI-related development work. He built an AI agent for our certification support system, delivering high-quality results with efficiency and professionalism. Proactive, responsive, and a pleasure to work with, an asset to any team.',
     author: 'Aaron Phillips',
     role: 'CEO, Green Earth',
-    excerpt:
-      '… He built an AI agent for our certification support system, delivering high-quality results with efficiency and professionalism. Proactive, responsive, and a pleasure to work with …',
   },
 ];

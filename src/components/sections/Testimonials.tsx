@@ -2,7 +2,7 @@ import Quote from '@/components/Quote';
 import { SectionHeader } from '@/components/blueprint';
 import { quotes } from '@/lib/testimonials';
 
-// The two reviews that speak to the work shown above, shortened, with every cut marked "…".
+// The two reviews that speak to the work shown above, in full.
 const SHOWN = ['Founder, CuePilates', 'Aaron Phillips'];
 
 export default function Testimonials() {
@@ -15,7 +15,7 @@ export default function Testimonials() {
         {quotes
           .filter((q) => SHOWN.includes(q.author))
           .map((q) => (
-            <Quote key={q.author} q={q} short />
+            <Quote key={q.author} q={q} />
           ))}
       </div>
     </section>

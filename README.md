@@ -32,6 +32,7 @@ data and providers that go down. That second part is most of what I do.
 | **CuePilates** | AI Pilates class-planning SaaS, idea to launch in under a month. [Live](https://www.cuepilates.fit) |
 | **TrueCert** | Certification platform that replaced spreadsheets and site visits for a recycling company. |
 | **DietTalk** | Doctor-supervised diet and weight management app on iOS and Android, with a doctor portal. |
+| **Invoice AI** | Document AI that reads invoice PDFs into structured data, with duplicate detection and a dashboard. |
 | **Dr. AIgent** | Multi-model engine that turns recorded consultations into structured SOAP reports. |
 | **Production rescue** | Two existing apps for one client: a FastAPI and React pipeline made stable, and a Next.js app hardened after its production database was wiped. |
 

@@ -21,12 +21,12 @@ export function LogoMark({ size = 36 }: { size?: number }) {
   );
 }
 
-/** The mark plus the two-line lockup: name, then a Caveat descriptor. */
+/** The mark plus the two-line lockup: name, then a Caveat descriptor. Below 640px only the mark shows. */
 export default function Logo({ showDescriptor = true }: { showDescriptor?: boolean }) {
   return (
-    <span className="flex min-h-[44px] items-center gap-3 select-none">
+    <span className="flex min-h-[44px] min-w-[44px] items-center gap-3 select-none">
       <LogoMark size={36} />
-      <span className="flex flex-col">
+      <span className="hidden flex-col sm:flex">
         <span className="text-[18px] font-bold leading-tight">Zeeshan Hameed</span>
         {showDescriptor && (
           <span className="note text-[19px]">full-stack AI engineer</span>

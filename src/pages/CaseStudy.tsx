@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Seo from '@/components/Seo';
 import Quote from '@/components/Quote';
 import GetInTouch from '@/components/sections/GetInTouch';
-import { Button, Card, Container, Note, SectionHeader, WorkDiagram } from '@/components/blueprint';
+import { Button, Card, Container, Note, ScreenshotSlot, SectionHeader, WorkDiagram } from '@/components/blueprint';
 import NotFound from '@/pages/NotFound';
 import { caseStudies, getCaseStudy } from '@/lib/work';
 import type { HardPart } from '@/lib/work';
@@ -125,15 +125,18 @@ export default function CaseStudy() {
             {cs.live && (
               <div>
                 <dt className="mono-label-caps">Live</dt>
-                <dd className="mt-1 text-base">
-                  <a
-                    href={cs.live.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link inline-flex min-h-[44px] items-center"
-                  >
-                    {cs.live.label} ↗
-                  </a>
+                <dd className="mt-1 flex flex-wrap gap-x-5 text-base">
+                  {cs.live.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link inline-flex min-h-[44px] items-center"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ))}
                 </dd>
               </div>
             )}
@@ -142,6 +145,17 @@ export default function CaseStudy() {
             <span className="sr-only">Stack: </span>
             {cs.stack.join(' · ')}
           </p>
+
+          {cs.screenshots && cs.screenshots.length > 0 && (
+            <section aria-label={`${cs.name} screenshots`} className="mt-10 flex flex-col gap-4">
+              <span className="mono-label-caps">In the product</span>
+              <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))]">
+                {cs.screenshots.map((sh) => (
+                  <ScreenshotSlot key={sh.slot} shot={sh} />
+                ))}
+              </div>
+            </section>
+          )}
         </Container>
 
         <Container className="flex flex-col gap-14 pb-12 pt-4 md:gap-[72px]">
@@ -171,20 +185,24 @@ export default function CaseStudy() {
             </Section>
           )}
 
-          <Section number={cs.hardParts && cs.hardParts.length > 0 ? '04' : '03'} id="now" title="Where it is now">
-            <div className="flex flex-col gap-4">
-              {cs.now.map((p, i) => (
-                <p key={i} className="prose-body">
-                  {p}
-                </p>
-              ))}
-            </div>
-            {review && (
-              <div className="max-w-3xl">
-                <Quote q={review} />
-              </div>
-            )}
-          </Section>
+          {(cs.now || review) && (
+            <Section number={cs.hardParts && cs.hardParts.length > 0 ? '04' : '03'} id="now" title="Where it is now">
+              {cs.now && (
+                <div className="flex flex-col gap-4">
+                  {cs.now.map((p, i) => (
+                    <p key={i} className="prose-body">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              )}
+              {review && (
+                <div className="max-w-3xl">
+                  <Quote q={review} />
+                </div>
+              )}
+            </Section>
+          )}
 
           <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-1 border-t-2 border-ink pt-4">
             <Button to="/work" variant="link">

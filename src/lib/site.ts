@@ -6,15 +6,16 @@ export const TITLE = 'Full-Stack AI Engineer';
 // One-line positioning, shared by the hero, footer and meta descriptions.
 export const POSITIONING = 'I build AI products from idea to production.';
 
-// The single booking path on the site (used only by the closing "Get in touch" block).
+// The booking path (Calendly): the header button, the hero and the closing block.
 export const BOOKING_LINK = 'https://calendly.com/rzeeshan';
 export const BOOKING_LABEL = 'Book a call';
 
 // Studio site. Linked from the footer only.
 export const AUXON_URL = 'https://auxonai.com';
 
-// Contact label used by the header, hero and closing block.
-export const CTA_LABEL = 'Get in touch';
+// The studio's free-demo page (hero link). PLACEHOLDER: auxonai.com/launch returned 404 on 2026-10-26.
+export const LAUNCH_URL = `${AUXON_URL}/launch`;
+export const LAUNCH_LABEL = 'Have an app idea? Get a free demo';
 
 // Resume lives in /public.
 export const RESUME_HREF = '/zeeshan-hameed-resume.pdf';
@@ -30,10 +31,19 @@ export const LINKS = {
 
 export const CONTACT_HREF = `mailto:${LINKS.email}`;
 
+// Upwork proof shown in the hero, linking to the profile. Only claims that can be backed up.
+export const UPWORK_BADGE = ['Top Rated Plus', '100% Job Success'] as const;
+
+// PLACEHOLDER: fill these three from the live Upwork profile. Leave a value as null and the
+// hero shows a marked placeholder in its place. Never estimate them.
+export const UPWORK_STATS: { jobs: string | null; hours: string | null; reviews: string | null } = {
+  jobs: null,
+  hours: null,
+  reviews: null,
+};
+
 // Credibility line shown under the hero. Only claims that can be backed up.
 export const CREDENTIALS = [
-  'Top Rated Plus on Upwork',
-  '100% Job Success',
   'B.S. in Artificial Intelligence',
   'Founder of Auxon AI',
 ] as const;

@@ -1,7 +1,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import { Button, Logo } from '@/components/blueprint';
 import { cn } from '@/lib/utils';
-import { CONTACT_HREF, CTA_LABEL, RESUME_HREF } from '@/lib/site';
+import { BOOKING_LABEL, BOOKING_LINK, CONTACT_HREF, RESUME_HREF } from '@/lib/site';
 
 // "Notes" (/blog) stays routable but is left out of the nav until a post exists.
 const navItems = [
@@ -9,23 +9,23 @@ const navItems = [
   { label: 'About', to: '/about' },
 ];
 
-// Below 768px the links stay visible and wrap; the nav never hides behind a menu.
+const itemClass = 'inline-flex min-h-[44px] min-w-[44px] items-center justify-center underline-offset-[6px] hov:underline';
+
+// One row at every width. Below 640px the lockup shrinks to the mark and Resume and Email
+// step out (both stay in the footer and the closing block), so the button stays inline.
 export default function Navigation() {
   return (
-    <header className="mx-auto flex min-h-[88px] w-full max-w-wrap flex-wrap items-center justify-between gap-x-6 gap-y-1 px-6 py-3">
+    <header className="mx-auto flex min-h-[72px] w-full max-w-wrap items-center justify-between gap-x-3 px-4 py-2 sm:min-h-[88px] sm:gap-x-6 sm:px-6 sm:py-3">
       <Link to="/" aria-label="Zeeshan Hameed, home" className="shrink-0">
         <Logo />
       </Link>
-      <nav aria-label="Primary" className="flex flex-wrap items-center gap-x-7 gap-y-1 text-base font-medium">
+      <nav aria-label="Primary" className="flex items-center gap-x-3 text-base font-medium sm:gap-x-6">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              cn(
-                'inline-flex min-h-[44px] min-w-[44px] items-center justify-center underline-offset-[6px] hov:underline',
-                isActive && 'underline decoration-2 decoration-note',
-              )
+              cn(itemClass, isActive && 'underline decoration-2 decoration-note')
             }
           >
             {item.label}
@@ -35,12 +35,15 @@ export default function Navigation() {
           href={RESUME_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center underline-offset-[6px] hov:underline"
+          className={cn(itemClass, 'hidden md:inline-flex')}
         >
           Resume
         </a>
-        <Button href={CONTACT_HREF} variant="outline">
-          {CTA_LABEL}
+        <a href={CONTACT_HREF} className={cn(itemClass, 'hidden md:inline-flex')}>
+          Email
+        </a>
+        <Button href={BOOKING_LINK} external className="!min-h-[44px] !px-4 sm:!px-6">
+          {BOOKING_LABEL}
         </Button>
       </nav>
     </header>
