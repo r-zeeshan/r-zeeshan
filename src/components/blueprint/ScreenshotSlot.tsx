@@ -15,7 +15,7 @@ export default function ScreenshotSlot({ shot }: { shot: Screenshot }) {
           width={shot.width}
           height={shot.height}
           loading="lazy"
-          className="block h-auto max-h-[520px] w-auto max-w-full border-2 border-ink bg-surface"
+          className="block h-auto max-h-[440px] w-auto max-w-full border-2 border-ink bg-surface"
         />
       ) : (
         <div

@@ -25,6 +25,7 @@ Personal portfolio for Zeeshan Hameed, a full-stack AI engineer. Vite + React 18
 - Diagrams are decorative: `aria-hidden`. The hero diagram is a `<figure>` with a real `<figcaption>`.
 - No invented numbers, user counts or client metrics. No ad-style cover images with baked-in text.
 - The "Notes" (`/blog`) route stays, but it is hidden from the nav until `src/lib/blog.ts` has a post.
+- Case study screenshots (`screenshots` in `src/lib/work.ts`, files in `public/screens/`) are real captures of the product with fictional or demo data only. Never show real patient, doctor or client data; check each image before adding it.
 - Testimonials are real Upwork reviews. Never reword and never shorten; always show the full `text`. The current wording comes from the verified proof doc; if a client has not confirmed permission to be named, keep that quote role-only.
 
 ## Commands

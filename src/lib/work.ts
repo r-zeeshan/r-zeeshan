@@ -125,8 +125,8 @@ export const caseStudies: CaseStudy[] = [
     role: 'Lead AI engineer, end to end',
     timeline: 'June 2025 to present',
     screenshots: [
-      { alt: 'Jema AIgent visit recording and report draft', slot: 'public/screens/jema-1.png' },
-      { alt: 'Jema AIgent patient record', slot: 'public/screens/jema-2.png' },
+      { src: '/screens/jema-1.webp', width: 2160, height: 1620, caption: 'A visit transcript and the SOAP report generated from it', alt: 'The Jema AIgent report workspace: a visit transcript, the SOAP report generated from it and the patient panel, with fictional test data', slot: 'public/screens/jema-1.webp' },
+      { src: '/screens/jema-2.webp', width: 2160, height: 1620, caption: 'The patient-facing explanation report, generated from the SOAP', alt: 'The Jema AIgent patient explanation report generated from a SOAP report, with fictional test data', slot: 'public/screens/jema-2.webp' },
     ],
     stack: ['React', 'Next.js', 'Python', 'FastAPI', 'Firebase', 'Multi-model LLM fallback', 'AWS', 'Docker'],
     metaTitle: 'Jema AIgent clinical AI case study | Zeeshan Hameed',
@@ -340,8 +340,8 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
     screenshots: [
-      { alt: 'Dr. AIgent consultation recording and transcript', slot: 'public/screens/dr-aigent-1.png' },
-      { alt: 'Dr. AIgent SOAP report', slot: 'public/screens/dr-aigent-2.png' },
+      { src: '/screens/dr-aigent-1.webp', width: 2160, height: 1620, caption: 'A consultation transcript and its SOAP report', alt: 'The Dr. AIgent report workspace: a consultation transcript and the SOAP report, with a sample demo patient', slot: 'public/screens/dr-aigent-1.webp' },
+      { src: '/screens/dr-aigent-2.webp', width: 2160, height: 1620, caption: 'The SOAP report: assessment, plan, subjective and objective findings', alt: 'The Dr. AIgent SOAP report with assessment, plan, subjective and objective sections filled in, for a sample demo patient', slot: 'public/screens/dr-aigent-2.webp' },
     ],
     role: 'Backend and AI engineer',
     timeline: 'June 2025 to present',
