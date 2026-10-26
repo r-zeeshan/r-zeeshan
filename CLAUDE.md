@@ -16,14 +16,14 @@ Personal portfolio for Zeeshan Hameed, a full-stack AI engineer. Vite + React 18
 - Tokens: CSS variables in `src/index.css`, exposed as Tailwind colours in `tailwind.config.ts` (`bg-paper`, `text-ink`, `text-ink-2`, `text-muted`, `border-rule-dash`, `text-note`, `bg-note-bg`, `bg-band`...). Use `hov:` instead of `hover:` so every hover is gated behind `(hover: hover) and (pointer: fine)`.
 - Shared components: `src/components/blueprint/` (`Diagram`, `DiagramNode`, `DiagramArrow`, `DiagramStep`, `WorkDiagram`, `Note`, `SectionHeader`, `Card`, `Button`, `Container`, `Logo`).
 - Case study diagrams are data: the `diagram` field of each entry in `src/lib/work.ts`. Nodes must be backed by that case study's text. At most one node is `ai`.
-- Motion is CSS (`.enter`, `.enter-node`, `.press` in `src/index.css`) so the pre-rendered HTML is readable without JS. Only transform and opacity animate; easing is `cubic-bezier(0.23, 1, 0.32, 1)`; never `ease-in`, never `transition: all`. `MotionConfig reducedMotion="user"` wraps the app in `RootLayout`.
+- Motion is CSS (`.enter`, `.enter-node`, `.press` in `src/index.css`) so the pre-rendered HTML is readable without JS. Only transform and opacity animate; easing is `cubic-bezier(0.23, 1, 0.32, 1)`; never `ease-in`, never `transition: all`. There is no JS animation library; reduced motion is handled in CSS.
 
 ### Rules that are easy to break
 
 - Text contrast at least 4.5:1. Do not lighten `--muted` or `--ink-2`.
 - Touch targets at least 44px; visible `:focus-visible` outline (2px, `--note`).
 - Diagrams are decorative: `aria-hidden`. The hero diagram is a `<figure>` with a real `<figcaption>`.
-- No invented numbers, user counts or client metrics. No ad-style cover images with baked-in text.
+- No invented numbers, user counts or client metrics. The Upwork line in the hero comes from the verified Upwork profile (`UPWORK_PROOF` in `src/lib/site.ts`). No ad-style cover images with baked-in text.
 - The "Notes" (`/blog`) route stays, but it is hidden from the nav until `src/lib/blog.ts` has a post.
 - Case study screenshots (`screenshots` in `src/lib/work.ts`, files in `public/screens/`) are real captures of the product with fictional or demo data only. Never show real patient, doctor or client data; check each image before adding it.
 - Testimonials are real Upwork reviews. Never reword and never shorten; always show the full `text`. The current wording comes from the verified proof doc; if a client has not confirmed permission to be named, keep that quote role-only.

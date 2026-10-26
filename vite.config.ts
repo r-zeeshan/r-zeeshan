@@ -34,7 +34,6 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
           ? undefined
           : {
               'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-              'vendor-animation': ['framer-motion'],
             },
       }
     },
@@ -51,7 +50,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion'],
+    include: ['react', 'react-dom'],
     exclude: ['@vite/client', '@vite/env']
   },
   // Enable experimental features for better performance

@@ -17,7 +17,7 @@ const kinds: { title: string; body: string; steps: Step[] }[] = [
   },
   {
     title: 'Building a SaaS or MVP end to end',
-    body: 'Auth, payments and deployment done properly, so the first real users are not the ones who find the gaps.',
+    body: 'Auth, payments and deployment done properly, so the first customers are not the ones who find the gaps.',
     steps: [{ label: 'idea' }, { label: 'MVP' }, { label: 'paying users', ai: true }],
   },
   {

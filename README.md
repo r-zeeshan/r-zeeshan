@@ -8,7 +8,7 @@ I build AI products from idea to production, and stay to run them after launch.
 The AI layer, backend, web and mobile.
 
 [![Website](https://img.shields.io/badge/Website-r--zeeshan.dev-1B2A4A?style=flat-square)](https://r-zeeshan.dev)
-[![Upwork](https://img.shields.io/badge/Upwork-Top%20Rated%20Plus-6FDA44?style=flat-square&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/aizeeshan)
+[![Upwork](https://img.shields.io/badge/Upwork-Top%20Rated%20Plus-6FDA44?style=flat-square&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~01e1f21ebe6cbf41ea)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-r--zeeshan-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/r-zeeshan)
 
 </div>
@@ -21,7 +21,7 @@ The AI layer, backend, web and mobile.
 - **Build a SaaS or MVP end to end.** Auth, payments and deployment done properly.
 - **Take over an app that keeps breaking** and make it stable.
 
-A prototype shows that an idea can work. A product has to keep working with real users, messy
+A prototype shows that an idea can work. A product has to keep working with paying customers, messy
 data and providers that go down. That second part is most of what I do.
 
 ## Selected work

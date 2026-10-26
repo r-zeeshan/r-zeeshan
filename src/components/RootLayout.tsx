@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { MotionConfig } from 'framer-motion';
 import Navigation from '@/components/sections/Navigation';
 import Footer from '@/components/sections/Footer';
 
@@ -16,18 +15,16 @@ function ScrollToTop() {
 
 export default function RootLayout() {
   return (
-    <MotionConfig reducedMotion="user">
-      <div className="relative min-h-screen">
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <ScrollToTop />
-        <Navigation />
-        <main id="main" tabIndex={-1} className="outline-none">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </MotionConfig>
+    <div className="relative min-h-screen">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <ScrollToTop />
+      <Navigation />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }

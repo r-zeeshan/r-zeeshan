@@ -23,7 +23,7 @@ export default function WhyProduction() {
         </div>
         <div className="flex min-w-0 flex-[1.4_1_420px] flex-col gap-[18px]">
           <p className="prose-body !text-[18px]">
-            A prototype shows that an idea can work. A product has to keep working with real users,
+            A prototype shows that an idea can work. A product has to keep working with paying customers,
             messy data and providers that go down at inconvenient moments. That second part is most
             of what I do, and there is one named person accountable for it.
           </p>

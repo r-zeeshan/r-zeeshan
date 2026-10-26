@@ -191,7 +191,7 @@ export const caseStudies: CaseStudy[] = [
         { label: 'Class setup' },
         { label: 'AI class planner', sub: 'Claude API', ai: true },
         { label: 'Plan validation' },
-        { label: 'Plan with teaching cues' },
+        { label: 'Plan and spoken cues' },
       ],
       asides: ['+ drag-and-drop builder', '+ PDF export', '+ Stripe subscriptions'],
     },
@@ -202,8 +202,8 @@ export const caseStudies: CaseStudy[] = [
       { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
     ],
     screenshots: [
-      { src: '/screens/cuepilates-1.webp', width: 780, height: 2020, caption: 'Class player on a phone: written cues for one exercise', alt: 'The CuePilates class player on a phone, showing the written setup, movement, breathing and correction cues for one exercise', slot: 'public/screens/cuepilates-1.webp' },
-      { src: '/screens/cuepilates-2.webp', width: 2160, height: 1350, caption: 'Class player on desktop, from the sample class', alt: 'The CuePilates class player on desktop, exercise 3 of 5 with its written cues, from the sample class', slot: 'public/screens/cuepilates-2.webp' },
+      { src: '/screens/cuepilates-1.webp', width: 780, height: 2020, caption: 'Class player on a phone: the cues for one exercise, also read aloud', alt: 'The CuePilates class player on a phone, showing the setup, movement, breathing and correction cues for one exercise', slot: 'public/screens/cuepilates-1.webp' },
+      { src: '/screens/cuepilates-2.webp', width: 2160, height: 1350, caption: 'Class player on desktop, from the sample class', alt: 'The CuePilates class player on desktop, exercise 3 of 5 with its setup, movement, breathing and correction cues, from the sample class', slot: 'public/screens/cuepilates-2.webp' },
     ],
     stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
     testimonial: 'Tess Bartoli',
@@ -214,7 +214,7 @@ export const caseStudies: CaseStudy[] = [
       'The founder had a strong vision for CuePilates, an AI tool that plans Pilates classes, but no coding background and no product yet. They did not need a prototype to show around. They needed a real SaaS, live, with accounts and subscriptions, and they needed it fast.',
     ],
     built: [
-      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans with teaching cues, a drag-and-drop builder and PDF export, inside a full product with accounts and paid subscriptions. It is live at www.cuepilates.fit.',
+      'CuePilates is an AI-powered Pilates class-planning platform. Instructors get AI-generated class plans, a live teaching timer that speaks every cue, a drag-and-drop builder and PDF export, inside a full product with accounts and paid subscriptions. It is live at www.cuepilates.fit.',
       'I built it on Next.js and Supabase, with Stripe for subscriptions, Vercel for hosting, and Claude through the Anthropic API powering the planning engine.',
     ],
     hardParts: [

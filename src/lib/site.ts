@@ -7,15 +7,15 @@ export const TITLE = 'Full-Stack AI Engineer';
 export const POSITIONING = 'I build AI products from idea to production.';
 
 // The booking path (Calendly): the header button, the hero and the closing block.
-export const BOOKING_LINK = 'https://calendly.com/rzeeshan';
+export const BOOKING_LINK = 'https://calendly.com/rzeeshan/free-demo-or-launch-review-call';
 export const BOOKING_LABEL = 'Book a call';
 
 // Studio site. Linked from the footer only.
 export const AUXON_URL = 'https://auxonai.com';
 
-// The studio's free-demo page (hero link). PLACEHOLDER: auxonai.com/launch returned 404 on 2026-10-26.
+// The studio's free-demo page (hero link).
 export const LAUNCH_URL = `${AUXON_URL}/launch`;
-export const LAUNCH_LABEL = 'Have an app idea? Get a free demo';
+export const LAUNCH_LABEL = 'Have an app idea? Get a free working demo in 48 hours';
 
 // Resume lives in /public.
 export const RESUME_HREF = '/zeeshan-hameed-resume.pdf';
@@ -23,7 +23,7 @@ export const RESUME_LABEL = 'Resume (PDF)';
 
 // Social / proof links.
 export const LINKS = {
-  upwork: 'https://www.upwork.com/freelancers/aizeeshan',
+  upwork: 'https://www.upwork.com/freelancers/~01e1f21ebe6cbf41ea',
   linkedin: 'https://linkedin.com/in/r-zeeshan',
   github: 'https://github.com/r-zeeshan',
   email: 'zeeshan@auxonai.com',
@@ -31,17 +31,9 @@ export const LINKS = {
 
 export const CONTACT_HREF = `mailto:${LINKS.email}`;
 
-// Upwork proof shown in the hero, linking to the profile. Only claims that can be backed up.
-export const UPWORK_BADGE = ['Top Rated Plus', '100% Job Success'] as const;
-
-// From the Upwork profile, checked 2026-10-26 (auxonai docs/launch-proof.md). Leave a value as
-// null and the hero shows a marked placeholder in its place. Never estimate them.
-// PLACEHOLDER: hours is not in the proof doc.
-export const UPWORK_STATS: { jobs: string | null; hours: string | null; reviews: string | null } = {
-  jobs: '21',
-  hours: null,
-  reviews: '14',
-};
+// Upwork proof shown in the hero, linking to the profile. Verified against the Upwork profile on
+// 2026-10-26 (auxonai docs/launch-proof.md). Update the numbers only from the live profile.
+export const UPWORK_PROOF = 'Top Rated Plus, 21 jobs, 14 reviews, $70K+ earned';
 
 // Credibility line shown under the hero. Only claims that can be backed up.
 export const CREDENTIALS = [

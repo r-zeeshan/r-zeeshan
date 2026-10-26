@@ -78,7 +78,7 @@ Grid background: `background-image: linear-gradient(var(--grid) 1px, transparent
 - Optional delight, hero only: diagram nodes appear left to right, then the Caveat note fades in last. Total under 900ms, played once.
 - Buttons: `:active { transform: scale(.97) }` at 120ms (the Auxon CTA uses the translate press above).
 - Gate every hover style behind `@media (hover: hover) and (pointer: fine)`.
-- `prefers-reduced-motion`: no movement, only opacity at 150ms. In framer-motion, wrap the app in `MotionConfig reducedMotion="user"`.
+- `prefers-reduced-motion`: no movement, only opacity at 150ms. The site has no JS animation library; this is all CSS.
 - Don't animate header padding or height on scroll. A border or bg change on scroll is fine.
 
 ## 6. Accessibility

@@ -46,7 +46,7 @@ export default function About() {
           </p>
           <p className="prose-body">
             <strong className="font-semibold text-ink">Building a SaaS or MVP end to end.</strong>{' '}
-            Auth, payments and deployment done properly, so the first real users are not the ones
+            Auth, payments and deployment done properly, so the first customers are not the ones
             who find the gaps.
           </p>
           <p className="prose-body">

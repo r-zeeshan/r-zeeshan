@@ -1,16 +1,10 @@
 import type { CSSProperties } from 'react';
 import { Button, Note, WorkDiagram } from '@/components/blueprint';
-import { CREDENTIALS, LAUNCH_LABEL, LAUNCH_URL, LINKS, UPWORK_BADGE, UPWORK_STATS } from '@/lib/site';
+import { CREDENTIALS, LAUNCH_LABEL, LAUNCH_URL, LINKS, UPWORK_PROOF } from '@/lib/site';
 import { getCaseStudy } from '@/lib/work';
 
 // The one orchestrated entrance on the site (DESIGN.md §5): a CSS stagger in reading order.
 const step = (i: number): CSSProperties => ({ ['--i' as string]: i });
-
-const STATS = [
-  { key: 'jobs', label: 'jobs', value: UPWORK_STATS.jobs },
-  { key: 'hours', label: 'hours', value: UPWORK_STATS.hours },
-  { key: 'reviews', label: 'reviews', value: UPWORK_STATS.reviews },
-] as const;
 
 export default function Hero() {
   const jema = getCaseStudy('jema')!;
@@ -36,28 +30,17 @@ export default function Hero() {
           </Button>
         </div>
         <div className="enter flex flex-col gap-1 border-t-[1.5px] border-dashed border-rule-dash pt-3" style={step(4)}>
-          <a
-            href={LINKS.upwork}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link inline-flex min-h-[44px] flex-wrap items-center gap-x-2 text-base font-semibold"
-          >
-            {UPWORK_BADGE.join(' · ')} on Upwork ↗
-          </a>
-          <ul aria-label="Upwork track record" className="mono-label flex flex-wrap gap-x-5 gap-y-1.5">
-            {STATS.map((st) => (
-              <li key={st.key}>
-                {/* PLACEHOLDER until UPWORK_STATS in src/lib/site.ts is filled. */}
-                {st.value ? (
-                  <>
-                    {st.value} {st.label}
-                  </>
-                ) : (
-                  <span className="border border-dashed border-note px-1.5 text-note">[add {st.label}]</span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <p className="flex min-h-[44px] flex-wrap items-center gap-x-3">
+            <span className="mono-label">Upwork</span>
+            <a
+              href={LINKS.upwork}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link inline-flex min-h-[44px] items-center text-base font-semibold"
+            >
+              {UPWORK_PROOF} ↗
+            </a>
+          </p>
           <ul aria-label="Credentials" className="mono-label mt-2 flex flex-wrap gap-x-5 gap-y-1.5">
             {CREDENTIALS.map((c) => (
               <li key={c}>{c}</li>
