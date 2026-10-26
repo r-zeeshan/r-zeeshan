@@ -277,10 +277,10 @@ export const caseStudies: CaseStudy[] = [
     name: 'DietTalk',
     tag: 'Mobile and web',
     ogImage: '/og/work-diettalk.png',
-    oneLiner: 'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors.',
+    oneLiner: 'Built the DietTalk app and doctor web portal for a doctor-supervised diet and weight program. Published on the App Store and Google Play.',
     cardBlurb:
-      'A doctor-supervised diet and weight management product: a Flutter app for patients and a web portal for doctors, with OCR that reads lab results to auto-fill the clinical workflow. It shipped to both app stores.',
-    shortLine: 'A doctor-supervised diet app that shipped to the App Store and Google Play.',
+      'Built the DietTalk app and doctor web portal for a doctor-supervised diet and weight program. Published on the App Store and Google Play. Its OCR read lab results to auto-fill the clinical workflow.',
+    shortLine: 'Built the DietTalk app and doctor web portal. Published on the App Store and Google Play.',
     diagram: {
       caption: 'DietTalk: one record, two screens',
       nodes: [
@@ -291,16 +291,16 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
     role: 'Mobile and full-stack engineer',
-    timeline: 'June 2025 to present',
+    timeline: '2025 to 2026',
     stack: ['Flutter', 'iOS + Android', 'Web portal', 'PostgreSQL', 'Supabase', 'OCR + LLM extraction'],
     metaTitle: 'DietTalk mobile app and doctor portal case study | Zeeshan Hameed',
     metaDescription:
-      'DietTalk is a doctor-supervised diet and weight management product: one Flutter codebase shipped to iOS and Android, a doctor web portal, and OCR that reads lab results to auto-fill the workflow.',
+      'Built the DietTalk app and doctor web portal for a doctor-supervised diet and weight program: one Flutter codebase for iOS and Android, and OCR that read lab results to auto-fill the workflow. Published on the App Store and Google Play.',
     problem: [
-      'DietTalk needed to work for two very different users at once: patients tracking their diet and weight from their phone, and doctors supervising them and sending guidance. That is a mobile app and a clinical web tool, tied to the same patient data, and it had to ship to both app stores.',
+      'DietTalk needed to work for two very different users at once: patients tracking their diet and weight from their phone, and doctors supervising them and sending guidance. That meant a mobile app and a clinical web tool, tied to the same patient data, and it had to ship to both app stores.',
     ],
     built: [
-      'DietTalk is a doctor-supervised diet and weight management product. Patients use a Flutter mobile app to track diet and weight; doctors use a web portal to supervise and send guidance, with AI insights on top. It shipped to the App Store and Google Play.',
+      'Built the DietTalk app and doctor web portal for a doctor-supervised diet and weight program. Published on the App Store and Google Play. Patients used a Flutter mobile app to track diet and weight; doctors used a web portal to supervise and send guidance, with AI insights on top.',
       'I built the mobile app in Flutter for both iOS and Android, the doctor-facing web portal, and the backend on PostgreSQL and Supabase that connects them.',
     ],
     hardParts: [
@@ -313,12 +313,12 @@ export const caseStudies: CaseStudy[] = [
       {
         title: 'Reading documents instead of re-typing them',
         body: [
-          'Instead of making people re-type everything, the product reads lab results and captures patient details straight off documents, then uses that to auto-fill the clinical workflow. It removes a pile of manual data entry, and it means the data doctors act on comes from the source. Health data is handled securely throughout.',
+          'Instead of making people re-type everything, the product read lab results and captured patient details straight off documents, then used that to auto-fill the clinical workflow. It removed a pile of manual data entry, and it meant the data doctors acted on came from the source. Health data was handled securely throughout.',
         ],
       },
     ],
     now: [
-      'DietTalk shipped to the App Store and Google Play and was used by patients and the doctors supervising them.',
+      'DietTalk was published on the App Store and Google Play and was used by patients and the doctors supervising them.',
     ],
   },
   {
