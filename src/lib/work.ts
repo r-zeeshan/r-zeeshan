@@ -201,7 +201,7 @@ export const caseStudies: CaseStudy[] = [
       { alt: 'CuePilates class plan with teaching cues', slot: 'public/screens/cuepilates-2.png' },
     ],
     stack: ['Next.js', 'Supabase', 'Stripe', 'Claude API', 'Vercel'],
-    testimonial: 'Founder, CuePilates',
+    testimonial: 'Tess Bartoli',
     metaTitle: 'CuePilates AI SaaS case study, idea to launch | Zeeshan Hameed',
     metaDescription:
       'How I took CuePilates, an AI Pilates class-planning SaaS, from idea to a live product with paying subscribers in under a month: auth, Stripe subscriptions, Supabase, and the AI planning engine.',

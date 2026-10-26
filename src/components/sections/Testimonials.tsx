@@ -3,7 +3,7 @@ import { SectionHeader } from '@/components/blueprint';
 import { quotes } from '@/lib/testimonials';
 
 // The two reviews that speak to the work shown above, in full.
-const SHOWN = ['Founder, CuePilates', 'Aaron Phillips'];
+const SHOWN = ['Tess Bartoli', 'Aaron Phillips'];
 
 export default function Testimonials() {
   return (
@@ -11,7 +11,7 @@ export default function Testimonials() {
       <SectionHeader number="04" id="quotes-heading" note="from Upwork reviews">
         What clients say
       </SectionHeader>
-      <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))]">
+      <div className="grid items-start gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))]">
         {quotes
           .filter((q) => SHOWN.includes(q.author))
           .map((q) => (

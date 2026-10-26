@@ -34,12 +34,13 @@ export const CONTACT_HREF = `mailto:${LINKS.email}`;
 // Upwork proof shown in the hero, linking to the profile. Only claims that can be backed up.
 export const UPWORK_BADGE = ['Top Rated Plus', '100% Job Success'] as const;
 
-// PLACEHOLDER: fill these three from the live Upwork profile. Leave a value as null and the
-// hero shows a marked placeholder in its place. Never estimate them.
+// From the Upwork profile, checked 2026-10-26 (auxonai docs/launch-proof.md). Leave a value as
+// null and the hero shows a marked placeholder in its place. Never estimate them.
+// PLACEHOLDER: hours is not in the proof doc.
 export const UPWORK_STATS: { jobs: string | null; hours: string | null; reviews: string | null } = {
-  jobs: null,
+  jobs: '21',
   hours: null,
-  reviews: null,
+  reviews: '14',
 };
 
 // Credibility line shown under the hero. Only claims that can be backed up.

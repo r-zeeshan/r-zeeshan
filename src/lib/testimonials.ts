@@ -1,15 +1,11 @@
 // Real client reviews (Upwork). Do not invent or edit the wording, and always show `text`
-// in full. Names attributed by role where the client name was not provided.
+// in full; a blank line in `text` starts a new paragraph. Names attributed by role where the
+// client name was not provided. Source for the current wording: auxonai docs/launch-proof.md.
 
 export interface Quote {
   text: string;
   author: string;
   role: string;
-  /**
-   * FLAG: set while the client's permission to be named or to show the review is unconfirmed.
-   * The quote stays anonymous (role only). Remove the flag once the client confirms.
-   */
-  permissionPending?: boolean;
 }
 
 export const quotes: Quote[] = [
@@ -19,13 +15,12 @@ export const quotes: Quote[] = [
     role: 'Long-term partnership',
   },
   {
-    text: 'Zeeshan took my vision for CuePilates, a fully AI-powered Pilates class planning platform, and built it into a real, live product with paying subscribers. He handled Supabase, Vercel, Stripe, the Anthropic API, auth, and security hardening. I came in with zero coding background, and he translated my ideas into real features, milestone after milestone. If you need a developer you can actually trust, Zeeshan is your guy.',
-    author: 'Founder, CuePilates',
-    role: 'Idea to launch',
-    permissionPending: true, // keep anonymous until the founder confirms permission
+    text: 'Working with Zeeshan was an incredible experience from start to finish. He took my vision for CuePilates, a fully AI-powered Pilates class planning platform, and built it into a real, live product with paying subscribers. That\'s not a small thing.\n\nHe handled everything: Supabase, Vercel, Stripe payments, Anthropic API integration, authentication, security hardening, and more. The architecture he built is clean, scalable, and production-ready. When challenges came up, he problem-solved without drama and kept things moving.\n\nWhat stood out most was his ability to take my direction and run with it. I came in with strong product opinions and zero coding background. He never made me feel out of place for that. He translated my ideas into real features, milestone after milestone.\n\nIf you\'re a founder who needs a developer you can actually trust to help you build something real, Zeeshan is your guy. Highly, highly recommend.',
+    author: 'Tess Bartoli',
+    role: 'Founder, CuePilates',
   },
   {
-    text: 'We highly recommend Zeeshan for AI-related development work. He built an AI agent for our certification support system, delivering high-quality results with efficiency and professionalism. Proactive, responsive, and a pleasure to work with, an asset to any team.',
+    text: 'We highly recommend Zeeshan for AI-related development work. He successfully built an AI Agent for our Certification Support system, delivering high-quality results with efficiency and professionalism. Zeeshan was proactive, responsive, and a pleasure to work with, an asset to any team.',
     author: 'Aaron Phillips',
     role: 'CEO, Green Earth',
   },
