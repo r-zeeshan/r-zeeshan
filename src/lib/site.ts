@@ -13,9 +13,9 @@ export const BOOKING_LABEL = 'Book a call';
 // Studio site. Linked from the footer only.
 export const AUXON_URL = 'https://auxonai.com';
 
-// The studio's free-demo page (hero link).
+// The studio's free-demo page (link in the closing card).
 export const LAUNCH_URL = `${AUXON_URL}/launch`;
-export const LAUNCH_LABEL = 'Have an app idea? Get a free working demo in 48 hours';
+export const LAUNCH_LABEL = 'Get a free demo of your app idea';
 
 // Resume lives in /public.
 export const RESUME_HREF = '/zeeshan-hameed-resume.pdf';

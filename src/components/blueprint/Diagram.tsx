@@ -34,7 +34,7 @@ export function DiagramNode({ children, ai, alert, sub, size = 'md', enter, clas
       style={style}
       className={cn(
         'max-w-full font-semibold leading-snug',
-        size === 'md' ? 'border-2 px-4 py-3 text-[15px]' : 'border-[1.5px] px-2.5 py-1.5 text-[13px]',
+        size === 'md' ? 'rounded-xl border-2 px-4 py-3 text-[15px]' : 'rounded-lg border-[1.5px] px-2.5 py-1.5 text-[13px]',
         ai
           ? 'border-dashed border-note bg-note-bg text-ink'
           : alert

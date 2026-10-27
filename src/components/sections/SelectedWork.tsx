@@ -1,28 +1,94 @@
-import { Button, SectionHeader } from '@/components/blueprint';
-import { LeadWorkCard, WorkCard } from '@/components/WorkCards';
-import { caseStudies, getCaseStudy } from '@/lib/work';
+import { Link } from 'react-router-dom';
+import { Card } from '@/components/blueprint';
+import { getCaseStudy } from '@/lib/work';
 
-const GRID = ['dr-aigent', 'diettalk', 'cuepilates', 'production-rescue'];
+// Three cards with a hard-part headline each, then the rest as rows. The headlines are written for
+// this page (src/lib/work.ts holds the case-study copy); every one restates what that case study says.
+// `shot` is the index of the screenshot in work.ts to show; DietTalk has none yet, so it shows its diagram.
+const CARDS: { slug: string; title: string; shot?: number }[] = [
+  { slug: 'cuepilates', title: 'Payments, sign-in and an AI planner, live in under a month', shot: 1 },
+  { slug: 'dr-aigent', title: 'Reports that keep generating when a model provider fails', shot: 0 },
+  { slug: 'diettalk', title: 'A patient app and a doctor portal, built together' },
+];
+const ROWS = ['production-rescue', 'jema', 'truecert', 'invoice-ai'];
 
 export default function SelectedWork() {
-  const lead = getCaseStudy('jema')!;
-  const grid = GRID.map((s) => getCaseStudy(s)!);
-  const others = caseStudies.filter((c) => c.slug !== lead.slug && !GRID.includes(c.slug)).map((c) => c.name);
-
   return (
-    <section id="work" aria-labelledby="work-heading" className="mx-auto flex w-full max-w-wrap flex-col gap-8 px-6 pb-16 md:pb-[104px]">
-      <SectionHeader number="02" id="work-heading" note="each one drawn as it actually works">
-        Products I&apos;ve built and shipped
-      </SectionHeader>
-      <LeadWorkCard cs={lead} />
-      <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(520px,100%),1fr))]">
-        {grid.map((cs) => (
-          <WorkCard key={cs.slug} cs={cs} />
-        ))}
+    <section id="work" aria-labelledby="work-heading" className="mx-auto w-full max-w-wrap px-6 py-14 md:py-[88px]">
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
+        <h2 id="work-heading" className="t-h2">
+          The hard part of each build
+        </h2>
+        <Link to="/work" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold hov:underline underline-offset-4">
+          All work <span aria-hidden="true">→</span>
+        </Link>
       </div>
-      <Button to="/work" variant="link" className="self-start">
-        All work{others.length > 0 ? `, including ${others.join(', ')}` : ''} →
-      </Button>
+      <p className="lead mt-3">A demo is quick. These are the problems that made each one work in production.</p>
+
+      <div className="mt-10 grid gap-6 md:grid-cols-3">
+        {CARDS.map(({ slug, title, shot }) => {
+          const cs = getCaseStudy(slug)!;
+          const img = shot === undefined ? undefined : cs.screenshots?.[shot];
+          return (
+            <Card as={Link} to={`/work/${cs.slug}`} interactive key={slug} className="flex flex-col !p-0 overflow-hidden">
+              {img?.src ? (
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.width}
+                  height={img.height}
+                  loading="lazy"
+                  className="block aspect-[16/10] w-full object-cover object-top"
+                />
+              ) : (
+                <div
+                  aria-hidden="true"
+                  className="flex aspect-[16/10] w-full flex-wrap content-center items-center gap-x-2 gap-y-3 bg-sunk p-5"
+                >
+                  {cs.diagram.nodes.map((n, i) => (
+                    <span key={n.label} className="inline-flex items-center gap-2">
+                      {i > 0 && <span className="text-[14px] text-ink-2">{n.join === 'plus' ? '+' : n.join === 'both' ? '↔' : '→'}</span>}
+                      <span
+                        className={`rounded-xl border-[1.5px] px-3 py-1.5 text-[13px] font-semibold leading-snug ${
+                          n.ai ? 'border-dashed border-accent-text bg-accent-soft text-accent-text' : 'border-ink bg-surface'
+                        }`}
+                      >
+                        {n.label}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div className="flex flex-1 flex-col gap-2 p-6">
+                <span className="text-[14px] font-medium text-ink-2">
+                  {cs.name} · {cs.tag}
+                  {cs.timeline ? ` · ${cs.timeline}` : ''}
+                </span>
+                <h3 className="t-h3 group-hov:underline underline-offset-4">{title}</h3>
+                <p className="text-[15px] leading-[1.5] text-ink-2">{cs.oneLiner}</p>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
+
+      <ul className="mt-10 list-none p-0">
+        {ROWS.map((slug) => {
+          const cs = getCaseStudy(slug)!;
+          return (
+            <li key={slug}>
+              <Link
+                to={`/work/${cs.slug}`}
+                className="group grid min-h-[44px] grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-1 border-t border-line py-5 no-underline md:grid-cols-[200px_1fr_auto] md:gap-x-6"
+              >
+                <span className="col-span-2 font-semibold md:col-span-1">{cs.name}</span>
+                <span className="text-[17px] font-semibold leading-snug group-hov:underline underline-offset-4">{cs.shortLine}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }

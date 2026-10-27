@@ -3,21 +3,30 @@
 @tailwind utilities;
 
 /* ============================================
-   BLUEPRINT. Engineer's notebook on grid paper.
-   Source of truth: docs/design/blueprint/DESIGN.md
+   v3. Light, soft and rounded. Work Sans throughout, Fraunces for the home hero headline only.
+   Source of truth: docs/design/blueprint/DESIGN.md (points at docs/design/blueprint/v3/)
    ============================================ */
 
 @layer base {
   :root {
-    --bg: #F7F8F5;           /* page ground */
-    --grid: #DFE6EE;         /* 1px grid lines, 24px cell */
-    --ink: #1B2A4A;          /* text, borders, primary button bg */
-    --ink-2: #3A4865;        /* body copy */
-    --muted: #5E6B84;        /* mono labels, meta */
-    --rule-dash: #9AA6BA;    /* dashed separators */
-    --surface: #FFFFFF;      /* cards / nodes */
-    --note: #C2412D;         /* handwritten notes, the AI node, accents */
-    --note-bg: #FFF6F2;      /* fill of the dashed AI node */
+    --bg: #F6F7FA;           /* page ground */
+    --surface: #FFFFFF;      /* cards */
+    --sunk: #EEF1F6;         /* recessed panels and chips */
+    --ink: #16294D;          /* text, dark button, dark band */
+    --ink-2: #4A5A7A;        /* body copy, secondary text */
+    --muted: #4A5A7A;        /* meta text (same as ink-2: 4.5:1 or better on every ground) */
+    --line: #E1E6EF;         /* hairlines */
+    --rule-dash: #C3CCDA;    /* decorative dividers and tracks (not text) */
+    --accent: #FF8A65;       /* buttons and progress only, never text */
+    --accent-soft: #FFE3D8;
+    --accent-text: #B23A1E;  /* the accent as text or a thin line (6:1 on white) */
+    --good: #1F7A55;
+    --good-soft: #E3F3EB;
+    --on-accent: #16294D;
+
+    /* Inner pages still draw diagrams; the note and AI-node colour is the readable accent. */
+    --note: #B23A1E;
+    --note-bg: #FFE3D8;
 
     /* Dark contact band + footer */
     --band-text: #F2F5FA;
@@ -36,16 +45,18 @@
   }
 
   body {
-    font-family: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Work Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
     color: var(--ink);
     background-color: var(--bg);
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 24px 24px;
     min-height: 100vh;
     line-height: 1.6;
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 720px) {
+    body {
+      font-size: 17px;
+    }
   }
 
   ::selection {
@@ -54,39 +65,50 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--note);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
   }
 
-  /* The note colour on the dark band would be too dim; use the band note. */
+  /* On the dark band the focus ring turns light. */
   .on-band :focus-visible {
-    outline-color: var(--note-band);
+    outline-color: var(--band-text);
   }
 }
 
 /* ============================================
-   TYPE (DESIGN.md §3)
+   TYPE
    ============================================ */
 @layer components {
+  /* The home hero headline: the only Fraunces on the site. */
+  .t-hero {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' 36;
+    font-size: clamp(44px, 6.2vw, 88px);
+    line-height: 1.03;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
   .t-display {
     font-weight: 700;
     font-size: clamp(38px, 4.4vw, 62px);
     line-height: 1.04;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
   .t-h2 {
     font-weight: 700;
-    font-size: clamp(28px, 3vw, 40px);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    font-size: clamp(30px, 3.4vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.028em;
     text-wrap: balance;
   }
   .t-h3 {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 21px;
     line-height: 1.25;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
   .t-h3-lg {
     font-weight: 700;
@@ -96,13 +118,19 @@
   }
 
   .lead {
-    font-size: 19px;
-    line-height: 1.55;
+    font-size: 21px;
+    line-height: 1.5;
     color: var(--ink-2);
+    letter-spacing: -0.005em;
     max-width: 38rem;
   }
+  @media (max-width: 720px) {
+    .lead {
+      font-size: 18px;
+    }
+  }
 
-  /* Long-form body copy: 17-19px, 1.6 leading. */
+  /* Long-form body copy. */
   .prose-body {
     font-size: 18px;
     line-height: 1.65;
@@ -113,7 +141,7 @@
     margin-top: 1.1rem;
   }
 
-  /* Small uppercase mono labels, section numbers, stack lines. */
+  /* Small sans labels, section numbers, stack lines. */
   .mono-label {
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
     font-size: 13px;
@@ -128,8 +156,14 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+  .eyebrow {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-2);
+    letter-spacing: -0.005em;
+  }
 
-  /* The Caveat note is the only handwriting on the site. */
+  /* The Caveat note survives only inside the diagrams on the inner pages. */
   .note {
     font-family: Caveat, cursive;
     font-weight: 500;

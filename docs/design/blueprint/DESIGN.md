@@ -1,3 +1,23 @@
+> **Superseded for r-zeeshan.dev (2026-10-27): the v3 design is the authority.** Read `v3/HANDOFF-r-zeeshan.md`, `v3/v3.css` and `v3/screens/` (`RZ-desktop.png`, `RZ-phone.png`) first. The rest of this file describes the earlier Blueprint look. It stays as history for the pieces that still carry it (the diagram components on the inner pages and the auxonai.com sister site) and is not the target for any new r-zeeshan.dev UI.
+>
+> **v3 in brief (r-zeeshan.dev)**
+>
+> | Token | Value | Use |
+> |---|---|---|
+> | `--bg` | `#F6F7FA` | page ground |
+> | `--surface` | `#FFFFFF` | cards |
+> | `--sunk` | `#EEF1F6` | recessed panels, the quote panel, the process strip |
+> | `--ink` | `#16294D` | text, dark buttons, the closing card |
+> | `--ink-2` / `--muted` | `#4A5A7A` | secondary text (4.5:1 or better on every ground) |
+> | `--line` | `#E1E6EF` | hairlines |
+> | `--accent` | `#FF8A65` | buttons and progress only, never text |
+> | `--accent-text` / `--note` | `#B23A1E` | the accent as text or a thin line |
+>
+> - Work Sans for all UI text. Fraunces (600) only for the home hero headline (`.t-hero`). IBM Plex Mono for the small labels on inner pages. Caveat survives only inside the diagrams on the inner pages.
+> - Rounded cards (24px) with the soft shadows `shadow-card` and `shadow-card-lg`, pill buttons, no emojis, no em dashes, no grid-paper ground.
+> - Tokens live in `src/index.css` and `tailwind.config.ts`. Hovers stay gated with `hov:` and `group-hov:`.
+> - The inner pages (`/work`, case studies, `/about`, `/blog`, 404) were not redrawn in v3. They inherit the new tokens, buttons and cards; a few square 2px ink boxes remain (see `CLAUDE.md`).
+
 # Blueprint design system (r-zeeshan.dev + auxonai.com)
 
 Approved 2026-10-18. Both sites share one system: same fonts, same components and the same logo construction. They differ only in ground: r-zeeshan.dev is **light paper**; auxonai.com is **dark blueprint**. Auxon also adds a small **neo-brutalist accent** (hard offset shadow and thick border) on primary CTAs and two highlight cards.

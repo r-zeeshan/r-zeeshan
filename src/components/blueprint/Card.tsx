@@ -8,7 +8,7 @@ type CardProps<T extends ElementType> = {
   padding?: 'md' | 'lg';
 } & Omit<ComponentPropsWithoutRef<T>, 'as'>;
 
-/** A 2px ink border, a white surface, square corners and no shadow. */
+/** A white surface with rounded corners and a soft shadow. */
 export default function Card<T extends ElementType = 'div'>({
   as,
   interactive,
@@ -20,7 +20,7 @@ export default function Card<T extends ElementType = 'div'>({
   return (
     <Tag
       className={cn(
-        'block min-w-0 border-2 border-ink bg-surface text-ink',
+        'block min-w-0 rounded-card bg-surface text-ink shadow-card',
         padding === 'md' ? 'p-6' : 'p-6 sm:p-7',
         interactive && 'group no-underline',
         className,

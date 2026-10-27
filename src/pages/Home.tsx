@@ -3,7 +3,6 @@ import Hero from '@/components/sections/Hero';
 import HiredFor from '@/components/sections/HiredFor';
 import SelectedWork from '@/components/sections/SelectedWork';
 import WhyProduction from '@/components/sections/WhyProduction';
-import Testimonials from '@/components/sections/Testimonials';
 import GetInTouch from '@/components/sections/GetInTouch';
 import { personGraph, DEFAULT_OG_ALT, SITE_DESCRIPTION } from '@/lib/seo';
 import { TITLE } from '@/lib/site';
@@ -22,7 +21,6 @@ export default function Home() {
       <HiredFor />
       <SelectedWork />
       <WhyProduction />
-      <Testimonials />
       <GetInTouch />
     </>
   );

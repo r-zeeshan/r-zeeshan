@@ -1,5 +1,5 @@
 /**
- * The Z mark: a square outline, a constructed Z and two crop-mark corners in the note colour.
+ * The Z mark: a square outline, a constructed Z and two crop-mark corners in the accent colour.
  * Same geometry as docs/design/blueprint/assets/zeeshan-logo-z.svg, with a paper-white fill.
  */
 export function LogoMark({ size = 36 }: { size?: number }) {
@@ -21,17 +21,12 @@ export function LogoMark({ size = 36 }: { size?: number }) {
   );
 }
 
-/** The mark plus the two-line lockup: name, then a Caveat descriptor. Below 640px only the mark shows. */
-export default function Logo({ showDescriptor = true }: { showDescriptor?: boolean }) {
+/** The mark plus the name. Below 640px only the mark shows, so the header button stays on the row. */
+export default function Logo() {
   return (
     <span className="flex min-h-[44px] min-w-[44px] items-center gap-3 select-none">
       <LogoMark size={36} />
-      <span className="hidden flex-col sm:flex">
-        <span className="text-[18px] font-bold leading-tight">Zeeshan Hameed</span>
-        {showDescriptor && (
-          <span className="note text-[19px]">full-stack AI engineer</span>
-        )}
-      </span>
+      <span className="hidden text-[19px] font-bold leading-tight tracking-[-0.01em] sm:block">Zeeshan Hameed</span>
     </span>
   );
 }

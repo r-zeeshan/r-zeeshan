@@ -15,13 +15,13 @@ export default function ScreenshotSlot({ shot }: { shot: Screenshot }) {
           width={shot.width}
           height={shot.height}
           loading="lazy"
-          className="block h-auto max-h-[440px] w-auto max-w-full border-2 border-ink bg-surface"
+          className="block h-auto max-h-[440px] w-auto max-w-full rounded-2xl border border-line bg-surface shadow-card"
         />
       ) : (
         <div
           role="img"
           aria-label={`Placeholder: ${shot.alt}`}
-          className="flex aspect-[16/10] w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-rule-dash bg-[rgba(255,255,255,0.72)] p-6 text-center"
+          className="flex aspect-[16/10] w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-rule-dash bg-sunk p-6 text-center"
         >
           <span className="mono-label-caps">Screenshot placeholder</span>
           <span className="mono-label">{shot.slot}</span>

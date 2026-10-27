@@ -1,72 +1,62 @@
 import type { CSSProperties } from 'react';
-import { Button, Note, WorkDiagram } from '@/components/blueprint';
-import { CREDENTIALS, LAUNCH_LABEL, LAUNCH_URL, LINKS, UPWORK_PROOF } from '@/lib/site';
-import { getCaseStudy } from '@/lib/work';
+import { Button } from '@/components/blueprint';
+import { LINKS, UPWORK_PROOF } from '@/lib/site';
 
-// The one orchestrated entrance on the site (DESIGN.md §5): a CSS stagger in reading order.
+// The one orchestrated entrance on the home page: a CSS stagger in reading order.
 const step = (i: number): CSSProperties => ({ ['--i' as string]: i });
 
+// Five stars sit beside the Upwork line: every review on the profile with a score is 5 stars
+// (auxonai docs/launch-proof.md, checked 2026-10-26).
 export default function Hero() {
-  const jema = getCaseStudy('jema')!;
   return (
-    <section id="top" className="mx-auto flex w-full max-w-wrap flex-wrap items-center gap-14 px-6 pb-16 pt-10 md:pb-24 md:pt-14">
-      <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-[26px]">
-        <h1 className="t-display enter" style={step(0)}>
+    <section
+      id="top"
+      className="mx-auto grid w-full max-w-wrap items-center gap-10 px-6 pb-14 pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,540px)] lg:gap-16 lg:pb-20 lg:pt-8"
+    >
+      <div className="flex min-w-0 flex-col gap-6">
+        <p className="eyebrow enter" style={step(0)}>
+          Full-stack AI engineer
+        </p>
+        <h1 className="t-hero enter -mt-2" style={step(1)}>
           The demo is the easy part.
         </h1>
-        <p className="enter max-w-[520px] text-[19px] leading-[1.55] text-ink-2" style={step(1)}>
-          I build AI products from idea to production, the AI layer, backend, web and mobile, and
-          stay to run them after launch.
+        <p className="lead enter" style={step(2)}>
+          I build AI products from idea to production, then stay to run them after launch: the AI
+          layer, the backend, web and mobile.
         </p>
-        <div className="enter flex flex-wrap items-center gap-x-3 gap-y-1" style={step(2)}>
+        <div className="enter flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={step(3)}>
           <Button to="/work">See the work</Button>
-          <Button to="/work/jema" variant="link">
-            Read the Jema AIgent case study
+          <Button href="#contact" variant="outline">
+            Get in touch
           </Button>
         </div>
-        <div className="enter" style={step(3)}>
-          <Button href={LAUNCH_URL} external variant="outline">
-            {LAUNCH_LABEL} →
-          </Button>
-        </div>
-        <div className="enter flex flex-col gap-1 border-t-[1.5px] border-dashed border-rule-dash pt-3" style={step(4)}>
-          <p className="flex min-h-[44px] flex-wrap items-center gap-x-3">
-            <span className="mono-label">Upwork</span>
-            <a
-              href={LINKS.upwork}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link inline-flex min-h-[44px] items-center text-base font-semibold"
-            >
-              {UPWORK_PROOF} ↗
-            </a>
-          </p>
-          <ul aria-label="Credentials" className="mono-label mt-2 flex flex-wrap gap-x-5 gap-y-1.5">
-            {CREDENTIALS.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-        </div>
+        <p className="enter flex flex-wrap items-center gap-x-2 text-[15px] text-ink-2" style={step(4)}>
+          <span aria-hidden="true" className="tracking-[2px] text-ink">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+          </span>
+          <a
+            href={LINKS.upwork}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center font-medium underline underline-offset-4 hov:text-ink"
+          >
+            {UPWORK_PROOF}
+          </a>
+        </p>
       </div>
 
-      <figure
-        className="enter m-0 flex min-w-0 flex-[1.3_1_520px] flex-col gap-4 border-2 border-ink bg-[rgba(255,255,255,0.72)] p-5 sm:p-7"
-        style={step(1)}
-      >
-        <figcaption>
-          <Note size={28}>{jema.diagram.caption}</Note>
+      <figure className="enter relative m-0 overflow-hidden rounded-photo bg-[#E9EBEE] shadow-card-lg" style={step(1)}>
+        <img
+          src="/profile-photo.jpg"
+          alt="Zeeshan Hameed, full-stack AI engineer"
+          width={877}
+          height={877}
+          className="block aspect-square w-full object-cover object-[50%_20%] lg:aspect-[4/5]"
+        />
+        <figcaption className="absolute bottom-5 left-5 rounded-2xl bg-surface px-5 py-3 shadow-card">
+          <b className="block text-[15px] font-semibold leading-tight">Zeeshan Hameed</b>
+          <span className="block text-[13px] leading-snug text-ink-2">Pakistan · works remotely</span>
         </figcaption>
-        <WorkDiagram diagram={jema.diagram} size="md" enter />
-        {jema.diagram.asides && (
-          <div className="flex flex-wrap items-center gap-x-[22px] gap-y-1 border-t-[1.5px] border-dashed border-rule-dash pt-3">
-            {jema.diagram.asides.map((a) => (
-              <Note key={a} size={21} className="!text-ink">
-                {a}
-              </Note>
-            ))}
-            <span className="mono-label self-center">{jema.stack.filter((s) => ['Next.js', 'FastAPI', 'Firebase', 'AWS'].includes(s)).join(' · ')}</span>
-          </div>
-        )}
       </figure>
     </section>
   );

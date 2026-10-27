@@ -1,57 +1,43 @@
-import { Card, Diagram, DiagramArrow, DiagramNode, DiagramStep, SectionHeader } from '@/components/blueprint';
-import type { Join } from '@/components/blueprint';
-
-interface Step {
-  label: string;
-  ai?: boolean;
-  alert?: boolean;
-  join?: Join;
-}
-
-// The three kinds of work I get hired for, each with a tiny diagram of what changes.
-const kinds: { title: string; body: string; steps: Step[] }[] = [
-  {
-    title: 'Adding AI to a product that already exists',
-    body: 'LLM features, chat, document AI and agents, built into the product your users already have rather than bolted on beside it.',
-    steps: [{ label: 'your app' }, { label: 'AI', ai: true, join: 'plus' }],
-  },
-  {
-    title: 'Building a SaaS or MVP end to end',
-    body: 'Auth, payments and deployment done properly, so the first customers are not the ones who find the gaps.',
-    steps: [{ label: 'idea' }, { label: 'MVP' }, { label: 'paying users', ai: true }],
-  },
-  {
-    title: 'Taking over an app that keeps breaking',
-    body: 'Finding why it falls over, fixing the causes instead of the symptoms, and leaving it stable.',
-    steps: [{ label: 'breaks', alert: true }, { label: 'root cause' }, { label: 'stable' }],
-  },
+// Where a build usually stops and where I carry on: four stages, the last one dark.
+const stages = [
+  { n: '1', title: 'Idea', body: 'Scope it into features you can test' },
+  { n: '2', title: 'Build', body: 'AI layer, backend, web and mobile' },
+  { n: '3', title: 'Launch', body: 'Auth, payments and deployment done properly' },
+  { n: '4 · I stay here', title: 'Run', body: 'Fixes, and the next features after launch', here: true },
 ];
 
 export default function HiredFor() {
   return (
-    <section aria-labelledby="hired-heading" className="mx-auto flex w-full max-w-wrap flex-col gap-8 px-6 pb-16 md:pb-[104px]">
-      <SectionHeader number="01" id="hired-heading">
-        What I get hired for
-      </SectionHeader>
-      <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))]">
-        {kinds.map((k) => (
-          <Card as="article" key={k.title} className="flex flex-col gap-3.5">
-            <div aria-hidden="true">
-              <Diagram size="sm">
-                {k.steps.map((s, i) => (
-                  <DiagramStep key={s.label} size="sm">
-                    {i > 0 && <DiagramArrow kind={s.join} size="sm" />}
-                    <DiagramNode size="sm" ai={s.ai} alert={s.alert} className={s.alert ? 'line-through' : undefined}>
-                      {s.label}
-                    </DiagramNode>
-                  </DiagramStep>
-                ))}
-              </Diagram>
-            </div>
-            <h3 className="t-h3">{k.title}</h3>
-            <p className="text-base leading-[1.55] text-ink-2">{k.body}</p>
-          </Card>
-        ))}
+    <section aria-labelledby="hired-heading" className="bg-sunk">
+      <div className="mx-auto w-full max-w-wrap px-6 py-12 md:py-14">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+          <h2 id="hired-heading" className="text-[clamp(24px,2.4vw,30px)] font-bold leading-tight tracking-[-0.02em]">
+            Where most builds stop, and where I stay
+          </h2>
+          <p className="text-[15px] text-ink-2">Same person from the first line of code to the running product</p>
+        </div>
+        <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+          {stages.map((s, i) => (
+            <li
+              key={s.title}
+              className={`relative flex min-w-0 flex-col gap-1 rounded-[20px] px-[22px] py-5 shadow-card ${
+                s.here ? 'bg-ink text-paper' : 'bg-surface'
+              }`}
+            >
+              <span className={`text-[14px] font-medium ${s.here ? 'text-band-muted' : 'text-ink-2'}`}>{s.n}</span>
+              <b className="text-[20px] leading-tight tracking-[-0.01em]">{s.title}</b>
+              <span className={`text-[15px] leading-snug ${s.here ? 'text-band-muted' : 'text-ink-2'}`}>{s.body}</span>
+              {i < stages.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute right-[-8px] top-1/2 z-[2] hidden h-7 w-7 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-paper text-[15px] font-semibold text-ink shadow-card md:flex"
+                >
+                  →
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
