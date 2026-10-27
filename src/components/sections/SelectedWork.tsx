@@ -5,10 +5,11 @@ import { getCaseStudy } from '@/lib/work';
 // Three cards with a hard-part headline each, then the rest as rows. The headlines are written for
 // this page (src/lib/work.ts holds the case-study copy); every one restates what that case study says.
 // `shot` is the index of the screenshot in work.ts to show; DietTalk has none yet, so it shows its diagram.
-const CARDS: { slug: string; title: string; shot?: number }[] = [
+// `when` adds the case study's timeline to the meta line; CuePilates leaves it out because its headline already says it.
+const CARDS: { slug: string; title: string; shot?: number; when?: boolean }[] = [
   { slug: 'cuepilates', title: 'Payments, sign-in and an AI planner, live in under a month', shot: 1 },
-  { slug: 'dr-aigent', title: 'Reports that keep generating when a model provider fails', shot: 0 },
-  { slug: 'diettalk', title: 'A patient app and a doctor portal, built together' },
+  { slug: 'dr-aigent', title: 'Reports that keep generating when a model provider fails', shot: 0, when: true },
+  { slug: 'diettalk', title: 'A patient app and a doctor portal, built together', when: true },
 ];
 const ROWS = ['production-rescue', 'jema', 'truecert', 'invoice-ai'];
 
@@ -26,7 +27,7 @@ export default function SelectedWork() {
       <p className="lead mt-3">A demo is quick. These are the problems that made each one work in production.</p>
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {CARDS.map(({ slug, title, shot }) => {
+        {CARDS.map(({ slug, title, shot, when }) => {
           const cs = getCaseStudy(slug)!;
           const img = shot === undefined ? undefined : cs.screenshots?.[shot];
           return (
@@ -62,7 +63,7 @@ export default function SelectedWork() {
               <div className="flex flex-1 flex-col gap-2 p-6">
                 <span className="text-[14px] font-medium text-ink-2">
                   {cs.name} · {cs.tag}
-                  {cs.timeline ? ` · ${cs.timeline}` : ''}
+                  {when && cs.timeline ? ` · ${cs.timeline}` : ''}
                 </span>
                 <h3 className="t-h3 group-hov:underline underline-offset-4">{title}</h3>
                 <p className="text-[15px] leading-[1.5] text-ink-2">{cs.oneLiner}</p>

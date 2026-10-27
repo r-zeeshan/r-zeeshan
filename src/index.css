@@ -17,6 +17,7 @@
     --muted: #4A5A7A;        /* meta text (same as ink-2: 4.5:1 or better on every ground) */
     --line: #E1E6EF;         /* hairlines */
     --rule-dash: #C3CCDA;    /* decorative dividers and tracks (not text) */
+    --control-border: #7C8AA5; /* outline button edge: 3.25:1 on --bg */
     --accent: #FF8A65;       /* buttons and progress only, never text */
     --accent-soft: #FFE3D8;
     --accent-text: #B23A1E;  /* the accent as text or a thin line (6:1 on white) */

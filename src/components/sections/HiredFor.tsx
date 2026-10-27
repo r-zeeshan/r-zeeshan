@@ -10,12 +10,10 @@ export default function HiredFor() {
   return (
     <section aria-labelledby="hired-heading" className="bg-sunk">
       <div className="mx-auto w-full max-w-wrap px-6 py-12 md:py-14">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h2 id="hired-heading" className="text-[clamp(24px,2.4vw,30px)] font-bold leading-tight tracking-[-0.02em]">
-            Where most builds stop, and where I stay
-          </h2>
-          <p className="text-[15px] text-ink-2">Same person from the first line of code to the running product</p>
-        </div>
+        <h2 id="hired-heading" className="text-[clamp(24px,2.4vw,30px)] font-bold leading-tight tracking-[-0.02em]">
+          Where most builds stop, and where I stay
+        </h2>
+        <p className="mt-1 text-[15px] text-ink-2">Same person from the first line of code to the running product</p>
         <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
           {stages.map((s, i) => (
             <li

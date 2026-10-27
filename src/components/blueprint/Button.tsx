@@ -8,7 +8,7 @@ const base: Record<Variant, string> = {
   primary:
     'press min-h-[56px] rounded-full bg-ink px-7 text-[18px] font-semibold text-paper hov:bg-ink-2',
   outline:
-    'press min-h-[56px] rounded-full px-7 text-[18px] font-semibold text-ink shadow-[inset_0_0_0_1.5px_var(--rule-dash)] hov:bg-sunk',
+    'press min-h-[56px] rounded-full px-7 text-[18px] font-semibold text-ink shadow-[inset_0_0_0_1.5px_var(--control-border)] hov:bg-sunk',
   // The one place the accent colour fills a surface: the main call to action.
   accent:
     'press min-h-[56px] rounded-full bg-accent px-7 text-[18px] font-semibold text-ink shadow-btn hov:brightness-95',

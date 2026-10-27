@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="enter flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={step(3)}>
           <Button to="/work">See the work</Button>
           <Button href="#contact" variant="outline">
-            Get in touch
+            Contact
           </Button>
         </div>
         <p className="enter flex flex-wrap items-center gap-x-2 text-[15px] text-ink-2" style={step(4)}>
