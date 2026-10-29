@@ -32,34 +32,37 @@ export default function SelectedWork() {
           const img = shot === undefined ? undefined : cs.screenshots?.[shot];
           return (
             <Card as={Link} to={`/work/${cs.slug}`} interactive key={slug} className="flex flex-col !p-0 overflow-hidden">
-              {img?.src ? (
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  loading="lazy"
-                  className="block aspect-[16/10] w-full object-cover object-top"
-                />
-              ) : (
-                <div
-                  aria-hidden="true"
-                  className="flex aspect-[16/10] w-full flex-wrap content-center items-center gap-x-2 gap-y-3 bg-sunk p-5"
-                >
-                  {cs.diagram.nodes.map((n, i) => (
-                    <span key={n.label} className="inline-flex items-center gap-2">
-                      {i > 0 && <span className="text-[14px] text-ink-2">{n.join === 'plus' ? '+' : n.join === 'both' ? '↔' : '→'}</span>}
-                      <span
-                        className={`rounded-xl border-[1.5px] px-3 py-1.5 text-[13px] font-semibold leading-snug ${
-                          n.ai ? 'border-dashed border-accent-text bg-accent-soft text-accent-text' : 'border-ink bg-surface'
-                        }`}
-                      >
-                        {n.label}
+              {/* One 16:10 box for every card, so the image's own size never sets the height. */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-sunk">
+                {img?.src ? (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    loading="lazy"
+                    className="absolute inset-0 block h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 flex flex-wrap content-center items-center gap-x-2 gap-y-3 p-5"
+                  >
+                    {cs.diagram.nodes.map((n, i) => (
+                      <span key={n.label} className="inline-flex items-center gap-2">
+                        {i > 0 && <span className="text-[14px] text-ink-2">{n.join === 'plus' ? '+' : n.join === 'both' ? '↔' : '→'}</span>}
+                        <span
+                          className={`rounded-xl border-[1.5px] px-3 py-1.5 text-[13px] font-semibold leading-snug ${
+                            n.ai ? 'border-dashed border-accent-text bg-accent-soft text-accent-text' : 'border-ink bg-surface'
+                          }`}
+                        >
+                          {n.label}
+                        </span>
                       </span>
-                    </span>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                )}
+              </div>
               <div className="flex flex-1 flex-col gap-2 p-6">
                 <span className="text-[14px] font-medium text-ink-2">
                   {cs.name} · {cs.tag}
