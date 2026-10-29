@@ -33,7 +33,7 @@ export const CONTACT_HREF = `mailto:${LINKS.email}`;
 
 // Upwork proof shown in the hero, linking to the profile. Verified against the Upwork profile on
 // 2026-10-26 (auxonai docs/launch-proof.md). Update the numbers only from the live profile.
-export const UPWORK_PROOF = 'Top Rated Plus, 21 jobs, 14 reviews, $70K+ earned';
+export const UPWORK_PROOF = 'Top Rated Plus, 21 jobs, 14 reviews';
 
 // Credibility line shown under the hero. Only claims that can be backed up.
 export const CREDENTIALS = [
