@@ -202,6 +202,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'www.cuepilates.fit', href: 'https://www.cuepilates.fit' },
     ],
     screenshots: [
+      { src: '/screens/cuepilates-home.webp', width: 1280, height: 800, caption: 'The CuePilates landing page, with the class timer on a phone', alt: 'CuePilates landing page with the class timer on a phone', slot: 'public/screens/cuepilates-home.webp' },
       { src: '/screens/cuepilates-1.webp', width: 780, height: 2020, caption: 'Class player on a phone: the cues for one exercise, also read aloud', alt: 'The CuePilates class player on a phone, showing the setup, movement, breathing and correction cues for one exercise', slot: 'public/screens/cuepilates-1.webp' },
       { src: '/screens/cuepilates-2.webp', width: 2160, height: 1350, caption: 'Class player on desktop, from the sample class', alt: 'The CuePilates class player on desktop, exercise 3 of 5 with its setup, movement, breathing and correction cues, from the sample class', slot: 'public/screens/cuepilates-2.webp' },
     ],
@@ -290,6 +291,9 @@ export const caseStudies: CaseStudy[] = [
         { label: 'OCR + LLM extraction', sub: 'lab reports fill the portal form', ai: true, join: 'plus' },
       ],
     },
+    screenshots: [
+      { src: '/screens/diettalk-1.webp', width: 1280, height: 800, caption: "The doctor portal: a patient's weight and body composition over time", alt: "DietTalk doctor portal showing a patient's weight and body composition over time, demo data", slot: 'public/screens/diettalk-1.webp' },
+    ],
     role: 'Mobile and full-stack engineer',
     timeline: '2025 to 2026',
     stack: ['Flutter', 'iOS + Android', 'Web portal', 'PostgreSQL', 'Supabase', 'OCR + LLM extraction'],

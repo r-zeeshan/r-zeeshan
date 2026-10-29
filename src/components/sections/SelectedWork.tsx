@@ -4,12 +4,12 @@ import { getCaseStudy } from '@/lib/work';
 
 // Three cards with a hard-part headline each, then the rest as rows. The headlines are written for
 // this page (src/lib/work.ts holds the case-study copy); every one restates what that case study says.
-// `shot` is the index of the screenshot in work.ts to show; DietTalk has none yet, so it shows its diagram.
+// `shot` is the index of the screenshot in work.ts to show; a card without one shows its diagram.
 // `when` adds the case study's timeline to the meta line; CuePilates leaves it out because its headline already says it.
 const CARDS: { slug: string; title: string; shot?: number; when?: boolean }[] = [
-  { slug: 'cuepilates', title: 'Payments, sign-in and an AI planner, live in under a month', shot: 1 },
+  { slug: 'cuepilates', title: 'Payments, sign-in and an AI planner, live in under a month', shot: 0 },
   { slug: 'dr-aigent', title: 'Reports that keep generating when a model provider fails', shot: 0, when: true },
-  { slug: 'diettalk', title: 'A patient app and a doctor portal, built together', when: true },
+  { slug: 'diettalk', title: 'A patient app and a doctor portal, built together', shot: 0, when: true },
 ];
 const ROWS = ['production-rescue', 'jema', 'truecert', 'invoice-ai'];
 
